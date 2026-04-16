@@ -124,7 +124,7 @@ export default function HowWeWorkSection() {
             cta="Book a Walkthrough →"
             ctaHref={BOOKING_URL}
             accentColor="#F86223"
-            photo="/images/claudio.jpg"
+            photo={`/images/${encodeURIComponent("Claudio Profile Pic.png")}`}
           />
           <PersonCard
             name="Kristy"
@@ -134,7 +134,7 @@ export default function HowWeWorkSection() {
             cta="View Portfolio →"
             ctaHref="#"
             accentColor="#22A6FF"
-            photo="/images/kristy.jpg"
+            photo={`/images/${encodeURIComponent("Kristy Profile Pic.png")}`}
           />
         </div>
 

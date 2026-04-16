@@ -7,18 +7,26 @@ export const NAV_ITEMS = [
   { label: "Client Stories", href: "#client-stories" },
 ];
 
+const logo = (filename: string) =>
+  `/images/logos/${encodeURIComponent(filename)}`;
+
 export const CLIENT_LOGOS = [
-  { name: "Liverpool FC", src: "/images/logos/liverpool.svg" },
-  { name: "Absa", src: "/images/logos/absa.svg" },
-  { name: "Yoco", src: "/images/logos/yoco.svg" },
-  { name: "TikTok", src: "/images/logos/tiktok.svg" },
-  { name: "Voco", src: "/images/logos/voco.svg" },
-  { name: "Discovery", src: "/images/logos/discovery.svg" },
-  { name: "Dis-Chem", src: "/images/logos/dischem.svg" },
-  { name: "X,bigly", src: "/images/logos/xbigly.svg" },
-  { name: "Visa", src: "/images/logos/visa.svg" },
-  { name: "Accenture", src: "/images/logos/accenture.svg" },
-  { name: "Coloplast", src: "/images/logos/coloplast.svg" },
+  { name: "Liverpool FC",      src: logo("Property 1=LFC, Property 2=80, Property 3=N200.png") },
+  { name: "Absa",             src: logo("Property 1=Absa, Property 2=80, Property 3=N200.png") },
+  { name: "Discovery",        src: logo("Property 1=Discovery, Property 2=80, Property 3=N200.png") },
+  { name: "TikTok",           src: logo("Property 1=TikTok, Property 2=N200.png") },
+  { name: "Liberty",          src: logo("Property 1=Liberty, Property 2=80, Property 3=N200.png") },
+  { name: "Nedbank",          src: logo("Property 1=Nedbank, Property 2=80, Property 3=N200.png") },
+  { name: "ESL",              src: logo("Property 1= ESL, Property 2=N200 (1).png") },
+  { name: "Shell",            src: logo("Property 1=Shell, Property 2=80, Property 3=N200.png") },
+  { name: "Standard Bank",    src: logo("Property 1=StandardBank, Property 2=80, Property 3=N200.png") },
+  { name: "Superbalist",      src: logo("Property 1=Superbalist-2, Property 2=80, Property 3=N200.png") },
+  { name: "SuperSport",       src: logo("Property 1=SuperSport, Property 2=80, Property 3=N200.png") },
+  { name: "Yoco",             src: logo("Property 1=Yoco, Property 2=80, Property 3=N200.png") },
+  { name: "Chicken Lickin",   src: logo("Property 1=Chicken Lickin, Property 2=N200.png") },
+  { name: "Funding Frontier", src: logo("Property 1= Funding Frontier, Property 2=N200-1.png") },
+  { name: "Freethinking",     src: logo("Property 1=Freethinking, Property 2=80, Property 3=N200.png") },
+  { name: "Vitality",         src: logo("Property 1=Vitality-2, Property 2=80, Property 3=N200.png") },
 ];
 
 export const PROBLEM_CARDS = [

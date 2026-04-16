@@ -52,7 +52,7 @@ export default function HeroSection() {
         <div className={`mb-6 ${mounted ? "gltv-mark" : "opacity-0"}`}>
           <video
             ref={videoRef}
-            src="/logo.mp4"
+            src="/images/GLTV_LogoMark_White.mp4"
             autoPlay
             loop
             muted

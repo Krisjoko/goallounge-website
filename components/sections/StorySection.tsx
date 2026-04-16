@@ -25,7 +25,7 @@ export default function StorySection() {
           <div className="flex w-full flex-col justify-end md:w-[42%]">
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-[#222222]">
               <Image
-                src="/images/story.jpg"
+                src="/images/Story.png"
                 alt="Goallounge team"
                 fill
                 className="object-cover"
