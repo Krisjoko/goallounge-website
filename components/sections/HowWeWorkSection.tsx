@@ -103,16 +103,16 @@ export default function HowWeWorkSection() {
   return (
     <section id="how-we-work" className="px-6 py-20 md:py-28 scroll-mt-14">
       <div className="mx-auto max-w-7xl">
-        <div className="section-label mb-4">How We Work</div>
+        <div className="section-label mb-4">The Goallounge Model</div>
         <h2 className="font-display mb-3 text-4xl font-normal text-[#E0DDD8] md:text-5xl">
-          No gap between strategy
+          Two senior practitioners.
           <br />
-          and design.
+          One engagement.
         </h2>
         <p className="mb-12 max-w-2xl font-sans text-sm leading-relaxed text-[#706D66]">
-          Every engagement is led by two senior practitioners: one shaping the
-          strategy, one making the work. No account managers, no handoffs, no
-          translation layers between thinking and making.
+          Every project is led by the two of us. One shapes the strategy. One
+          builds the work. You get both in the room from the first brief to
+          the final handover.
         </p>
 
         {/* Person cards */}
@@ -120,7 +120,7 @@ export default function HowWeWorkSection() {
           <PersonCard
             name="Claudio"
             role="Product Design & Systems"
-            bio="Claudio architects the interfaces and design systems that hold up under real product pressure. Scalable, opinionated, and ready to ship."
+            bio="Claudio architects the interfaces and design systems that hold up under real product pressure. Scalable, opinionated and production-ready."
             bullets={CLAUDIO_BULLETS}
             footnote="Claudio's portfolio is always scaling and growing. Happy to walk you through it live on a call."
             cta="Book a Walkthrough →"
@@ -131,7 +131,7 @@ export default function HowWeWorkSection() {
           <PersonCard
             name="Kristy"
             role="Positioning, GTM & Project Leadership"
-            bio="Kristy builds the positioning and narrative that give the work somewhere to stand. Clear, commercial, and ready for market."
+            bio="Kristy builds the positioning and narrative that give the work somewhere to stand. Clear, commercial and ready for market."
             bullets={KRISTY_BULLETS}
             cta="View Portfolio →"
             ctaHref="#"
@@ -140,15 +140,19 @@ export default function HowWeWorkSection() {
           />
         </div>
 
-        {/* Bottom statement */}
-        <div className="mt-12 border-t border-[#4A4740]/30 pt-8 text-center">
-          <p className="font-display text-xl font-normal text-[#E0DDD8] md:text-2xl">
-            Strategy and design, built together from day one.
-          </p>
-          <p className="mt-1 font-sans text-sm text-[#706D66]">
-            No briefing chains, no feedback spirals, no layers between the
-            decision and the work.
-          </p>
+        {/* Origin story strip (replaces StorySection) */}
+        <div className="mt-16 border-t border-[#4A4740]/30 pt-10">
+          <div className="mx-auto max-w-3xl text-center">
+            <div className="section-label mb-4 justify-center">How We Got Here</div>
+            <p className="font-sans text-base leading-relaxed text-[#E0DDD8] md:text-lg">
+              We met building GLTV, a football platform with a global
+              audience. Claudio was running product design. Kristy was running
+              go-to-market. We kept arriving at the same problem from different
+              sides: strategy and design were being built in separate rooms, by
+              separate people, at separate times. Goallounge is what we built
+              to fix that.
+            </p>
+          </div>
         </div>
       </div>
     </section>

@@ -88,8 +88,8 @@ export default function SoundFamiliarSection() {
         {/* Bottom statement */}
         <div className="mt-16 border-t border-[#4A4740]/30 pt-12 text-center">
           <p className="font-display mx-auto max-w-3xl text-2xl font-normal leading-snug text-[#E0DDD8] md:text-3xl">
-            When strategy, positioning and design don&rsquo;t speak the same language,
-            everything costs more and lands softer.
+            When strategy and design do not speak the same language,
+            everything costs more and lands later.
           </p>
         </div>
       </div>

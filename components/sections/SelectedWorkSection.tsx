@@ -174,9 +174,12 @@ export default function SelectedWorkSection() {
         {/* Header */}
         <div className="mb-6">
           <div className="section-label mb-4">Selected Work</div>
-          <h2 className="font-display text-4xl font-normal text-[#E0DDD8] md:text-5xl">
-            Work we&rsquo;re proud to walk you through.
+          <h2 className="font-display mb-3 text-4xl font-normal text-[#E0DDD8] md:text-5xl">
+            Work we are proud to walk you through.
           </h2>
+          <p className="max-w-2xl font-sans text-sm leading-relaxed text-[#706D66]">
+            Each project is listed with the business outcome that mattered, not the deliverable.
+          </p>
         </div>
 
         {/* Discipline filter tabs */}
@@ -244,6 +247,9 @@ export default function SelectedWorkSection() {
                   <p className="mt-0.5 font-mono text-[10px] tracking-wide text-[#706D66]">
                     {project.category}
                   </p>
+                  <p className="mt-1.5 font-mono text-[10px] tracking-wide text-[#F86223]">
+                    {project.outcome}
+                  </p>
                 </div>
               </div>
             );
@@ -253,7 +259,7 @@ export default function SelectedWorkSection() {
         {/* IP bar */}
         <div className="mt-10 flex flex-col items-start justify-between gap-4 rounded-xl bg-[#222222] p-6 md:flex-row md:items-center">
           <p className="max-w-xl font-sans text-sm leading-relaxed text-[#706D66]">
-            We walk you through the work live — projects, process, outcomes — in a 30-minute call.
+            We walk you through the work live. Projects, process, outcomes, in a 30-minute call.
           </p>
           <a
             href={BOOKING_URL}

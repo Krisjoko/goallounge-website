@@ -2,37 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { CLIENT_LOGOS } from "@/lib/constants";
 
 const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL ?? "#get-in-touch";
-
-function LogoTicker() {
-  const doubled = [...CLIENT_LOGOS, ...CLIENT_LOGOS];
-
-  return (
-    <div className="ticker-mask overflow-hidden">
-      <div
-        className="flex items-center gap-12"
-        style={{ animation: "logo-scroll 35s linear infinite", width: "max-content" }}
-      >
-        {doubled.map((logo, i) => (
-          <div
-            key={`${logo.name}-${i}`}
-            className="relative flex h-12 w-32 flex-shrink-0 items-center justify-center opacity-40 grayscale transition-opacity hover:opacity-70"
-          >
-            <Image
-              src={logo.src}
-              alt={logo.name}
-              fill
-              className="object-contain"
-              unoptimized
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
@@ -61,8 +32,13 @@ export default function HeroSection() {
             />
           </div>
 
+          {/* Label */}
+          <p className="mb-5 font-mono text-[10px] tracking-[0.25em] text-[#706D66] uppercase">
+            <span className="text-[#F86223]">●</span> Strategic Creative Studio
+          </p>
+
           {/* Headline */}
-          <h1 className="font-display mb-4 text-5xl font-normal leading-[1.08] tracking-tight text-[#E0DDD8] md:text-7xl">
+          <h1 className="font-display mb-5 text-5xl font-normal leading-[1.08] tracking-tight text-[#E0DDD8] md:text-7xl">
             Positioning and design,
             <br />
             built as{" "}
@@ -70,17 +46,17 @@ export default function HeroSection() {
           </h1>
 
           {/* Subheading */}
-          <p className="mb-8 font-sans text-sm text-[#706D66]">
-            For founders getting it right the first time, and teams getting it right again.
+          <p className="mb-8 max-w-xl font-sans text-base leading-relaxed text-[#E0DDD8] md:text-lg">
+            A two-person studio. Kristy shapes the strategy. Claudio builds the work. No handoffs.
           </p>
 
           {/* CTAs */}
-          <div className="flex items-center gap-3">
+          <div className="mb-6 flex items-center gap-3">
             <a
-              href="mailto:general@goallounge.tv"
+              href="#selected-work"
               className="rounded-full border border-[#4A4740] px-7 py-2.5 font-mono text-[10px] tracking-widest text-[#E0DDD8] uppercase transition-colors hover:border-[#706D66] hover:text-white"
             >
-              Email Us
+              See the Work
             </a>
             <a
               href={BOOKING_URL}
@@ -88,15 +64,15 @@ export default function HeroSection() {
               rel={BOOKING_URL.startsWith("http") ? "noopener noreferrer" : undefined}
               className="rounded-full bg-[#B8400E] px-7 py-2.5 font-mono text-[10px] tracking-widest text-white uppercase transition-opacity hover:opacity-90"
             >
-              Let&rsquo;s Meet
+              Book a 30-Minute Call
             </a>
           </div>
-        </div>
-      </div>
 
-      {/* Logo ticker — always anchored to bottom */}
-      <div className="border-t border-[#4A4740]/30 py-6">
-        <LogoTicker />
+          {/* Trust line */}
+          <p className="font-mono text-[10px] tracking-widest text-[#706D66] uppercase">
+            Trusted by teams at Liverpool FC · Discovery · TikTok · Yoco · Absa
+          </p>
+        </div>
       </div>
     </section>
   );

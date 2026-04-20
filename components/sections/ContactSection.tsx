@@ -8,6 +8,11 @@ type Tab = "build" | "email" | "partnerships" | "book";
 
 const TABS: { id: Tab; label: string; sub: string }[] = [
   {
+    id: "book",
+    label: "Book a Call",
+    sub: "30 minutes. No pitch. Just a conversation.",
+  },
+  {
     id: "build",
     label: "What Are You Building",
     sub: "Tell us about your project. We will tell you if we can help.",
@@ -21,11 +26,6 @@ const TABS: { id: Tab; label: string; sub: string }[] = [
     id: "partnerships",
     label: "Partnerships",
     sub: "Know someone who could use what we do?",
-  },
-  {
-    id: "book",
-    label: "Book a Call",
-    sub: "30 minutes. No pitch. Just a conversation.",
   },
 ];
 
@@ -278,14 +278,20 @@ function BookCallPanel() {
 }
 
 export default function ContactSection() {
-  const [activeTab, setActiveTab] = useState<Tab>("build");
-
-  const activeTabData = TABS.find((t) => t.id === activeTab)!;
+  const [activeTab, setActiveTab] = useState<Tab>("book");
 
   return (
     <section id="get-in-touch" className="px-6 py-20 md:py-28 scroll-mt-14">
       <div className="mx-auto max-w-7xl">
-        <div className="section-label mb-10">Get In Touch</div>
+        <div className="section-label mb-4">Get In Touch</div>
+        <h2 className="font-display mb-3 text-4xl font-normal text-[#E0DDD8] md:text-5xl">
+          30 minutes. No pitch.
+          <br />
+          Just a conversation.
+        </h2>
+        <p className="mb-12 max-w-2xl font-sans text-sm leading-relaxed text-[#706D66]">
+          Tell us what you are building, or book a call directly.
+        </p>
 
         <div className="flex flex-col gap-6 md:flex-row md:gap-8">
           {/* Left sidebar — tabs */}

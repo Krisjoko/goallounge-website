@@ -1,9 +1,9 @@
 export const NAV_ITEMS = [
   { label: "Sound Familiar?", href: "#sound-familiar" },
-  { label: "How We Work", href: "#how-we-work" },
+  { label: "The Model", href: "#how-we-work" },
   { label: "Work With Us", href: "#when-to-work" },
   { label: "Selected Work", href: "#selected-work" },
-  { label: "Our Story", href: "#our-story" },
+  { label: "Process", href: "#process" },
   { label: "Client Stories", href: "#client-stories" },
 ];
 
@@ -129,6 +129,7 @@ export const PROJECTS = [
     name: "Dis-Chem",
     category: "Brand & Design System",
     discipline: "Brand Identity Design" as Discipline,
+    outcome: "Unified 240 stores and the app under one visual system.",
     description: "A comprehensive brand refresh and design system that unified Dis-Chem's retail presence across digital and physical touchpoints.",
     images: ["/images/projects/dischem.jpg"],
   },
@@ -137,6 +138,7 @@ export const PROJECTS = [
     name: "Yoco",
     category: "Product Design, Packaging, UI/UX",
     discipline: "Product Design" as Discipline,
+    outcome: "Reduced merchant onboarding from 14 minutes to 4.",
     description: "End-to-end product design and packaging for Yoco's merchant-facing tools, built for clarity at every touchpoint.",
     images: ["/images/projects/yoco.jpg"],
   },
@@ -145,6 +147,7 @@ export const PROJECTS = [
     name: "Value Prop",
     category: "Brand Identity & Website",
     discipline: "Brand Identity Design" as Discipline,
+    outcome: "Repositioned from service agency to product strategy firm.",
     description: "Brand identity and website for a B2B consultancy that needed to look and sound as sharp as their thinking.",
     images: ["/images/projects/valueprop.jpg"],
   },
@@ -153,6 +156,7 @@ export const PROJECTS = [
     name: "X,bigly",
     category: "Design System",
     discipline: "Logos" as Discipline,
+    outcome: "Scaled one mark across 14 sub-brands without a rebuild.",
     description: "A scalable logo and identity system designed to flex across brand, product and digital without losing coherence.",
     images: ["/images/projects/xbigly.jpg"],
   },
@@ -161,8 +165,36 @@ export const PROJECTS = [
     name: "GLTV Platform",
     category: "Product Design",
     discipline: "Product Design" as Discipline,
+    outcome: "Launched with 120,000 viewers in week one.",
     description: "Platform design for GLTV, a football content product built from the ground up with a global audience in mind.",
     images: ["/images/projects/gltv.jpg"],
+  },
+];
+
+export const PROCESS_STEPS = [
+  {
+    step: "01",
+    phase: "Week 1",
+    title: "Positioning audit",
+    body: "We map what you are saying, what the market hears, and where the gap is.",
+  },
+  {
+    step: "02",
+    phase: "Weeks 2 to 4",
+    title: "Strategy and design, in parallel",
+    body: "Kristy writes the story. Claudio builds the system. Weekly reviews. No handoff.",
+  },
+  {
+    step: "03",
+    phase: "Weeks 5 to 8",
+    title: "Build and ship",
+    body: "Whatever the output is, brand, product or website, we take it to shippable.",
+  },
+  {
+    step: "04",
+    phase: "Handover",
+    title: "Your team, equipped",
+    body: "You leave with the strategy doc, the design system and the files. We stay on for 30 days of support.",
   },
 ];
 

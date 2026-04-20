@@ -2,11 +2,12 @@ import Nav from "@/components/Nav";
 import CustomCursor from "@/components/CustomCursor";
 import LiveClock from "@/components/LiveClock";
 import HeroSection from "@/components/sections/HeroSection";
+import TrustStripSection from "@/components/sections/TrustStripSection";
 import SoundFamiliarSection from "@/components/sections/SoundFamiliarSection";
 import HowWeWorkSection from "@/components/sections/HowWeWorkSection";
 import WhenToWorkSection from "@/components/sections/WhenToWorkSection";
 import SelectedWorkSection from "@/components/sections/SelectedWorkSection";
-import StorySection from "@/components/sections/StorySection";
+import ProcessSection from "@/components/sections/ProcessSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import ContactSection from "@/components/sections/ContactSection";
 
@@ -17,18 +18,19 @@ export default function Home() {
       <Nav />
       <main>
         <HeroSection />
+        <TrustStripSection />
         <SoundFamiliarSection />
         <HowWeWorkSection />
         <WhenToWorkSection />
         <SelectedWorkSection />
-        <StorySection />
+        <ProcessSection />
         <TestimonialsSection />
         <ContactSection />
       </main>
       <footer className="border-t border-[#4A4740]/30 px-6 py-8">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <p className="font-mono text-[10px] tracking-widest text-[#4A4740] uppercase">
-            Goallounge — Strategic Creative Studio
+            Goallounge, Strategic Creative Studio
           </p>
           <a
             href="https://www.linkedin.com/company/goallounge"

@@ -127,7 +127,7 @@ export default function WhenToWorkSection() {
           You will know it is time when&hellip;
         </h2>
         <p className="mb-14 font-sans text-sm text-[#706D66]">
-          Select the ones that resonate. We will pre-fill your email.
+          Select the signals that sound like you. We will pre-fill the email.
         </p>
 
         {/* Desktop: draggable node canvas */}
