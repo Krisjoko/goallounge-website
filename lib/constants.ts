@@ -113,36 +113,65 @@ export const WHEN_TO_WORK_NODES = [
   },
 ];
 
+export const DISCIPLINES = [
+  "Brand Identity Design",
+  "Logos",
+  "Product Design",
+  "Growth Marketing",
+  "Strategy",
+] as const;
+
+export type Discipline = (typeof DISCIPLINES)[number];
+
 export const PROJECTS = [
   {
     id: 1,
     name: "Dis-Chem",
     category: "Brand & Design System",
+    discipline: "Brand Identity Design" as Discipline,
     image: "/images/projects/dischem.jpg",
   },
   {
     id: 2,
     name: "Yoco",
     category: "Product Design, Packaging, UI/UX",
+    discipline: "Product Design" as Discipline,
     image: "/images/projects/yoco.jpg",
   },
   {
     id: 3,
     name: "Value Prop",
     category: "Brand Identity & Website",
+    discipline: "Brand Identity Design" as Discipline,
     image: "/images/projects/valueprop.jpg",
   },
   {
     id: 4,
     name: "X,bigly",
     category: "Design System",
+    discipline: "Logos" as Discipline,
     image: "/images/projects/xbigly.jpg",
   },
   {
     id: 5,
     name: "GLTV Platform",
     category: "Product Design",
+    discipline: "Product Design" as Discipline,
     image: "/images/projects/gltv.jpg",
+  },
+  {
+    id: 6,
+    name: "Coming Soon",
+    category: "Growth Marketing",
+    discipline: "Growth Marketing" as Discipline,
+    image: "/images/projects/placeholder.jpg",
+  },
+  {
+    id: 7,
+    name: "Coming Soon",
+    category: "Strategy",
+    discipline: "Strategy" as Discipline,
+    image: "/images/projects/placeholder.jpg",
   },
 ];
 
