@@ -21,14 +21,8 @@ export default function SoundFamiliarSection() {
           <div>
             <div className="section-label mb-4">Sound Familiar?</div>
             <h2 className="font-display mb-2 text-4xl font-normal text-[#E0DDD8] md:text-5xl">
-              Sound familiar?
+              These are the patterns we keep seeing.
             </h2>
-            <p className="font-sans text-sm text-[#706D66]">
-              We&apos;ve heard this before.
-            </p>
-            <p className="font-sans text-sm text-[#706D66]">
-              These are the signals that bring customers to us.
-            </p>
           </div>
 
           {/* Arrows */}

@@ -20,7 +20,7 @@ const TABS: { id: Tab; label: string; sub: string }[] = [
   {
     id: "partnerships",
     label: "Partnerships",
-    sub: "Know someone who needs positioning and design built together? We appreciate good introductions.",
+    sub: "Know someone who could use what we do?",
   },
   {
     id: "book",
@@ -212,7 +212,7 @@ function PartnershipsForm() {
     <form onSubmit={submit} className="flex flex-col gap-5">
       <h3 className="font-display text-xl text-[#E0DDD8]">Make an introduction.</h3>
       <p className="font-sans text-sm text-[#706D66]">
-        Know someone who needs positioning and design built together? We appreciate good introductions.
+        Tell us about them. If it is a good fit, we will reach out on your behalf.
       </p>
       <input
         value={name}

@@ -1,7 +1,7 @@
 export const NAV_ITEMS = [
   { label: "Sound Familiar?", href: "#sound-familiar" },
   { label: "How We Work", href: "#how-we-work" },
-  { label: "When To Work", href: "#when-to-work" },
+  { label: "Work With Us", href: "#when-to-work" },
   { label: "Selected Work", href: "#selected-work" },
   { label: "Our Story", href: "#our-story" },
   { label: "Client Stories", href: "#client-stories" },

@@ -80,7 +80,7 @@ function PersonCard({
 
       {/* Footnote */}
       {footnote && (
-        <p className="mb-5 font-sans text-xs italic leading-relaxed text-[#4A4740]">
+        <p className="mb-5 font-sans text-xs italic leading-relaxed text-[#E0DDD8]">
           {footnote}
         </p>
       )}
@@ -105,7 +105,9 @@ export default function HowWeWorkSection() {
       <div className="mx-auto max-w-7xl">
         <div className="section-label mb-4">How We Work</div>
         <h2 className="font-display mb-3 text-4xl font-normal text-[#E0DDD8] md:text-5xl">
-          No gap between strategy and design.
+          No gap between strategy
+          <br />
+          and design.
         </h2>
         <p className="mb-12 max-w-2xl font-sans text-sm leading-relaxed text-[#706D66]">
           Every engagement is led by two senior practitioners: one shaping the
