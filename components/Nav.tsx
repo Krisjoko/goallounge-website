@@ -23,7 +23,7 @@ export default function Nav() {
     >
       <nav className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6">
         <a href="#" className="flex items-center gap-2.5 group">
-          <Image src="/images/logo-mark.png" width={28} height={28} alt="Goallounge" className="object-contain" unoptimized />
+          <Image src="/images/Image%20(GLTV%20Logo).svg" width={28} height={28} alt="Goallounge" className="object-contain" unoptimized />
           <span className="font-display text-xs tracking-[0.15em] text-[#E0DDD8] uppercase">
             Goallounge
           </span>

@@ -50,7 +50,7 @@ export default function HeroSection() {
         {/* Logo mark */}
         <div className={`mb-6 ${mounted ? "gltv-mark" : "opacity-0"}`}>
           <Image
-            src="/images/logo-mark.png"
+            src="/images/Image%20(GLTV%20Logo).svg"
             width={80}
             height={80}
             alt="Goallounge"
