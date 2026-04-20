@@ -133,7 +133,7 @@ export default function WhenToWorkSection() {
         {/* Desktop: draggable node canvas */}
         <div
           ref={containerRef}
-          className={`relative hidden min-h-[700px] md:block ${isDragging ? "select-none" : ""}`}
+          className={`relative hidden min-h-[520px] md:block ${isDragging ? "select-none" : ""}`}
         >
           {/* SVG connection lines */}
           {hasPositions && (
