@@ -30,12 +30,6 @@ export default function StorySection() {
                 fill
                 className="object-cover"
               />
-              {/* Fallback */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="font-mono text-[10px] tracking-widest text-[#4A4740] uppercase">
-                  Studio photo
-                </span>
-              </div>
             </div>
           </div>
         </div>
