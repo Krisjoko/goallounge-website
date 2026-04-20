@@ -68,7 +68,7 @@ a, button {
 }
 
 .gltv-mark {
-  animation: mark-reveal 0.8s ease forwards, mark-pulse 4s ease-in-out 1s infinite;
+  animation: mark-reveal 0.8s ease forwards;
 }
 
 .ticker-mask {
