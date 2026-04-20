@@ -60,6 +60,7 @@ body {
 
 a, button {
   cursor: none;
+  text-decoration: none;
 }
 
 .font-display {

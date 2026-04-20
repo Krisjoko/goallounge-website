@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { CLIENT_LOGOS } from "@/lib/constants";
 
@@ -12,13 +12,13 @@ function LogoTicker() {
   return (
     <div className="ticker-mask overflow-hidden">
       <div
-        className="flex items-center gap-10"
+        className="flex items-center gap-12"
         style={{ animation: "logo-scroll 35s linear infinite", width: "max-content" }}
       >
         {doubled.map((logo, i) => (
           <div
             key={`${logo.name}-${i}`}
-            className="relative flex h-7 w-20 flex-shrink-0 items-center justify-center opacity-30 grayscale transition-opacity hover:opacity-60"
+            className="relative flex h-12 w-32 flex-shrink-0 items-center justify-center opacity-40 grayscale transition-opacity hover:opacity-70"
           >
             <Image
               src={logo.src}
@@ -36,7 +36,6 @@ function LogoTicker() {
 
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -50,19 +49,13 @@ export default function HeroSection() {
       <div className="flex w-full max-w-3xl flex-col items-center text-center">
         {/* Logo mark */}
         <div className={`mb-6 ${mounted ? "gltv-mark" : "opacity-0"}`}>
-          <video
-            ref={videoRef}
-            src="/images/GLTV_LogoMark_White.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
+          <Image
+            src="/images/logo-mark.png"
             width={80}
             height={80}
-            className="h-20 w-20"
-            onError={() => {
-              /* fallback: video not available yet */
-            }}
+            alt="Goallounge"
+            className="h-20 w-20 object-contain"
+            unoptimized
           />
         </div>
 
