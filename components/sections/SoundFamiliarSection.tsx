@@ -20,8 +20,10 @@ export default function SoundFamiliarSection() {
         <div className="mb-10 flex items-start justify-between gap-4">
           <div>
             <div className="section-label mb-4">Sound Familiar?</div>
-            <h2 className="font-display mb-2 text-4xl font-normal text-[#E0DDD8] md:text-5xl">
-              These are the patterns we keep seeing.
+            <h2 className="font-display mb-2 text-4xl font-normal leading-[1.1] text-[#E0DDD8] md:text-5xl">
+              These are the patterns
+              <br />
+              we keep seeing.
             </h2>
           </div>
 

@@ -28,12 +28,15 @@ export default function Home() {
         <ContactSection />
       </main>
       <footer className="border-t border-[#4A4740]/30 px-6 py-8">
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-mono text-[10px] tracking-widest text-[#4A4740] uppercase">
             Goallounge, Strategic Creative Studio
           </p>
+          <p className="font-mono text-[10px] tracking-widest text-[#4A4740] uppercase">
+            © 2026 Goallounge.tv &amp; Goallounge, All Rights Reserved
+          </p>
           <a
-            href="https://www.linkedin.com/company/goallounge"
+            href="https://www.linkedin.com/company/35517734"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"

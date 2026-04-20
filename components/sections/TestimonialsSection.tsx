@@ -35,14 +35,14 @@ export default function TestimonialsSection() {
           </button>
 
           {/* Card */}
-          <div className="flex-1 overflow-hidden rounded-xl border border-[#4A4740]/40 bg-[#222222] p-8 md:p-10">
+          <div className="flex min-h-[380px] flex-1 flex-col overflow-hidden rounded-xl border border-[#4A4740]/40 bg-[#222222] p-8 md:min-h-[360px] md:p-10">
             {/* Quote mark */}
             <svg
               width="36"
               height="28"
               viewBox="0 0 36 28"
               fill="none"
-              className="mb-6"
+              className="mb-6 shrink-0"
               aria-hidden
             >
               <path
@@ -52,12 +52,12 @@ export default function TestimonialsSection() {
             </svg>
 
             {/* Quote */}
-            <p className="mb-8 font-sans text-base leading-relaxed text-[#E0DDD8] md:text-lg">
+            <p className="mb-8 flex-1 font-sans text-base leading-relaxed text-[#E0DDD8] md:text-lg">
               &ldquo;{current.quote}&rdquo;
             </p>
 
             {/* Attribution */}
-            <div className="flex items-start gap-2">
+            <div className="flex shrink-0 items-start gap-2">
               <span
                 className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full"
                 style={{ backgroundColor: accentColor }}

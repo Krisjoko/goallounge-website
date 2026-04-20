@@ -41,13 +41,14 @@ export default function HeroSection() {
           <h1 className="font-display mb-5 text-5xl font-normal leading-[1.08] tracking-tight text-[#E0DDD8] md:text-7xl">
             Positioning and design,
             <br />
-            built as{" "}
-            <span className="text-[#F86223]">one.</span>
+            built as <span className="text-[#F86223]">one.</span>
           </h1>
 
           {/* Subheading */}
           <p className="mb-8 max-w-xl font-sans text-base leading-relaxed text-[#E0DDD8] md:text-lg">
-            A two-person studio. Kristy shapes the strategy. Claudio builds the work. No handoffs.
+            A two-person studio where strategy and design get built in the same
+            room. Kristy leads positioning. Claudio leads design. From brief to
+            handover.
           </p>
 
           {/* CTAs */}

@@ -340,7 +340,7 @@ export default function ContactSection() {
           </div>
 
           {/* Right panel */}
-          <div className="flex-1 rounded-xl bg-[#222222] p-6 md:p-8">
+          <div className="flex min-h-[520px] flex-1 flex-col rounded-xl bg-[#222222] p-6 md:p-8">
             {activeTab === "build" && <BuildForm />}
             {activeTab === "email" && <EmailForm />}
             {activeTab === "partnerships" && <PartnershipsForm />}

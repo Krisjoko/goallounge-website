@@ -41,17 +41,22 @@ function PersonCard({
     <div className="flex flex-1 flex-col rounded-xl bg-[#222222] p-6">
       {/* Photo */}
       <div
-        className="mb-5 h-16 w-16 overflow-hidden rounded-xl"
-        style={{ outline: `2px solid ${accentColor}`, outlineOffset: "2px" }}
+        className="relative mb-5 block aspect-square overflow-hidden rounded-xl"
+        style={{
+          width: "72px",
+          height: "72px",
+          outline: `2px solid ${accentColor}`,
+          outlineOffset: "2px",
+          backgroundColor: "#333",
+        }}
       >
-        <div className="relative h-full w-full bg-[#333]">
-          <Image
-            src={photo}
-            alt={name}
-            fill
-            className="object-cover object-top"
-          />
-        </div>
+        <Image
+          src={photo}
+          alt={name}
+          fill
+          sizes="72px"
+          className="object-cover object-center"
+        />
       </div>
 
       {/* Name + role */}
@@ -134,7 +139,7 @@ export default function HowWeWorkSection() {
             bio="Kristy builds the positioning and narrative that give the work somewhere to stand. Clear, commercial and ready for market."
             bullets={KRISTY_BULLETS}
             cta="View Portfolio →"
-            ctaHref="#"
+            ctaHref="https://bit.ly/KristyCunningham_Goallounge"
             accentColor="#22A6FF"
             photo="/images/KristyDoodleProfilePic.png"
           />
