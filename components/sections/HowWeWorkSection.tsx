@@ -108,8 +108,8 @@ export default function HowWeWorkSection() {
           No gap between strategy and design.
         </h2>
         <p className="mb-12 max-w-2xl font-sans text-sm leading-relaxed text-[#706D66]">
-          Every engagement is led by two senior practitioners — one shaping the
-          strategy, one building the work. No account managers, no handoffs, no
+          Every engagement is led by two senior practitioners: one shaping the
+          strategy, one making the work. No account managers, no handoffs, no
           translation layers between thinking and making.
         </p>
 
@@ -129,7 +129,7 @@ export default function HowWeWorkSection() {
           <PersonCard
             name="Kristy"
             role="Positioning, GTM & Project Leadership"
-            bio="Kristy shapes the story and drives it forward. She translates ambiguous business challenges into sharp strategy, then makes sure it lands."
+            bio="Kristy builds the positioning and narrative that give the work somewhere to stand. Clear, commercial, and ready for market."
             bullets={KRISTY_BULLETS}
             cta="View Portfolio →"
             ctaHref="#"

@@ -34,49 +34,49 @@ export const PROBLEM_CARDS = [
     number: "01",
     title: "Siloed teams mean your product and positioning never align.",
     quote:
-      "The design team has not seen the strategy deck — and the strategy team has not seen the designs.",
+      "We shipped the campaign before the positioning was finalised. The sales team found out when they read our own press release.",
   },
   {
     number: "02",
     title: "Design keeps changing direction.",
     quote:
-      "We are on round seven of feedback and further from the answer than when we started.",
+      "We are three months in and version fourteen is heading back toward version three. Nobody can explain why we did not stay there.",
   },
   {
     number: "03",
     title: "Senior advisors advise. Nobody builds.",
     quote:
-      "The consultant gave us a strategy deck. Now we need someone who will actually roll up their sleeves and make it happen.",
+      "We have a strategy deck, a brand audit, and two sets of workshop notes. What we do not have is anything we can show a customer.",
   },
   {
     number: "04",
-    title: "Internal echo chambers kill fresh thinking.",
+    title: "Your brief has twelve sign-offs and still does not say anything.",
     quote:
-      "We have been looking at this for so long, we can not see it anymore. The internal team keeps landing in the same place.",
+      "Every stakeholder approved it. Nobody challenged it. We are eight weeks in and the work is a well-designed version of the original problem.",
   },
   {
     number: "05",
     title: "Decision fatigue stalls everything.",
     quote:
-      "Twelve stakeholders need to approve a colour palette — nobody wants to make the call.",
+      "We spent four weeks getting approval on a typeface. The same group still needs to sign off on the tagline.",
   },
   {
     number: "06",
     title: "You built the product. Nobody planned how to sell it.",
     quote:
-      "We launched. Then we looked at each other and asked — Now what?",
+      "We launched. Then we looked at each other. Nobody had planned what came next.",
   },
   {
     number: "07",
     title: "Handoffs kill momentum.",
     quote:
-      "The strategist wrote the brief. The designer read it differently. The developer built something else.",
+      "The strategy was signed off on a Friday. By Monday, the designer had a different brief. By Wednesday, the developer had a third version.",
   },
   {
     number: "08",
     title: "Poor scoping means you are spending the budget before the real problem is defined.",
     quote:
-      "We need a full rebrand, but we do not know what that involves, what to prioritise, or what resources we actually need.",
+      "We said we needed a rebrand. Sixteen weeks and three agencies later, we are still not sure that was the right brief.",
   },
 ];
 
@@ -98,18 +98,18 @@ export const WHEN_TO_WORK_NODES = [
   },
   {
     id: 4,
-    title: "You need fresh eyes",
-    body: "The internal team has been looking at this for so long they keep landing in the same place. You need someone who will see what they can not.",
+    title: "Your pitch keeps getting the same objection and your team has run out of angles.",
+    body: "You have refined the narrative, sharpened the deck, and tightened the messaging. The same question is still stopping the conversation.",
   },
   {
     id: 5,
-    title: "Your internal team needs a senior partner, not another advisor",
-    body: "You do not need a deck. You need someone in the room who will build alongside your team and raise the bar while they are at it.",
+    title: "Your internal team is strong, but the work keeps arriving late and losing shape.",
+    body: "You need someone in the room who will build alongside your team and raise the bar while they are there.",
   },
   {
     id: 6,
-    title: "You are hiring designers and strategists separately",
-    body: "And you are starting to suspect that is the reason nothing connects.",
+    title: "You are hiring designers and strategists separately.",
+    body: "And the result is that the design looks like one company, the messaging reads like another, and nothing reaches the market as a single clear statement.",
   },
 ];
 
@@ -163,22 +163,6 @@ export const PROJECTS = [
     discipline: "Product Design" as Discipline,
     description: "Platform design for GLTV, a football content product built from the ground up with a global audience in mind.",
     images: ["/images/projects/gltv.jpg"],
-  },
-  {
-    id: 6,
-    name: "Coming Soon",
-    category: "Growth Marketing",
-    discipline: "Growth Marketing" as Discipline,
-    description: "A growth marketing project is on its way. Check back soon.",
-    images: ["/images/projects/placeholder.jpg"],
-  },
-  {
-    id: 7,
-    name: "Coming Soon",
-    category: "Strategy",
-    discipline: "Strategy" as Discipline,
-    description: "A strategy project is on its way. Check back soon.",
-    images: ["/images/projects/placeholder.jpg"],
   },
 ];
 

@@ -20,7 +20,7 @@ const TABS: { id: Tab; label: string; sub: string }[] = [
   {
     id: "partnerships",
     label: "Partnerships",
-    sub: "Know someone who needs positioning and design built together? We reward good introductions.",
+    sub: "Know someone who needs positioning and design built together? We appreciate good introductions.",
   },
   {
     id: "book",
@@ -78,7 +78,7 @@ function BuildForm() {
 
       <div>
         <label className="mb-1.5 block font-mono text-[9px] tracking-widest text-[#706D66] uppercase">
-          What are you building?
+          What Are You Building?
         </label>
         <textarea
           value={description}
@@ -92,7 +92,7 @@ function BuildForm() {
 
       <div>
         <label className="mb-2 block font-mono text-[9px] tracking-widest text-[#706D66] uppercase">
-          Where are you at?
+          Where Are You At?
         </label>
         <div className="flex flex-wrap gap-2">
           {FUNDING_STAGES.map((s) => (
@@ -114,7 +114,7 @@ function BuildForm() {
 
       <div>
         <label className="mb-1.5 block font-mono text-[9px] tracking-widest text-[#706D66] uppercase">
-          Where can we reach you?
+          Where Can We Reach You?
         </label>
         <div className="relative">
           <input
@@ -212,7 +212,7 @@ function PartnershipsForm() {
     <form onSubmit={submit} className="flex flex-col gap-5">
       <h3 className="font-display text-xl text-[#E0DDD8]">Make an introduction.</h3>
       <p className="font-sans text-sm text-[#706D66]">
-        Know someone who needs positioning and design built together? We reward good introductions.
+        Know someone who needs positioning and design built together? We appreciate good introductions.
       </p>
       <input
         value={name}

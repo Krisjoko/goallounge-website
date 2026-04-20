@@ -15,9 +15,15 @@ export default function StorySection() {
               Six years later, the work is what stuck.
             </p>
             <p className="font-sans text-base italic leading-relaxed text-[#E0DDD8] md:text-lg">
-              Positioning and design should not be separate disciplines handed off
-              between teams. They should be built together, by people who
-              understand systems, not silos.
+              Goallounge started in football. Claudio was building broadcast
+              identity and digital products for GLTV, a global football media
+              brand, while Kristy was leading positioning and go-to-market for
+              companies navigating rapid growth. They kept arriving at the same
+              problem: strategy and design treated as separate workstreams,
+              passed between teams with no shared language. Positioning and
+              design should not be separate disciplines handed off between teams.
+              They should be built together, by people who understand systems,
+              not silos.
             </p>
           </div>
 

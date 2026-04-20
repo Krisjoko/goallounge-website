@@ -253,9 +253,7 @@ export default function SelectedWorkSection() {
         {/* IP bar */}
         <div className="mt-10 flex flex-col items-start justify-between gap-4 rounded-xl bg-[#222222] p-6 md:flex-row md:items-center">
           <p className="max-w-xl font-sans text-sm leading-relaxed text-[#706D66]">
-            To protect our clients&rsquo; IP, we share work in person. Book a
-            30-minute walkthrough, and we will share live screen recordings of
-            projects, processes, and outcomes.
+            We walk you through the work live — projects, process, outcomes — in a 30-minute call.
           </p>
           <a
             href={BOOKING_URL}

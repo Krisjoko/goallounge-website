@@ -61,9 +61,6 @@ export default function HeroSection() {
             />
           </div>
 
-          {/* Section label */}
-          <div className="section-label mb-5">Strategic Creative Studio</div>
-
           {/* Headline */}
           <h1 className="font-display mb-4 text-5xl font-normal leading-[1.08] tracking-tight text-[#E0DDD8] md:text-7xl">
             Positioning and design,
@@ -74,7 +71,7 @@ export default function HeroSection() {
 
           {/* Subheading */}
           <p className="mb-8 font-sans text-sm text-[#706D66]">
-            From first funding to full rebrand.
+            For founders getting it right the first time, and teams getting it right again.
           </p>
 
           {/* CTAs */}
