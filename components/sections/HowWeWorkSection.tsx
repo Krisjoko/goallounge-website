@@ -39,12 +39,8 @@ function PersonCard({
 }) {
   return (
     <div className="flex flex-1 flex-col rounded-xl bg-[#222222] p-6">
-      {/* Photo */}
-      <div
-        className="mb-5 overflow-hidden rounded-xl"
-        style={{ width: "72px", height: "72px", backgroundColor: "#E0DDD8" }}
-      >
-        {/* mix-blend-mode:multiply removes white SVG background, keeps illustration on warm off-white */}
+      {/* Photo — no container, white line art floating on card bg */}
+      <div className="mb-5" style={{ width: "72px", height: "72px" }}>
         <img
           src={photo}
           alt={name}
@@ -53,10 +49,10 @@ function PersonCard({
           style={{
             width: "100%",
             height: "100%",
-            objectFit: "cover",
+            objectFit: "contain",
             objectPosition: "center top",
-            mixBlendMode: "multiply",
-            filter: "saturate(0.55) contrast(0.9)",
+            filter: "invert(1) grayscale(1) contrast(1.15) brightness(1.05)",
+            mixBlendMode: "screen",
           }}
         />
       </div>
