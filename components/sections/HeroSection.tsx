@@ -66,18 +66,11 @@ export default function HeroSection() {
           </p>
 
           {/* Headline */}
-          <h1 className="font-hero-serif mb-5 leading-[1.0] text-[#E0DDD8]" style={{ fontSize: 'clamp(52px, 10vw, 98px)' }}>
+          <h1 className="font-hero-serif mb-10 leading-[1.0] text-[#E0DDD8]" style={{ fontSize: 'clamp(52px, 10vw, 98px)' }}>
             <span className="whitespace-nowrap">Positioning and design,</span>
             <br />
             built as <span className="text-[#F86223]">one.</span>
           </h1>
-
-          {/* Subheading */}
-          <p className="mb-8 max-w-xl font-sans text-base leading-relaxed text-[#E0DDD8] md:text-lg">
-            A two-person studio where strategy and design get built in the same
-            room. Kristy leads positioning. Claudio leads design. From brief to
-            handover.
-          </p>
 
           {/* CTAs */}
           <div className="mb-6 flex items-center gap-6">
