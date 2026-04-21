@@ -265,18 +265,11 @@ export default function WhenToWorkSection() {
                 const bend = id % 2 === 0 ? 40 : -40;
                 const d = qBez(from, to, bend);
                 return (
-                  <g key={`flow-${id}-${selectionKey}`}>
-                    {/* Glow */}
-                    <path d={d} stroke="#F86223" strokeWidth={8}
-                          fill="none" strokeLinecap="round"
-                          strokeDasharray="1000" className="wtw-draw-in"
-                          opacity={0.08} />
-                    {/* Main draw-in line */}
-                    <path d={d} stroke="#F86223" strokeWidth={1.2}
-                          fill="none" strokeLinecap="round"
-                          strokeDasharray="1000" className="wtw-draw-in"
-                          opacity={0.75} />
-                  </g>
+                  <path key={`flow-${id}-${selectionKey}`}
+                        d={d} stroke="#F86223" strokeWidth={0.8}
+                        fill="none" strokeLinecap="round"
+                        strokeDasharray="3 8" className="wtw-draw-in"
+                        opacity={0.35} />
                 );
               })}
             </svg>
