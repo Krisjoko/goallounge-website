@@ -67,6 +67,11 @@ a, button {
   font-family: "Monument Extended", "IBM Plex Sans", sans-serif;
 }
 
+/* Hero serif test slot — swap var(--font-fraunces) between Fraunces, Cormorant, Newsreader */
+.font-hero-serif {
+  font-family: var(--font-fraunces), "IBM Plex Sans", serif;
+}
+
 .gltv-mark {
   animation: mark-reveal 0.8s ease forwards;
 }

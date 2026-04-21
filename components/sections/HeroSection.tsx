@@ -65,7 +65,7 @@ export default function HeroSection() {
           </p>
 
           {/* Headline */}
-          <h1 className="font-display mb-5 text-5xl font-normal leading-[1.08] tracking-tight text-[#E0DDD8] md:text-7xl">
+          <h1 className="font-hero-serif mb-5 text-5xl leading-[1.08] text-[#E0DDD8] md:text-7xl" style={{ fontWeight: 500 }}>
             Positioning and design,
             <br />
             built as <span className="text-[#F86223]">one.</span>
