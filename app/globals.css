@@ -147,3 +147,12 @@ a, button {
 .wtw-glow-active {
   animation: wtwGlowPulse 2s ease-in-out infinite;
 }
+
+@keyframes wtwDrawIn {
+  from { stroke-dashoffset: 1000; opacity: 0; }
+  to   { stroke-dashoffset: 0;    opacity: 1; }
+}
+
+.wtw-draw-in {
+  animation: wtwDrawIn 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}

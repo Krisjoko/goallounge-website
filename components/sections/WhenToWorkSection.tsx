@@ -3,15 +3,13 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { WHEN_TO_WORK_NODES, buildMailto } from "@/lib/constants";
 
-// [fromId, toId, bezierBend] — bend is pixels of perpendicular offset at midpoint
-const CONNECTIONS: [number, number, number][] = [
-  [1, 2, -90],
-  [2, 3, -80],
-  [4, 5,  80],
-  [5, 6,  90],
-  [1, 4, -70],
-  [2, 5,  65],
-  [3, 6, -75],
+// All 15 possible pairs with pre-defined bezier bend values (perpendicular offset px)
+const ALL_CONNECTIONS: [number, number, number][] = [
+  [1, 2, -40], [1, 3, -70], [1, 4,  50], [1, 5, -80], [1, 6, -110],
+  [2, 3, -30], [2, 4,  80], [2, 5, -50], [2, 6,  90],
+  [3, 4, 110], [3, 5,  70], [3, 6,  50],
+  [4, 5,  40], [4, 6,  60],
+  [5, 6,  30],
 ];
 
 const INITIAL_PERCENT = [
@@ -23,16 +21,14 @@ const INITIAL_PERCENT = [
   { id: 6, left: 62, top: 48 },
 ];
 
-// Unique phase offset per card so they drift independently
 const DRIFT_PHASE = [0, 1.3, 2.6, 3.9, 5.1, 0.7];
-const DRIFT_AMP   = 5;    // px
-const DRIFT_SPEED = 0.00035; // rad / ms
+const DRIFT_AMP   = 5;
+const DRIFT_SPEED = 0.00035;
 
 const CARD_W = 288;
 
 type Pos = { x: number; y: number };
 
-/** Quadratic bezier path string between two centers with perpendicular bend */
 function qBez(a: Pos, b: Pos, bend: number): string {
   const mx = (a.x + b.x) / 2;
   const my = (a.y + b.y) / 2;
@@ -51,6 +47,7 @@ export default function WhenToWorkSection() {
 
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRefs     = useRef<Record<number, HTMLDivElement | null>>({});
+  const ctaRef       = useRef<HTMLAnchorElement>(null);
   const basePos      = useRef<Record<number, Pos>>({});
   const animFrame    = useRef<number>(0);
   const dragging     = useRef<{
@@ -109,7 +106,6 @@ export default function WhenToWorkSection() {
     const onUp = () => {
       if (dragging.current) {
         const id = dragging.current.id;
-        // Persist dropped position as new drift center
         setPositions(prev => {
           basePos.current[id] = prev[id];
           return prev;
@@ -139,7 +135,6 @@ export default function WhenToWorkSection() {
     setChecked(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
   };
 
-  // Read card center from DOM (accounts for current left/top + any sub-pixel rendering)
   const getCenter = (id: number): Pos => {
     const card = cardRefs.current[id];
     const cont = containerRef.current;
@@ -149,7 +144,17 @@ export default function WhenToWorkSection() {
     return { x: cr.left - co.left + cr.width / 2, y: cr.top - co.top + cr.height / 2 };
   };
 
+  const ctaCenter = (): Pos => {
+    const btn = ctaRef.current;
+    const cont = containerRef.current;
+    if (!btn || !cont) return { x: 0, y: 0 };
+    const br = btn.getBoundingClientRect();
+    const co = cont.getBoundingClientRect();
+    return { x: br.left - co.left + br.width / 2, y: br.top - co.top + br.height / 2 };
+  };
+
   const hasPositions = Object.keys(positions).length === WHEN_TO_WORK_NODES.length;
+  const selectionKey = checked.slice().sort().join(",");
   const mailtoUrl = buildMailto(
     WHEN_TO_WORK_NODES.filter(n => checked.includes(n.id)).map(n => n.title)
   );
@@ -168,12 +173,12 @@ export default function WhenToWorkSection() {
         {/* ── Desktop: node canvas ── */}
         <div
           ref={containerRef}
-          className={`relative hidden min-h-[560px] md:block ${isDragging ? "select-none" : ""}`}
+          className={`relative hidden min-h-[660px] md:block ${isDragging ? "select-none" : ""}`}
         >
           {/* Layer 1 — Bezier connection lines (below cards) */}
           {hasPositions && (
             <svg className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden>
-              {CONNECTIONS.map(([a, b, bend]) => {
+              {ALL_CONNECTIONS.map(([a, b, bend]) => {
                 const ca = getCenter(a);
                 const cb = getCenter(b);
                 const both = checked.includes(a) && checked.includes(b);
@@ -181,21 +186,21 @@ export default function WhenToWorkSection() {
                 const d = qBez(ca, cb, bend);
                 return (
                   <g key={`${a}-${b}`}>
-                    {/* Wide glow halo */}
-                    <path d={d} stroke={color} strokeWidth={both ? 18 : 10}
+                    {/* Wide glow halo — only when active */}
+                    <path d={d} stroke={color} strokeWidth={both ? 18 : 0}
                           fill="none" strokeLinecap="round"
-                          opacity={both ? 0.12 : 0.04}
+                          opacity={both ? 0.12 : 0}
                           className={both ? "wtw-glow-active" : ""} />
-                    {/* Mid glow */}
-                    <path d={d} stroke={color} strokeWidth={both ? 6 : 3}
+                    {/* Mid glow — only when active */}
+                    <path d={d} stroke={color} strokeWidth={both ? 6 : 0}
                           fill="none" strokeLinecap="round"
-                          opacity={both ? 0.18 : 0.07} />
+                          opacity={both ? 0.18 : 0} />
                     {/* Main line */}
-                    <path d={d} stroke={color} strokeWidth={both ? 1.5 : 1}
+                    <path d={d} stroke={color} strokeWidth={both ? 1.5 : 0.8}
                           fill="none" strokeLinecap="round"
-                          opacity={both ? 1 : 0.22}
+                          opacity={both ? 1 : 0.10}
                           className={both ? "wtw-line-active" : ""}
-                          strokeDasharray={both ? undefined : "3 12"} />
+                          strokeDasharray={both ? undefined : "2 14"} />
                   </g>
                 );
               })}
@@ -250,35 +255,44 @@ export default function WhenToWorkSection() {
             );
           })}
 
-          {/* Layer 3 — Node rings (above cards, pointer-events-none) */}
-          {hasPositions && (
+          {/* Layer 3 — Flow lines from selected nodes to CTA button */}
+          {hasPositions && checked.length > 0 && (
             <svg className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden>
-              {WHEN_TO_WORK_NODES.map(({ id }) => {
-                const { x, y } = getCenter(id);
-                const isChecked = checked.includes(id);
-                const color = isChecked ? "#F86223" : "#706D66";
-                const delay = `${(id - 1) * 0.55}s`;
+              {checked.map(id => {
+                const from = getCenter(id);
+                const to = ctaCenter();
+                if (!to.x && !to.y) return null;
+                const bend = id % 2 === 0 ? 40 : -40;
+                const d = qBez(from, to, bend);
                 return (
-                  <g key={`ring-${id}`}>
-                    {/* Outer ring */}
-                    <circle cx={x} cy={y} r={34} stroke={color} strokeWidth={1}
-                            fill="none" className="wtw-ring-outer"
-                            style={{ animationDelay: delay,
-                                     opacity: isChecked ? 0.3 : 0.08 }} />
-                    {/* Inner ring */}
-                    <circle cx={x} cy={y} r={19} stroke={color} strokeWidth={1}
-                            fill="none" className="wtw-ring-inner"
-                            style={{ animationDelay: delay,
-                                     opacity: isChecked ? 0.5 : 0.14 }} />
-                    {/* Center dot */}
-                    <circle cx={x} cy={y} r={5} fill={color}
-                            className="wtw-dot-pulse"
-                            style={{ animationDelay: delay,
-                                     opacity: isChecked ? 0.95 : 0.35 }} />
+                  <g key={`flow-${id}-${selectionKey}`}>
+                    {/* Glow */}
+                    <path d={d} stroke="#F86223" strokeWidth={8}
+                          fill="none" strokeLinecap="round"
+                          strokeDasharray="1000" className="wtw-draw-in"
+                          opacity={0.08} />
+                    {/* Main draw-in line */}
+                    <path d={d} stroke="#F86223" strokeWidth={1.2}
+                          fill="none" strokeLinecap="round"
+                          strokeDasharray="1000" className="wtw-draw-in"
+                          opacity={0.75} />
                   </g>
                 );
               })}
             </svg>
+          )}
+
+          {/* CTA button — inside canvas, positioned at bottom center */}
+          {checked.length > 0 && (
+            <div className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2">
+              <a
+                ref={ctaRef}
+                href={mailtoUrl}
+                className="rounded-full bg-[#B8400E] px-8 py-3 font-mono text-[10px] tracking-widest text-white uppercase transition-opacity hover:opacity-90"
+              >
+                Pre-fill my email ({checked.length} selected)
+              </a>
+            </div>
           )}
         </div>
 
@@ -313,9 +327,9 @@ export default function WhenToWorkSection() {
           })}
         </div>
 
-        {/* ── CTA ── */}
+        {/* Mobile CTA */}
         {checked.length > 0 && (
-          <div className="mt-10 flex justify-center">
+          <div className="mt-10 flex justify-center md:hidden">
             <a href={mailtoUrl}
                className="rounded-full bg-[#B8400E] px-8 py-3 font-mono text-[10px] tracking-widest text-white uppercase transition-opacity hover:opacity-90">
               Pre-fill my email ({checked.length} selected)
