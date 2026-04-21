@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { WHEN_TO_WORK_NODES, buildMailto } from "@/lib/constants";
+import CircleCta from "@/components/ui/CircleCta";
 
 // All 15 possible pairs with pre-defined bezier bend values (perpendicular offset px)
 const ALL_CONNECTIONS: [number, number, number][] = [
@@ -281,9 +282,16 @@ export default function WhenToWorkSection() {
               <a
                 ref={ctaRef}
                 href={mailtoUrl}
-                className="rounded-full bg-[#B8400E] px-8 py-3 font-mono text-[10px] tracking-widest text-white uppercase transition-opacity hover:opacity-90"
+                className="group flex items-center gap-3"
               >
-                Pre-fill my email ({checked.length} selected)
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#B8400E] text-[#F86223] transition-colors group-hover:border-[#F86223]" aria-hidden>
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                    <path d="M2 5H8M8 5L5 2M8 5L5 8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+                <span className="font-mono text-[10px] tracking-widest uppercase text-[#E0DDD8] transition-colors group-hover:text-white">
+                  Pre-fill my email ({checked.length} selected)
+                </span>
               </a>
             </div>
           )}
@@ -323,10 +331,7 @@ export default function WhenToWorkSection() {
         {/* Mobile CTA */}
         {checked.length > 0 && (
           <div className="mt-10 flex justify-center md:hidden">
-            <a href={mailtoUrl}
-               className="rounded-full bg-[#B8400E] px-8 py-3 font-mono text-[10px] tracking-widest text-white uppercase transition-opacity hover:opacity-90">
-              Pre-fill my email ({checked.length} selected)
-            </a>
+            <CircleCta href={mailtoUrl} label={`Pre-fill my email (${checked.length} selected)`} variant="primary" />
           </div>
         )}
       </div>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import CircleCta from "@/components/ui/CircleCta";
 
 const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL ?? "#get-in-touch";
 
@@ -79,21 +80,9 @@ export default function HeroSection() {
           </p>
 
           {/* CTAs */}
-          <div className="mb-6 flex items-center gap-3">
-            <a
-              href="#selected-work"
-              className="rounded-full border border-[#4A4740] px-7 py-2.5 font-mono text-[10px] tracking-widest text-[#E0DDD8] uppercase transition-colors hover:border-[#706D66] hover:text-white"
-            >
-              See the Work
-            </a>
-            <a
-              href={BOOKING_URL}
-              target={BOOKING_URL.startsWith("http") ? "_blank" : undefined}
-              rel={BOOKING_URL.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="rounded-full bg-[#B8400E] px-7 py-2.5 font-mono text-[10px] tracking-widest text-white uppercase transition-opacity hover:opacity-90"
-            >
-              Book a 30-Minute Call
-            </a>
+          <div className="mb-6 flex items-center gap-6">
+            <CircleCta href={BOOKING_URL} label="Book a 30-Minute Call" variant="primary" />
+            <CircleCta href="#selected-work" label="See the Work" variant="secondary" />
           </div>
 
           {/* Trust line */}

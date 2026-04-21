@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { PROJECTS, DISCIPLINES } from "@/lib/constants";
 import type { Discipline } from "@/lib/constants";
+import CircleCta from "@/components/ui/CircleCta";
 
 const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL ?? "#get-in-touch";
 
@@ -261,14 +262,7 @@ export default function SelectedWorkSection() {
           <p className="max-w-xl font-sans text-sm leading-relaxed text-[#706D66]">
             We walk you through the work live. Projects, process, outcomes, in a 30-minute call.
           </p>
-          <a
-            href={BOOKING_URL}
-            target={BOOKING_URL.startsWith("http") ? "_blank" : undefined}
-            rel={BOOKING_URL.startsWith("http") ? "noopener noreferrer" : undefined}
-            className="shrink-0 rounded-full border border-[#4A4740] px-6 py-2.5 font-mono text-[10px] tracking-widest text-[#E0DDD8] uppercase transition-colors hover:border-[#706D66]"
-          >
-            Book a Walkthrough →
-          </a>
+          <CircleCta href={BOOKING_URL} label="Book a Walkthrough" variant="primary" className="shrink-0" />
         </div>
       </div>
 

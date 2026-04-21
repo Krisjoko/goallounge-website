@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { NAV_ITEMS } from "@/lib/constants";
+import CircleCta from "@/components/ui/CircleCta";
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -39,12 +40,7 @@ export default function Nav() {
           ))}
         </ul>
 
-        <a
-          href="#get-in-touch"
-          className="rounded-full bg-[#B8400E] px-5 py-2 font-mono text-[10px] tracking-widest text-white uppercase transition-opacity hover:opacity-90"
-        >
-          Get In Touch
-        </a>
+        <CircleCta href="#get-in-touch" label="Get In Touch" variant="primary" />
       </nav>
     </header>
   );

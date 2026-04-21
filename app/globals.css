@@ -50,7 +50,8 @@ html {
 }
 
 body {
-  background-color: #1A1A1A;
+  background: linear-gradient(180deg, #1C1C1C 0%, #0A0A0A 100%);
+  background-attachment: fixed;
   color: #E0DDD8;
   font-family: "IBM Plex Sans", sans-serif;
   -webkit-font-smoothing: antialiased;

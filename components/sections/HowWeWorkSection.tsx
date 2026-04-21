@@ -1,5 +1,7 @@
 // next/image not used — profile SVGs rendered via <img> with blend-mode
 
+import CircleCta from "@/components/ui/CircleCta";
+
 const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL ?? "#get-in-touch";
 
 const CLAUDIO_BULLETS = [
@@ -89,15 +91,12 @@ function PersonCard({
       )}
 
       {/* CTA */}
-      <a
+      <CircleCta
         href={ctaHref}
-        target={ctaHref.startsWith("http") ? "_blank" : undefined}
-        rel={ctaHref.startsWith("http") ? "noopener noreferrer" : undefined}
-        className="mt-auto font-mono text-[10px] tracking-widest uppercase transition-opacity hover:opacity-70"
-        style={{ color: accentColor }}
-      >
-        {cta}
-      </a>
+        label={cta}
+        variant={accentColor === "#F86223" ? "primary" : "secondary"}
+        className="mt-auto"
+      />
     </div>
   );
 }
