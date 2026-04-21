@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans, IBM_Plex_Mono, Cormorant_Garamond } from "next/font/google";
+import { IBM_Plex_Sans, IBM_Plex_Mono, Newsreader } from "next/font/google";
 import "./globals.css";
 
 const ibmPlexSans = IBM_Plex_Sans({
@@ -14,7 +14,7 @@ const ibmPlexMono = IBM_Plex_Mono({
   weight: ["400", "500"],
 });
 
-const cormorant = Cormorant_Garamond({
+const newsreader = Newsreader({
   variable: "--font-hero-serif",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -48,7 +48,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${ibmPlexSans.variable} ${ibmPlexMono.variable} ${cormorant.variable}`}
+      className={`${ibmPlexSans.variable} ${ibmPlexMono.variable} ${newsreader.variable}`}
     >
       <body className="min-h-screen bg-background text-foreground antialiased">
         {children}
