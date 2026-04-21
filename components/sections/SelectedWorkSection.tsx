@@ -175,7 +175,7 @@ export default function SelectedWorkSection() {
         {/* Header */}
         <div className="mb-6">
           <div className="section-label mb-4">Selected Work</div>
-          <h2 className="font-hero-serif mb-3 text-3xl font-normal text-[#E0DDD8] md:text-4xl">
+          <h2 className="font-hero-serif mb-3 text-4xl font-normal text-[#E0DDD8] md:text-5xl">
             Work we are proud to walk you through.
           </h2>
           <p className="max-w-2xl font-sans text-sm leading-relaxed text-[#706D66]">

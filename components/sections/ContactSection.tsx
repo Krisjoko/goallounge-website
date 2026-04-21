@@ -287,7 +287,7 @@ export default function ContactSection() {
     <section id="get-in-touch" className="px-6 py-20 md:py-28 scroll-mt-14">
       <div className="mx-auto max-w-7xl">
         <div className="section-label mb-4">Get In Touch</div>
-        <h2 className="font-hero-serif mb-3 text-3xl font-normal text-[#E0DDD8] md:text-4xl">
+        <h2 className="font-hero-serif mb-3 text-4xl font-normal text-[#E0DDD8] md:text-5xl">
           30 minutes. No pitch.
           <br />
           Just a conversation.

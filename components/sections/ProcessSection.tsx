@@ -5,7 +5,7 @@ export default function ProcessSection() {
     <section id="process" className="px-6 py-20 md:py-28 scroll-mt-14">
       <div className="mx-auto max-w-7xl">
         <div className="section-label mb-4">How a Project Runs</div>
-        <h2 className="font-hero-serif mb-3 text-3xl font-normal text-[#E0DDD8] md:text-4xl">
+        <h2 className="font-hero-serif mb-3 text-4xl font-normal text-[#E0DDD8] md:text-5xl">
           A shape you can plan around.
         </h2>
         <p className="mb-12 max-w-2xl font-sans text-sm leading-relaxed text-[#706D66]">
