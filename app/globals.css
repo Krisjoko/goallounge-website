@@ -112,24 +112,6 @@ a, button {
 
 /* ── Hero logo mark motion ── */
 
-@keyframes hero-halo-spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-@keyframes hero-halo-pulse {
-  0%, 100% { opacity: 0.65; transform: scale(1); }
-  50%      { opacity: 1;    transform: scale(1.08); }
-}
-
-@keyframes hero-sonar-ping {
-  0%   { transform: scale(0.5); opacity: 0;    }
-  12%  { transform: scale(1);   opacity: 0.7;  }
-  50%  { transform: scale(10);  opacity: 0.06; }
-  88%  { transform: scale(1);   opacity: 0.55; }
-  100% { transform: scale(0.5); opacity: 0;    }
-}
-
 @keyframes hero-mark-bolt {
   0%   { transform: rotate(-1080deg) scale(0);   opacity: 0; }
   60%  { transform: rotate(40deg)    scale(1.12); opacity: 1; }
@@ -141,47 +123,6 @@ a, button {
   50%      { transform: translateY(-4px); }
 }
 
-.hero-halo-out {
-  background: conic-gradient(from 0deg,
-    transparent 0%,
-    rgba(255,72,34,0.14) 15%,
-    transparent 30%,
-    rgba(224,221,216,0.10) 50%,
-    transparent 65%,
-    rgba(255,72,34,0.12) 85%,
-    transparent 100%);
-  filter: blur(14px);
-  animation: hero-halo-spin 30s linear infinite;
-}
-
-.hero-halo-in {
-  background: conic-gradient(from 90deg,
-    transparent 0%,
-    rgba(224,221,216,0.09) 12%,
-    transparent 24%,
-    rgba(255,72,34,0.07)   36%,
-    transparent 48%,
-    rgba(224,221,216,0.09) 60%,
-    transparent 72%,
-    rgba(255,72,34,0.07)   84%,
-    transparent 96%);
-  filter: blur(6px);
-  animation: hero-halo-spin 22s linear infinite reverse;
-}
-
-.hero-bloom {
-  background: radial-gradient(circle,
-    rgba(255,72,34,0.18) 0%,
-    transparent 55%);
-  animation: hero-halo-pulse 4s ease-in-out infinite;
-}
-
-.hero-sonar {
-  border: 1px solid rgba(255,72,34,0.45);
-  animation: hero-sonar-ping 3.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  opacity: 0;
-}
-
 .hero-mark-bolt {
   animation: hero-mark-bolt 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -189,48 +130,6 @@ a, button {
 .hero-mark-idle {
   animation: hero-mark-float 5s ease-in-out infinite;
   animation-delay: 1.4s;
-}
-
-/* ── Logo colour-flow mask ── */
-
-.logo-flow-mask {
-  width: 120px;
-  height: 120px;
-  position: relative;
-  overflow: hidden;
-  -webkit-mask-image: url('/images/LogoMarkWhite.svg');
-  -webkit-mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  -webkit-mask-mode: alpha;
-  mask-image: url('/images/LogoMarkWhite.svg');
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
-  mask-mode: alpha;
-}
-
-.logo-flow-fill {
-  position: absolute;
-  top: -60px;
-  left: -60px;
-  right: -60px;
-  bottom: -60px;
-  background:
-    radial-gradient(ellipse 65% 65% at 30% 28%, #FF4822 0%, transparent 58%),
-    radial-gradient(ellipse 65% 65% at 72% 72%, #22A6FF 0%, transparent 58%),
-    #C8BEB4;
-  animation: logoColorFlow 10s ease-in-out infinite;
-  animation-delay: 1.4s;
-}
-
-@keyframes logoColorFlow {
-  0%   { transform: translate(  0px,   0px); }
-  20%  { transform: translate( 26px, -18px); }
-  45%  { transform: translate( 12px,  24px); }
-  65%  { transform: translate(-24px,  10px); }
-  85%  { transform: translate( -8px, -18px); }
-  100% { transform: translate(  0px,   0px); }
 }
 
 /* ── When To Work node canvas ── */
