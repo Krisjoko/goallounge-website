@@ -20,16 +20,43 @@ export default function HeroSection() {
       {/* Centered content */}
       <div className="flex flex-1 items-center justify-center">
         <div className="flex w-full max-w-3xl flex-col items-center text-center">
-          {/* Logo mark */}
-          <div className={`mb-6 ${mounted ? "gltv-mark" : "opacity-0"}`}>
-            <Image
-              src="/images/LogoMarkWhite.svg"
-              width={120}
-              height={120}
-              alt="Goallounge"
-              className="h-[120px] w-[120px] object-contain"
-              unoptimized
-            />
+          {/* Logo mark — layered halos + spin entrance */}
+          <div className="relative mb-6 flex h-[200px] w-[200px] items-center justify-center">
+            {mounted && (
+              <>
+                {/* Outer textile halo — rotating conic gradient */}
+                <div className="hero-halo-out absolute inset-0 rounded-full" aria-hidden />
+                {/* Inner textile halo — reverse rotation */}
+                <div className="hero-halo-in absolute inset-4 rounded-full" aria-hidden />
+                {/* Radial bloom */}
+                <div className="hero-bloom absolute inset-0 rounded-full" aria-hidden />
+                {/* Sonar rings — one-shot on mount */}
+                <div
+                  className="hero-sonar absolute inset-0 rounded-full"
+                  style={{ animationDelay: "0.3s" }}
+                  aria-hidden
+                />
+                <div
+                  className="hero-sonar absolute inset-0 rounded-full"
+                  style={{ animationDelay: "0.8s" }}
+                  aria-hidden
+                />
+              </>
+            )}
+
+            {/* Logo: bolt-in wrapper → idle slow-spin wrapper → image */}
+            <div className={mounted ? "hero-mark-bolt relative z-10" : "relative z-10 opacity-0"}>
+              <div className={mounted ? "hero-mark-spin" : ""}>
+                <Image
+                  src="/images/LogoMarkWhite.svg"
+                  width={120}
+                  height={120}
+                  alt="Goallounge"
+                  className="h-[120px] w-[120px] object-contain"
+                  unoptimized
+                />
+              </div>
+            </div>
           </div>
 
           {/* Label */}
