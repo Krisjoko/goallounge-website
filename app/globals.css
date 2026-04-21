@@ -67,7 +67,7 @@ a, button {
   font-family: "Monument Extended", "IBM Plex Sans", sans-serif;
 }
 
-/* Hero serif test slot — current: Newsreader (Reckless stand-in) */
+/* Hero display slot — current: Bebas Neue regular */
 .font-hero-serif {
   font-family: var(--font-hero-serif), "IBM Plex Sans", serif;
 }
