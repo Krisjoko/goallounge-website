@@ -66,7 +66,7 @@ export default function HeroSection() {
 
           {/* Headline */}
           <h1 className="font-hero-serif mb-5 text-5xl leading-[1.08] text-[#E0DDD8] md:text-7xl" style={{ fontWeight: 500 }}>
-            Positioning and design,
+            <span className="whitespace-nowrap">Positioning and design,</span>
             <br />
             built as <span className="text-[#F86223]">one.</span>
           </h1>
