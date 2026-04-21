@@ -51,7 +51,7 @@ function PersonCard({
             height: "100%",
             objectFit: "contain",
             objectPosition: "center top",
-            filter: "invert(1) grayscale(1) contrast(1.15) brightness(1.05)",
+            filter: "invert(1) grayscale(1) sepia(0.12) brightness(0.87) contrast(1.05)",
             mixBlendMode: "screen",
           }}
         />
