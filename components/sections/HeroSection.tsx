@@ -62,14 +62,14 @@ export default function HeroSection() {
 
           {/* Label */}
           <p className="mb-5 font-mono text-[10px] tracking-[0.25em] text-[#706D66] uppercase">
-            <span className="text-[#F86223]">●</span> Strategic Creative Studio
+            <span className="text-[#FF4822]">●</span> Strategic Creative Studio
           </p>
 
           {/* Headline */}
           <h1 className="font-hero-serif mb-10 leading-[1.0] text-[#E0DDD8]" style={{ fontSize: 'clamp(52px, 10vw, 98px)' }}>
             <span className="whitespace-nowrap">Positioning and design,</span>
             <br />
-            built as <span className="text-[#F86223]">one.</span>
+            built as <span className="text-[#FF4822]">one.</span>
           </h1>
 
           {/* CTAs */}

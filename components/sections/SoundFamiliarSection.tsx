@@ -65,8 +65,8 @@ export default function SoundFamiliarSection() {
               >
                 <div>
                   <div className="mb-4 flex items-center justify-between">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#F86223]" />
-                    <span className="font-mono text-[10px] text-[#F86223]">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#FF4822]" />
+                    <span className="font-mono text-[10px] text-[#FF4822]">
                       #{card.number}
                     </span>
                   </div>
@@ -75,7 +75,7 @@ export default function SoundFamiliarSection() {
                   </h3>
                 </div>
                 <div>
-                  <p className="mb-2 font-mono text-[9px] tracking-[0.15em] uppercase text-[#F86223]">
+                  <p className="mb-2 font-mono text-[9px] tracking-[0.15em] uppercase text-[#FF4822]">
                     Sounds Like
                   </p>
                   <p className="font-sans text-sm italic leading-relaxed text-[#706D66]">

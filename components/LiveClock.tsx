@@ -36,11 +36,11 @@ export default function LiveClock() {
           {ldn} <span className="opacity-50">LDN</span>
         </span>
         <span className="h-3 w-px bg-[#4A4740]" />
-        <span className="flex items-center gap-1.5 font-mono text-[10px] text-[#F86223]">
+        <span className="flex items-center gap-1.5 font-mono text-[10px] text-[#FF4822]">
           <svg width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden>
-            <circle cx="4.5" cy="4.5" r="3.5" stroke="#F86223" strokeWidth="1" />
-            <line x1="4.5" y1="2" x2="4.5" y2="4.5" stroke="#F86223" strokeWidth="1" strokeLinecap="round" />
-            <line x1="4.5" y1="4.5" x2="6.5" y2="4.5" stroke="#F86223" strokeWidth="1" strokeLinecap="round" />
+            <circle cx="4.5" cy="4.5" r="3.5" stroke="#FF4822" strokeWidth="1" />
+            <line x1="4.5" y1="2" x2="4.5" y2="4.5" stroke="#FF4822" strokeWidth="1" strokeLinecap="round" />
+            <line x1="4.5" y1="4.5" x2="6.5" y2="4.5" stroke="#FF4822" strokeWidth="1" strokeLinecap="round" />
           </svg>
           {gmt} <span className="opacity-50">GMT</span>
         </span>

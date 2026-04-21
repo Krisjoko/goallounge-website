@@ -58,7 +58,7 @@ function BuildForm() {
   if (status === "sent") {
     return (
       <div className="flex h-full flex-col items-center justify-center py-16 text-center">
-        <div className="mb-3 font-mono text-[10px] tracking-widest text-[#F86223] uppercase">
+        <div className="mb-3 font-mono text-[10px] tracking-widest text-[#FF4822] uppercase">
           Received
         </div>
         <p className="font-display text-2xl text-[#E0DDD8]">
@@ -103,7 +103,7 @@ function BuildForm() {
               onClick={() => setStage(s === stage ? "" : s)}
               className={`rounded-full border px-4 py-1.5 font-sans text-xs transition-colors ${
                 stage === s
-                  ? "border-[#F86223] bg-[#F86223]/10 text-[#F86223]"
+                  ? "border-[#FF4822] bg-[#FF4822]/10 text-[#FF4822]"
                   : "border-[#4A4740] text-[#706D66] hover:border-[#706D66] hover:text-[#E0DDD8]"
               }`}
             >
@@ -134,7 +134,7 @@ function BuildForm() {
         disabled={status === "sending"}
         className="group flex items-center gap-3 self-start disabled:opacity-50"
       >
-        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#B8400E] text-[#F86223] transition-colors group-hover:bg-[#B8400E] group-hover:border-[#B8400E] group-hover:text-[#706D66]" aria-hidden>
+        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#FF4822] text-[#FF4822] transition-colors group-hover:bg-[#FF4822] group-hover:border-[#FF4822] group-hover:text-[#706D66]" aria-hidden>
           <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
             <path d="M2 5H8M8 5L5 2M8 5L5 8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
@@ -202,7 +202,7 @@ function PartnershipsForm() {
   if (status === "sent") {
     return (
       <div className="flex flex-col gap-2 py-8">
-        <p className="font-mono text-[10px] tracking-widest text-[#F86223] uppercase">
+        <p className="font-mono text-[10px] tracking-widest text-[#FF4822] uppercase">
           Thank you
         </p>
         <p className="font-display text-xl text-[#E0DDD8]">Introduction received.</p>
@@ -244,7 +244,7 @@ function PartnershipsForm() {
         disabled={status === "sending"}
         className="group flex items-center gap-3 self-start disabled:opacity-50"
       >
-        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#B8400E] text-[#F86223] transition-colors group-hover:bg-[#B8400E] group-hover:border-[#B8400E] group-hover:text-[#706D66]" aria-hidden>
+        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#FF4822] text-[#FF4822] transition-colors group-hover:bg-[#FF4822] group-hover:border-[#FF4822] group-hover:text-[#706D66]" aria-hidden>
           <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
             <path d="M2 5H8M8 5L5 2M8 5L5 8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
@@ -319,7 +319,7 @@ export default function ContactSection() {
                   >
                     <path
                       d="M1 5H9M9 5L5 1M9 5L5 9"
-                      stroke={isActive ? "#F86223" : "#4A4740"}
+                      stroke={isActive ? "#FF4822" : "#4A4740"}
                       strokeWidth="1.2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -328,7 +328,7 @@ export default function ContactSection() {
                   <div>
                     <p
                       className={`font-mono text-[9px] tracking-widest uppercase transition-colors ${
-                        isActive ? "text-[#F86223]" : "text-[#706D66]"
+                        isActive ? "text-[#FF4822]" : "text-[#706D66]"
                       }`}
                     >
                       {tab.label}

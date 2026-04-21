@@ -94,7 +94,7 @@ function PersonCard({
       <CircleCta
         href={ctaHref}
         label={cta}
-        variant={accentColor === "#F86223" ? "primary" : "secondary"}
+        variant={accentColor === "#FF4822" ? "primary" : "secondary"}
         className="mt-auto"
       />
     </div>
@@ -127,7 +127,7 @@ export default function HowWeWorkSection() {
             footnote="Claudio's portfolio is always scaling and growing. Happy to walk you through it live on a call."
             cta="Book a Walkthrough →"
             ctaHref={BOOKING_URL}
-            accentColor="#F86223"
+            accentColor="#FF4822"
             photo="/images/claudio-doodle.svg"
           />
           <PersonCard

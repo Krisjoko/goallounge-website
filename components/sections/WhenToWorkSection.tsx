@@ -183,7 +183,7 @@ export default function WhenToWorkSection() {
                 const ca = getCenter(a);
                 const cb = getCenter(b);
                 const both = checked.includes(a) && checked.includes(b);
-                const color = both ? "#F86223" : "#706D66";
+                const color = both ? "#FF4822" : "#706D66";
                 const d = qBez(ca, cb, bend);
                 return (
                   <g key={`${a}-${b}`}>
@@ -229,13 +229,13 @@ export default function WhenToWorkSection() {
                   isDragging && dragging.current?.id === node.id ? "cursor-grabbing" : "cursor-grab"
                 } ${
                   isChecked
-                    ? "border-[#F86223]/60 bg-[#222222] shadow-[0_0_24px_rgba(248,98,35,0.12)]"
+                    ? "border-[#FF4822]/60 bg-[#222222] shadow-[0_0_24px_rgba(255,72,34,0.12)]"
                     : "border-[#4A4740]/40 bg-[#1C1C1C] hover:border-[#4A4740] hover:bg-[#222222]"
                 }`}
               >
                 <div className="mb-3 flex items-start justify-between gap-2">
                   <span className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded border transition-colors ${
-                    isChecked ? "border-[#F86223] bg-[#F86223]" : "border-[#4A4740]"
+                    isChecked ? "border-[#FF4822] bg-[#FF4822]" : "border-[#4A4740]"
                   }`}>
                     {isChecked && (
                       <svg width="8" height="6" viewBox="0 0 8 6" fill="none">
@@ -267,7 +267,7 @@ export default function WhenToWorkSection() {
                 const d = qBez(from, to, bend);
                 return (
                   <path key={`flow-${id}-${selectionKey}`}
-                        d={d} stroke="#F86223" strokeWidth={0.8}
+                        d={d} stroke="#FF4822" strokeWidth={0.8}
                         fill="none" strokeLinecap="round"
                         strokeDasharray="3 8" className="wtw-draw-in"
                         opacity={0.35} />
@@ -284,7 +284,7 @@ export default function WhenToWorkSection() {
                 href={mailtoUrl}
                 className="group flex items-center gap-3"
               >
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#B8400E] text-[#F86223] transition-colors group-hover:bg-[#B8400E] group-hover:border-[#B8400E] group-hover:text-[#706D66]" aria-hidden>
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#FF4822] text-[#FF4822] transition-colors group-hover:bg-[#FF4822] group-hover:border-[#FF4822] group-hover:text-[#706D66]" aria-hidden>
                   <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                     <path d="M2 5H8M8 5L5 2M8 5L5 8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
@@ -305,12 +305,12 @@ export default function WhenToWorkSection() {
               <button key={node.id} onClick={() => toggle(node.id)}
                 className={`rounded-xl border p-5 text-left transition-all duration-200 ${
                   isChecked
-                    ? "border-[#F86223]/60 bg-[#222222]"
+                    ? "border-[#FF4822]/60 bg-[#222222]"
                     : "border-[#4A4740]/50 bg-[#1E1E1E] hover:border-[#4A4740] hover:bg-[#222222]"
                 }`}>
                 <div className="mb-3 flex items-start justify-between gap-2">
                   <span className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded border transition-colors ${
-                    isChecked ? "border-[#F86223] bg-[#F86223]" : "border-[#4A4740]"
+                    isChecked ? "border-[#FF4822] bg-[#FF4822]" : "border-[#4A4740]"
                   }`}>
                     {isChecked && (
                       <svg width="8" height="6" viewBox="0 0 8 6" fill="none">

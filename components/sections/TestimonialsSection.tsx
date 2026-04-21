@@ -12,7 +12,7 @@ export default function TestimonialsSection() {
     setActiveIndex((i) => (i + 1) % TESTIMONIALS.length);
 
   const current = TESTIMONIALS[activeIndex];
-  const accentColor = current.person === "claudio" ? "#F86223" : "#22A6FF";
+  const accentColor = current.person === "claudio" ? "#FF4822" : "#22A6FF";
 
   return (
     <section id="client-stories" className="px-6 py-20 md:py-28 scroll-mt-14">
@@ -100,7 +100,7 @@ export default function TestimonialsSection() {
                   backgroundColor:
                     i === activeIndex
                       ? t.person === "claudio"
-                        ? "#F86223"
+                        ? "#FF4822"
                         : "#22A6FF"
                       : "#4A4740",
                 }}

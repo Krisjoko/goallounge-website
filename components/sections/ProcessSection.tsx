@@ -20,7 +20,7 @@ export default function ProcessSection() {
               className="flex flex-col rounded-xl bg-[#222222] p-6"
             >
               <div className="mb-5 flex items-center justify-between">
-                <span className="font-mono text-[10px] tracking-widest text-[#F86223] uppercase">
+                <span className="font-mono text-[10px] tracking-widest text-[#FF4822] uppercase">
                   {s.step}
                 </span>
                 <span className="font-mono text-[9px] tracking-wider text-[#4A4740] uppercase">

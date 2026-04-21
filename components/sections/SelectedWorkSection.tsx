@@ -191,7 +191,7 @@ export default function SelectedWorkSection() {
               onClick={() => setActiveTab(tab)}
               className={`rounded-full px-4 py-2 font-mono text-[10px] tracking-widest uppercase transition-colors ${
                 activeTab === tab
-                  ? "bg-[#F86223] text-white"
+                  ? "bg-[#FF4822] text-white"
                   : "border border-[#4A4740] text-[#706D66] hover:border-[#706D66] hover:text-[#E0DDD8]"
               }`}
             >
@@ -248,7 +248,7 @@ export default function SelectedWorkSection() {
                   <p className="mt-0.5 font-mono text-[10px] tracking-wide text-[#706D66]">
                     {project.category}
                   </p>
-                  <p className="mt-1.5 font-mono text-[10px] tracking-wide text-[#F86223]">
+                  <p className="mt-1.5 font-mono text-[10px] tracking-wide text-[#FF4822]">
                     {project.outcome}
                   </p>
                 </div>
