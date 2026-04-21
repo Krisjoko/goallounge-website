@@ -67,9 +67,9 @@ a, button {
   font-family: "Monument Extended", "IBM Plex Sans", sans-serif;
 }
 
-/* Hero serif test slot — swap var(--font-fraunces) between Fraunces, Cormorant, Newsreader */
+/* Hero serif test slot — current: Cormorant Garamond (Canela stand-in) */
 .font-hero-serif {
-  font-family: var(--font-fraunces), "IBM Plex Sans", serif;
+  font-family: var(--font-hero-serif), "IBM Plex Sans", serif;
 }
 
 .gltv-mark {
