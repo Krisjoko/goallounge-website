@@ -16,8 +16,8 @@ export default function CircleCta({
 
   const circleClass =
     variant === "primary"
-      ? "border-[#B8400E] text-[#F86223] group-hover:border-[#F86223]"
-      : "border-[#4A4740] text-[#706D66] group-hover:border-[#706D66]";
+      ? "border-[#B8400E] text-[#F86223] group-hover:bg-[#B8400E] group-hover:border-[#B8400E] group-hover:text-[#706D66]"
+      : "border-[#4A4740] text-[#706D66] group-hover:bg-[#E0DDD8] group-hover:border-[#E0DDD8] group-hover:text-white";
 
   const labelClass =
     variant === "primary"

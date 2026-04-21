@@ -284,7 +284,7 @@ export default function WhenToWorkSection() {
                 href={mailtoUrl}
                 className="group flex items-center gap-3"
               >
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#B8400E] text-[#F86223] transition-colors group-hover:border-[#F86223]" aria-hidden>
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#B8400E] text-[#F86223] transition-colors group-hover:bg-[#B8400E] group-hover:border-[#B8400E] group-hover:text-[#706D66]" aria-hidden>
                   <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                     <path d="M2 5H8M8 5L5 2M8 5L5 8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
