@@ -1,4 +1,4 @@
-import Image from "next/image";
+// next/image not used — profile SVGs rendered via <img> with blend-mode
 
 const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL ?? "#get-in-touch";
 
@@ -41,22 +41,22 @@ function PersonCard({
     <div className="flex flex-1 flex-col rounded-xl bg-[#222222] p-6">
       {/* Photo */}
       <div
-        className="relative mb-5 block aspect-square overflow-hidden rounded-xl"
-        style={{
-          width: "72px",
-          height: "72px",
-          border: `1px solid ${accentColor}33`,
-          backgroundColor: "#1A1A1A",
-        }}
+        className="mb-5 overflow-hidden rounded-xl"
+        style={{ width: "72px", height: "72px", backgroundColor: "#E0DDD8" }}
       >
-        <Image
+        {/* mix-blend-mode:multiply removes white SVG background, keeps illustration on warm off-white */}
+        <img
           src={photo}
           alt={name}
-          fill
-          sizes="72px"
-          className="object-cover object-center"
+          width={72}
+          height={72}
           style={{
-            filter: "saturate(0.4) brightness(0.85) contrast(0.9)",
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center top",
+            mixBlendMode: "multiply",
+            filter: "saturate(0.55) contrast(0.9)",
           }}
         />
       </div>
@@ -133,7 +133,7 @@ export default function HowWeWorkSection() {
             cta="Book a Walkthrough →"
             ctaHref={BOOKING_URL}
             accentColor="#F86223"
-            photo="/images/ClaudioDoodleProfilePic.png"
+            photo="/images/claudio-doodle.svg"
           />
           <PersonCard
             name="Kristy"
@@ -143,7 +143,7 @@ export default function HowWeWorkSection() {
             cta="View Portfolio →"
             ctaHref="https://bit.ly/KristyCunningham_Goallounge"
             accentColor="#22A6FF"
-            photo="/images/KristyDoodleProfilePic.png"
+            photo="/images/kristy-doodle.svg"
           />
         </div>
 
