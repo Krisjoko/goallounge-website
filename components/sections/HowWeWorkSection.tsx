@@ -45,9 +45,8 @@ function PersonCard({
         style={{
           width: "72px",
           height: "72px",
-          outline: `2px solid ${accentColor}`,
-          outlineOffset: "2px",
-          backgroundColor: "#333",
+          border: `1px solid ${accentColor}33`,
+          backgroundColor: "#1A1A1A",
         }}
       >
         <Image
@@ -56,6 +55,9 @@ function PersonCard({
           fill
           sizes="72px"
           className="object-cover object-center"
+          style={{
+            filter: "saturate(0.4) brightness(0.85) contrast(0.9)",
+          }}
         />
       </div>
 
