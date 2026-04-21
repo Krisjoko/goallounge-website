@@ -61,7 +61,7 @@ function BuildForm() {
         <div className="mb-3 font-mono text-[10px] tracking-widest text-[#FF4822] uppercase">
           Received
         </div>
-        <p className="font-display text-2xl text-[#E0DDD8]">
+        <p className="font-hero-serif text-lg text-[#E0DDD8]">
           We&rsquo;ll be in touch.
         </p>
         <p className="mt-2 font-sans text-sm text-[#706D66]">
@@ -73,7 +73,7 @@ function BuildForm() {
 
   return (
     <form onSubmit={submit} className="flex flex-col gap-5">
-      <h3 className="font-display text-xl text-[#E0DDD8]">
+      <h3 className="font-hero-serif text-lg text-[#E0DDD8]">
         Tell us what you are building.
       </h3>
 
@@ -159,7 +159,7 @@ function BuildForm() {
 function EmailForm() {
   return (
     <div className="flex flex-col gap-4">
-      <h3 className="font-display text-xl text-[#E0DDD8]">Send us a message.</h3>
+      <h3 className="font-hero-serif text-lg text-[#E0DDD8]">Send us a message.</h3>
       <p className="font-sans text-sm text-[#706D66]">
         Reach us directly at{" "}
         <a
@@ -205,7 +205,7 @@ function PartnershipsForm() {
         <p className="font-mono text-[10px] tracking-widest text-[#FF4822] uppercase">
           Thank you
         </p>
-        <p className="font-display text-xl text-[#E0DDD8]">Introduction received.</p>
+        <p className="font-hero-serif text-lg text-[#E0DDD8]">Introduction received.</p>
         <p className="font-sans text-sm text-[#706D66]">We&rsquo;ll be in touch with you and them shortly.</p>
       </div>
     );
@@ -213,7 +213,7 @@ function PartnershipsForm() {
 
   return (
     <form onSubmit={submit} className="flex flex-col gap-5">
-      <h3 className="font-display text-xl text-[#E0DDD8]">Make an introduction.</h3>
+      <h3 className="font-hero-serif text-lg text-[#E0DDD8]">Make an introduction.</h3>
       <p className="font-sans text-sm text-[#706D66]">
         Tell us about them. If it is a good fit, we will reach out on your behalf.
       </p>
@@ -262,7 +262,7 @@ function BookCallPanel() {
 
   return (
     <div className="flex flex-col gap-4">
-      <h3 className="font-display text-xl text-[#E0DDD8]">Book a 30-minute call.</h3>
+      <h3 className="font-hero-serif text-lg text-[#E0DDD8]">Book a 30-minute call.</h3>
       <p className="font-sans text-sm text-[#706D66]">
         30 minutes. No pitch. Just a conversation.
       </p>
@@ -287,7 +287,7 @@ export default function ContactSection() {
     <section id="get-in-touch" className="px-6 py-20 md:py-28 scroll-mt-14">
       <div className="mx-auto max-w-7xl">
         <div className="section-label mb-4">Get In Touch</div>
-        <h2 className="font-display mb-3 text-4xl font-normal text-[#E0DDD8] md:text-5xl">
+        <h2 className="font-hero-serif mb-3 text-3xl font-normal text-[#E0DDD8] md:text-4xl">
           30 minutes. No pitch.
           <br />
           Just a conversation.

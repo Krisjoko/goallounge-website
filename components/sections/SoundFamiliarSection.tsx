@@ -20,7 +20,7 @@ export default function SoundFamiliarSection() {
         <div className="mb-10 flex items-start justify-between gap-4">
           <div>
             <div className="section-label mb-4">Sound Familiar?</div>
-            <h2 className="font-display mb-2 text-4xl font-normal leading-[1.1] text-[#E0DDD8] md:text-5xl">
+            <h2 className="font-hero-serif mb-2 text-3xl font-normal leading-[1.1] text-[#E0DDD8] md:text-4xl">
               These are the patterns
               <br />
               we keep seeing.
@@ -89,7 +89,7 @@ export default function SoundFamiliarSection() {
 
         {/* Bottom statement */}
         <div className="mt-16 border-t border-[#4A4740]/30 pt-12 text-center">
-          <p className="font-display mx-auto max-w-3xl text-2xl font-normal leading-snug text-[#E0DDD8] md:text-3xl">
+          <p className="font-hero-serif mx-auto max-w-3xl text-xl font-normal leading-snug text-[#E0DDD8] md:text-2xl">
             When strategy and design do not speak the same language,
             everything costs more and lands later.
           </p>
