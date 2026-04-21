@@ -117,8 +117,11 @@ a, button {
 }
 
 @keyframes hero-sonar-ping {
-  0%   { transform: scale(0.55); opacity: 0.65; }
-  100% { transform: scale(1.85); opacity: 0; }
+  0%   { transform: scale(0.5); opacity: 0;    }
+  12%  { transform: scale(1);   opacity: 0.7;  }
+  50%  { transform: scale(10);  opacity: 0.06; }
+  88%  { transform: scale(1);   opacity: 0.55; }
+  100% { transform: scale(0.5); opacity: 0;    }
 }
 
 @keyframes hero-mark-bolt {
@@ -127,9 +130,9 @@ a, button {
   100% { transform: rotate(0deg)     scale(1);   opacity: 1; }
 }
 
-@keyframes hero-mark-spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+@keyframes hero-mark-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
 }
 
 .hero-halo-out {
@@ -168,8 +171,8 @@ a, button {
 }
 
 .hero-sonar {
-  border: 1px solid rgba(248,98,35,0.4);
-  animation: hero-sonar-ping 2s cubic-bezier(0, 0, 0.2, 1) forwards;
+  border: 1px solid rgba(248,98,35,0.45);
+  animation: hero-sonar-ping 3.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   opacity: 0;
 }
 
@@ -177,8 +180,8 @@ a, button {
   animation: hero-mark-bolt 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.hero-mark-spin {
-  animation: hero-mark-spin 45s linear infinite;
+.hero-mark-idle {
+  animation: hero-mark-float 5s ease-in-out infinite;
   animation-delay: 1.4s;
 }
 

@@ -46,7 +46,7 @@ export default function HeroSection() {
 
             {/* Logo: bolt-in wrapper → idle slow-spin wrapper → image */}
             <div className={mounted ? "hero-mark-bolt relative z-10" : "relative z-10 opacity-0"}>
-              <div className={mounted ? "hero-mark-spin" : ""}>
+              <div className={mounted ? "hero-mark-idle" : ""}>
                 <Image
                   src="/images/LogoMarkWhite.svg"
                   width={120}
