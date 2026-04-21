@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import CircleCta from "@/components/ui/CircleCta";
 
 const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL ?? "#get-in-touch";
@@ -45,17 +44,12 @@ export default function HeroSection() {
               </>
             )}
 
-            {/* Logo: bolt-in wrapper → idle slow-spin wrapper → image */}
+            {/* Logo: bolt-in → idle float → colour-flow mask */}
             <div className={mounted ? "hero-mark-bolt relative z-10" : "relative z-10 opacity-0"}>
               <div className={mounted ? "hero-mark-idle" : ""}>
-                <Image
-                  src="/images/LogoMarkWhite.svg"
-                  width={120}
-                  height={120}
-                  alt="Goallounge"
-                  className="h-[120px] w-[120px] object-contain"
-                  unoptimized
-                />
+                <div className="logo-flow-mask" role="img" aria-label="Goallounge">
+                  <div className={mounted ? "logo-flow-fill" : "logo-flow-fill"} />
+                </div>
               </div>
             </div>
           </div>

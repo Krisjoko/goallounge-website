@@ -191,6 +191,48 @@ a, button {
   animation-delay: 1.4s;
 }
 
+/* ── Logo colour-flow mask ── */
+
+.logo-flow-mask {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  overflow: hidden;
+  -webkit-mask-image: url('/images/LogoMarkWhite.svg');
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-mode: alpha;
+  mask-image: url('/images/LogoMarkWhite.svg');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-mode: alpha;
+}
+
+.logo-flow-fill {
+  position: absolute;
+  top: -60px;
+  left: -60px;
+  right: -60px;
+  bottom: -60px;
+  background:
+    radial-gradient(ellipse 65% 65% at 30% 28%, #FF4822 0%, transparent 58%),
+    radial-gradient(ellipse 65% 65% at 72% 72%, #22A6FF 0%, transparent 58%),
+    #C8BEB4;
+  animation: logoColorFlow 10s ease-in-out infinite;
+  animation-delay: 1.4s;
+}
+
+@keyframes logoColorFlow {
+  0%   { transform: translate(  0px,   0px); }
+  20%  { transform: translate( 26px, -18px); }
+  45%  { transform: translate( 12px,  24px); }
+  65%  { transform: translate(-24px,  10px); }
+  85%  { transform: translate( -8px, -18px); }
+  100% { transform: translate(  0px,   0px); }
+}
+
 /* ── When To Work node canvas ── */
 
 @keyframes wtwRingOuter {
