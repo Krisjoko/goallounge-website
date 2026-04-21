@@ -103,3 +103,47 @@ a, button {
   content: "•";
   color: #F86223;
 }
+
+/* ── When To Work node canvas ── */
+
+@keyframes wtwRingOuter {
+  0%, 100% { opacity: 0.08; }
+  50%       { opacity: 0.2;  }
+}
+
+@keyframes wtwRingInner {
+  0%, 100% { opacity: 0.14; }
+  50%       { opacity: 0.35; }
+}
+
+@keyframes wtwDotPulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 0.9; }
+}
+
+@keyframes wtwLineFlow {
+  from { stroke-dashoffset: 0;   }
+  to   { stroke-dashoffset: -30; }
+}
+
+@keyframes wtwGlowPulse {
+  0%, 100% { opacity: 0.1;  }
+  50%       { opacity: 0.22; }
+}
+
+.wtw-ring-outer {
+  animation: wtwRingOuter 3.5s ease-in-out infinite;
+}
+.wtw-ring-inner {
+  animation: wtwRingInner 3.5s ease-in-out infinite;
+}
+.wtw-dot-pulse {
+  animation: wtwDotPulse 3.5s ease-in-out infinite;
+}
+.wtw-line-active {
+  stroke-dasharray: 6 4;
+  animation: wtwLineFlow 1.8s linear infinite;
+}
+.wtw-glow-active {
+  animation: wtwGlowPulse 2s ease-in-out infinite;
+}
