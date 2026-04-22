@@ -1,11 +1,37 @@
 @import "tailwindcss";
 
-/* Monument Extended — drop MonumentExtended-Regular.woff2 into public/fonts/ to activate */
+/* Monument Extended */
 @font-face {
   font-family: "Monument Extended";
-  src: url("/fonts/MonumentExtended-Regular.woff2") format("woff2");
+  src: url("/fonts/MonumentExtended-Regular.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
+}
+
+/* Helvetica Neue */
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/HelveticaNeue.ttc") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/HelveticaNeueLTStd-Bd.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Trade Gothic LT Std */
+@font-face {
+  font-family: "Trade Gothic LT Std";
+  src: url("/fonts/TradeGothicLTStd-BoldObl.otf") format("opentype");
+  font-weight: 700;
+  font-style: oblique;
   font-display: swap;
 }
 
@@ -19,9 +45,9 @@
   --color-muted: #706D66;
   --color-dark-muted: #4A4740;
 
-  --font-sans: "IBM Plex Sans", sans-serif;
+  --font-sans: "Helvetica Neue", "IBM Plex Sans", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
-  --font-display: "Monument Extended", "IBM Plex Sans", sans-serif;
+  --font-display: "Monument Extended", "Helvetica Neue", sans-serif;
 
   --animate-logo-scroll: logo-scroll 35s linear infinite;
 }
@@ -53,7 +79,7 @@ body {
   background: linear-gradient(180deg, #1C1C1C 0%, #0A0A0A 100%);
   background-attachment: fixed;
   color: #E0DDD8;
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: "Helvetica Neue", "IBM Plex Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   cursor: none;
@@ -65,7 +91,7 @@ a, button {
 }
 
 .font-display {
-  font-family: "Monument Extended", "IBM Plex Sans", sans-serif;
+  font-family: "Monument Extended", "Helvetica Neue", sans-serif;
 }
 
 /* Hero display slot — current: Bebas Neue regular */
