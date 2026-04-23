@@ -115,10 +115,11 @@ export const WHEN_TO_WORK_NODES = [
 
 export const DISCIPLINES = [
   "Brand Identity Design",
-  "Logos",
-  "Product Design",
-  "Growth Marketing",
-  "Strategy",
+  "Logo Design",
+  "UI/UX Design",
+  "Illustrations",
+  "Growth Marketing & Strategy",
+  "Graphic Facilitation",
 ] as const;
 
 export type Discipline = (typeof DISCIPLINES)[number];
@@ -141,8 +142,8 @@ export const PROJECTS = [
   {
     id: 2,
     name: "Yoco",
-    category: "Product Design, Packaging, UI/UX",
-    discipline: "Product Design" as Discipline,
+    category: "Logo Design",
+    discipline: "Logo Design" as Discipline,
     outcome: "Reduced merchant onboarding from 14 minutes to 4.",
     description: "End-to-end product design and packaging for Yoco's merchant-facing tools, built for clarity at every touchpoint.",
     images: [
@@ -155,8 +156,8 @@ export const PROJECTS = [
   {
     id: 3,
     name: "Value Prop",
-    category: "Brand Identity & Website",
-    discipline: "Brand Identity Design" as Discipline,
+    category: "UI/UX Design",
+    discipline: "UI/UX Design" as Discipline,
     outcome: "Repositioned from service agency to product strategy firm.",
     description: "Brand identity and website for a B2B consultancy that needed to look and sound as sharp as their thinking.",
     images: [
@@ -169,8 +170,8 @@ export const PROJECTS = [
   {
     id: 4,
     name: "X,bigly",
-    category: "Design System",
-    discipline: "Logos" as Discipline,
+    category: "Illustrations",
+    discipline: "Illustrations" as Discipline,
     outcome: "Scaled one mark across 14 sub-brands without a rebuild.",
     description: "A scalable logo and identity system designed to flex across brand, product and digital without losing coherence.",
     images: [
@@ -183,8 +184,8 @@ export const PROJECTS = [
   {
     id: 5,
     name: "GLTV Platform",
-    category: "Product Design",
-    discipline: "Product Design" as Discipline,
+    category: "Growth Marketing & Strategy",
+    discipline: "Growth Marketing & Strategy" as Discipline,
     outcome: "Launched with 120,000 viewers in week one.",
     description: "Platform design for GLTV, a football content product built from the ground up with a global audience in mind.",
     images: [
@@ -193,6 +194,20 @@ export const PROJECTS = [
       "/images/projects/gltv-03.jpg",
     ],
     placeholder: "GL",
+  },
+  {
+    id: 6,
+    name: "Facilitation",
+    category: "Graphic Facilitation",
+    discipline: "Graphic Facilitation" as Discipline,
+    outcome: "Visual frameworks that move meetings to decisions.",
+    description: "Live visual facilitation and illustrated outputs for strategy sessions, workshops and leadership offsites.",
+    images: [
+      "/images/projects/facilitation-01.jpg",
+      "/images/projects/facilitation-02.jpg",
+      "/images/projects/facilitation-03.jpg",
+    ],
+    placeholder: "GF",
   },
 ];
 
