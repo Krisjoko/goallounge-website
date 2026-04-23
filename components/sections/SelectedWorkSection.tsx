@@ -13,6 +13,156 @@ const GAP = 24;
 type Tab = "All" | Discipline;
 const TABS: Tab[] = ["All", ...DISCIPLINES];
 
+// ─── Rolodex image flipper ────────────────────────────────────────────────────
+
+function FlipImages({
+  images,
+  name,
+  placeholder,
+  active,
+  onExpand,
+}: {
+  images: string[];
+  name: string;
+  placeholder: string;
+  active: boolean;
+  onExpand: () => void;
+}) {
+  const [imgIdx, setImgIdx] = useState(0);
+  const innerRef = useRef<HTMLDivElement>(null);
+  const busyRef = useRef(false);
+  const idxRef = useRef(0);
+  idxRef.current = imgIdx;
+  const total = images.length;
+
+  const flipTo = useCallback(
+    (target: number) => {
+      if (busyRef.current || !innerRef.current) return;
+      const next = ((target % total) + total) % total;
+      if (next === idxRef.current) return;
+      busyRef.current = true;
+      const el = innerRef.current;
+
+      // Phase 1: top edge tips away, card rotates out
+      el.style.transition = "transform 0.13s ease-in";
+      el.style.transform = "rotateX(-86deg)";
+
+      setTimeout(() => {
+        setImgIdx(next);
+        idxRef.current = next;
+        // Instantly position card behind, ready to flip forward
+        el.style.transition = "none";
+        el.style.transform = "rotateX(74deg)";
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            // Phase 2: flip into view
+            el.style.transition = "transform 0.13s ease-out";
+            el.style.transform = "rotateX(0deg)";
+            setTimeout(() => {
+              busyRef.current = false;
+            }, 140);
+          });
+        });
+      }, 140);
+    },
+    [total]
+  );
+
+  const flipToRef = useRef(flipTo);
+  flipToRef.current = flipTo;
+
+  // Auto-cycle on the active card
+  useEffect(() => {
+    if (!active || total <= 1) return;
+    const id = setInterval(() => {
+      flipToRef.current((idxRef.current + 1) % total);
+    }, 2800);
+    return () => clearInterval(id);
+  }, [active, total]);
+
+  // Reset to first image when card leaves the centre
+  useEffect(() => {
+    if (!active) {
+      setImgIdx(0);
+      idxRef.current = 0;
+    }
+  }, [active]);
+
+  const src = images[imgIdx];
+
+  return (
+    <div
+      className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-[#2A2A2A] to-[#1F1F1F]"
+      style={{ perspective: "900px" }}
+    >
+      {/* Rotating layer */}
+      <div
+        ref={innerRef}
+        className="absolute inset-0 flex items-center justify-center"
+        style={{ transformOrigin: "center 40%", willChange: "transform" }}
+      >
+        {src && (
+          <Image
+            src={src}
+            alt={name}
+            fill
+            className="object-cover"
+            onError={() => {}}
+          />
+        )}
+        <span className="font-hero-serif select-none text-[96px] leading-none tracking-[.06em] text-[#3A3A3A]">
+          {placeholder}
+        </span>
+        <span className="absolute bottom-3.5 left-3.5 font-mono text-[9px] tracking-[.2em] uppercase text-[#4A4740]">
+          Image
+        </span>
+      </div>
+
+      {/* Expand button — sits above the rotating layer */}
+      <button
+        onClick={onExpand}
+        className="absolute right-4 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-full border border-[#4A4740]/50 bg-[#1A1A1A]/80 text-[#E0DDD8] backdrop-blur-sm"
+        aria-label="Expand"
+      >
+        <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+          <path
+            d="M3 8L8 3M8 3H4M8 3V7"
+            stroke="currentColor"
+            strokeWidth="1.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
+
+      {/* Image position dots */}
+      {total > 1 && (
+        <div className="absolute bottom-3.5 right-4 z-10 flex items-center gap-1">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => flipTo(i)}
+              aria-label={`Image ${i + 1}`}
+              style={{
+                height: 3,
+                width: i === imgIdx ? 14 : 5,
+                borderRadius: 999,
+                background: i === imgIdx ? "#E0DDD8" : "#4A4740",
+                border: "none",
+                padding: 0,
+                transition: "all 0.2s",
+                cursor: i === imgIdx ? "default" : "pointer",
+              }}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── Arrow button ─────────────────────────────────────────────────────────────
+
 function ArrowBtn({
   dir,
   onClick,
@@ -35,16 +185,30 @@ function ArrowBtn({
     >
       {dir === "prev" ? (
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path
+            d="M10 12L6 8L10 4"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       ) : (
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path
+            d="M6 4L10 8L6 12"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       )}
     </button>
   );
 }
+
+// ─── Main section ─────────────────────────────────────────────────────────────
 
 export default function SelectedWorkSection() {
   const [activeTab, setActiveTab] = useState<Tab>("All");
@@ -57,17 +221,23 @@ export default function SelectedWorkSection() {
       ? PROJECTS
       : PROJECTS.filter((p) => p.discipline === activeTab);
 
-  useEffect(() => { setIdx(0); }, [activeTab]);
+  useEffect(() => {
+    setIdx(0);
+  }, [activeTab]);
 
-  const openProject = openId != null ? filtered.find((p) => p.id === openId) ?? null : null;
-  const openIdx = openProject ? filtered.findIndex((p) => p.id === openId) : -1;
+  const openProject =
+    openId != null ? filtered.find((p) => p.id === openId) ?? null : null;
+  const openIdx = openProject
+    ? filtered.findIndex((p) => p.id === openId)
+    : -1;
 
   useEffect(() => {
     if (!openProject) return;
     document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpenId(null);
-      if (e.key === "ArrowLeft" && openIdx > 0) setOpenId(filtered[openIdx - 1].id);
+      if (e.key === "ArrowLeft" && openIdx > 0)
+        setOpenId(filtered[openIdx - 1].id);
       if (e.key === "ArrowRight" && openIdx < filtered.length - 1)
         setOpenId(filtered[openIdx + 1].id);
     };
@@ -79,7 +249,8 @@ export default function SelectedWorkSection() {
   }, [openProject, openIdx, filtered]);
 
   const go = useCallback(
-    (d: number) => setIdx((i) => Math.max(0, Math.min(filtered.length - 1, i + d))),
+    (d: number) =>
+      setIdx((i) => Math.max(0, Math.min(filtered.length - 1, i + d))),
     [filtered.length]
   );
 
@@ -100,7 +271,10 @@ export default function SelectedWorkSection() {
   };
 
   return (
-    <section id="selected-work" className="overflow-hidden py-20 md:py-28 scroll-mt-14">
+    <section
+      id="selected-work"
+      className="overflow-hidden py-20 md:py-28 scroll-mt-14"
+    >
       <div className="mx-auto max-w-7xl px-6">
         <div className="mb-6">
           <div className="section-label mb-4">Selected Work</div>
@@ -108,7 +282,8 @@ export default function SelectedWorkSection() {
             Work we are proud to walk you through.
           </h2>
           <p className="max-w-2xl font-sans text-sm leading-relaxed text-[#706D66]">
-            Each project is listed with the business outcome that mattered, not the deliverable.
+            Each project is listed with the business outcome that mattered, not
+            the deliverable.
           </p>
         </div>
 
@@ -132,17 +307,23 @@ export default function SelectedWorkSection() {
 
       {/* Index markers */}
       <div className="mx-auto mb-5 flex max-w-7xl justify-center gap-60 px-6 font-mono text-[10px] tracking-widest text-[#4A4740]">
-        {filtered[idx - 1] && <span>{String(idx).padStart(2, "0")}</span>}
+        {filtered[idx - 1] && (
+          <span>{String(idx).padStart(2, "0")}</span>
+        )}
         <span className="flex flex-col items-center gap-1 text-[#FF4822]">
           <span>{String(idx + 1).padStart(2, "0")}</span>
           <span className="h-px w-5 bg-[#FF4822]" />
         </span>
-        {filtered[idx + 1] && <span>{String(idx + 2).padStart(2, "0")}</span>}
+        {filtered[idx + 1] && (
+          <span>{String(idx + 2).padStart(2, "0")}</span>
+        )}
       </div>
 
       {/* Carousel track */}
       <div
-        className={`relative h-[460px] w-full select-none ${drag.on ? "cursor-grabbing" : "cursor-grab"}`}
+        className={`relative h-[460px] w-full select-none ${
+          drag.on ? "cursor-grabbing" : "cursor-grab"
+        }`}
         onMouseDown={onDown}
         onMouseMove={onMove}
         onMouseUp={onUp}
@@ -154,19 +335,18 @@ export default function SelectedWorkSection() {
         {filtered.map((p, i) => {
           const offset = i - idx;
           const abs = Math.abs(offset);
-          const translateX = offset * (CARD_W + GAP) + (drag.on ? drag.dx * 0.8 : 0);
+          const translateX =
+            offset * (CARD_W + GAP) + (drag.on ? drag.dx * 0.8 : 0);
           const scale = abs === 0 ? 1 : abs === 1 ? 0.86 : 0.72;
           const opacity = abs === 0 ? 1 : abs === 1 ? 0.55 : 0.18;
           const zIndex = 10 - abs;
+          const isActive = abs === 0;
 
           return (
             <div
               key={p.id}
               onClick={() => {
-                if (Math.abs(drag.dx) < 5) {
-                  if (abs === 0) setOpenId(p.id);
-                  else setIdx(i);
-                }
+                if (Math.abs(drag.dx) < 5 && abs !== 0) setIdx(i);
               }}
               style={{
                 position: "absolute",
@@ -184,42 +364,25 @@ export default function SelectedWorkSection() {
             >
               <div
                 className="overflow-hidden rounded-2xl border border-[#4A4740]/40 bg-[#1E1E1E]"
-                style={{ boxShadow: abs === 0 ? "0 30px 80px rgba(0,0,0,0.5)" : "none" }}
+                style={{
+                  boxShadow: isActive
+                    ? "0 30px 80px rgba(0,0,0,0.5)"
+                    : "none",
+                }}
               >
-                {/* Image / placeholder area */}
-                <div className="relative flex aspect-[16/10] items-center justify-center bg-gradient-to-br from-[#2A2A2A] to-[#1F1F1F]">
-                  {/* top-right arrow */}
-                  <div className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full border border-[#4A4740]/50 bg-[#1A1A1A]/80 text-[#E0DDD8] backdrop-blur-sm">
-                    <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-                      <path
-                        d="M3 8L8 3M8 3H4M8 3V7"
-                        stroke="currentColor"
-                        strokeWidth="1.2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
-                  {p.images[0] ? (
-                    <Image
-                      src={p.images[0]}
-                      alt={p.name}
-                      fill
-                      className="object-cover"
-                      onError={() => {}}
-                    />
-                  ) : null}
-                  <span className="font-hero-serif select-none text-[96px] leading-none text-[#3A3A3A] tracking-[.06em]">
-                    {p.placeholder}
-                  </span>
-                  <span className="absolute bottom-3.5 left-3.5 font-mono text-[9px] tracking-[.2em] text-[#4A4740] uppercase">
-                    Image
-                  </span>
-                </div>
+                <FlipImages
+                  images={p.images}
+                  name={p.name}
+                  placeholder={p.placeholder}
+                  active={isActive}
+                  onExpand={() => {
+                    if (isActive) setOpenId(p.id);
+                  }}
+                />
 
                 {/* Meta bar */}
                 <div className="flex items-center gap-3 border-t border-[#4A4740]/30 bg-[#181818] px-5 py-3.5">
-                  <span className="font-mono text-[10px] tracking-[.22em] text-[#FF4822] uppercase">
+                  <span className="font-mono text-[10px] tracking-[.22em] uppercase text-[#FF4822]">
                     {p.name}
                   </span>
                   <span className="flex gap-0.5 text-[#4A4740]">
@@ -227,7 +390,7 @@ export default function SelectedWorkSection() {
                     <span className="h-[3px] w-[3px] rounded-full bg-current" />
                     <span className="h-[3px] w-[3px] rounded-full bg-current" />
                   </span>
-                  <span className="flex-1 font-mono text-[10px] tracking-[.22em] text-[#706D66] uppercase">
+                  <span className="flex-1 font-mono text-[10px] tracking-[.22em] uppercase text-[#706D66]">
                     {p.discipline}
                   </span>
                   <span className="flex items-center gap-1.5 font-mono text-[10px] text-[#706D66]">
@@ -252,7 +415,11 @@ export default function SelectedWorkSection() {
       <div className="mx-auto mt-8 flex max-w-7xl flex-wrap items-center justify-between gap-5 px-6">
         <div className="flex gap-2">
           <ArrowBtn dir="prev" onClick={() => go(-1)} disabled={idx === 0} />
-          <ArrowBtn dir="next" onClick={() => go(1)} disabled={idx >= filtered.length - 1} />
+          <ArrowBtn
+            dir="next"
+            onClick={() => go(1)}
+            disabled={idx >= filtered.length - 1}
+          />
         </div>
         <div className="flex items-center gap-4">
           <div className="flex gap-1.5">
@@ -274,13 +441,18 @@ export default function SelectedWorkSection() {
             ))}
           </div>
           <span className="font-mono text-[10px] tracking-widest text-[#4A4740]">
-            {String(idx + 1).padStart(2, "0")} / {String(filtered.length).padStart(2, "0")}
+            {String(idx + 1).padStart(2, "0")} /{" "}
+            {String(filtered.length).padStart(2, "0")}
           </span>
         </div>
-        <CircleCta href={BOOKING_URL} label="Book a Walkthrough" variant="primary" />
+        <CircleCta
+          href={BOOKING_URL}
+          label="Book a Walkthrough"
+          variant="primary"
+        />
       </div>
 
-      {/* Modal */}
+      {/* Full-screen modal */}
       {openProject && (
         <div className="fixed inset-0 z-[100] flex flex-col bg-[#111111] backdrop-blur-sm">
           <button
@@ -343,13 +515,15 @@ export default function SelectedWorkSection() {
               <h3 className="font-hero-serif text-2xl font-normal text-[#E0DDD8] md:text-3xl">
                 {openProject.name}
               </h3>
-              <p className="mt-1 font-sans text-sm text-[#706D66]">{openProject.category}</p>
+              <p className="mt-1 font-sans text-sm text-[#706D66]">
+                {openProject.category}
+              </p>
             </div>
             <div className="max-w-sm text-right">
               <p className="mb-3 font-sans text-sm leading-relaxed text-[#706D66]">
                 {openProject.description}
               </p>
-              <span className="inline-block rounded-full border border-[#4A4740] px-3 py-1 font-mono text-[10px] tracking-widest text-[#706D66] uppercase">
+              <span className="inline-block rounded-full border border-[#4A4740] px-3 py-1 font-mono text-[10px] tracking-widest uppercase text-[#706D66]">
                 {openProject.discipline}
               </span>
             </div>

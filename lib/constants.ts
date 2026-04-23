@@ -131,7 +131,11 @@ export const PROJECTS = [
     discipline: "Brand Identity Design" as Discipline,
     outcome: "Unified 240 stores and the app under one visual system.",
     description: "A comprehensive brand refresh and design system that unified Dis-Chem's retail presence across digital and physical touchpoints.",
-    images: ["/images/projects/dischem.jpg"],
+    images: [
+      "/images/projects/dischem-01.jpg",
+      "/images/projects/dischem-02.jpg",
+      "/images/projects/dischem-03.jpg",
+    ],
     placeholder: "DC",
   },
   {
@@ -141,7 +145,11 @@ export const PROJECTS = [
     discipline: "Product Design" as Discipline,
     outcome: "Reduced merchant onboarding from 14 minutes to 4.",
     description: "End-to-end product design and packaging for Yoco's merchant-facing tools, built for clarity at every touchpoint.",
-    images: ["/images/projects/yoco.jpg"],
+    images: [
+      "/images/projects/yoco-01.jpg",
+      "/images/projects/yoco-02.jpg",
+      "/images/projects/yoco-03.jpg",
+    ],
     placeholder: "YO",
   },
   {
@@ -151,7 +159,11 @@ export const PROJECTS = [
     discipline: "Brand Identity Design" as Discipline,
     outcome: "Repositioned from service agency to product strategy firm.",
     description: "Brand identity and website for a B2B consultancy that needed to look and sound as sharp as their thinking.",
-    images: ["/images/projects/valueprop.jpg"],
+    images: [
+      "/images/projects/valueprop-01.jpg",
+      "/images/projects/valueprop-02.jpg",
+      "/images/projects/valueprop-03.jpg",
+    ],
     placeholder: "VP",
   },
   {
@@ -161,7 +173,11 @@ export const PROJECTS = [
     discipline: "Logos" as Discipline,
     outcome: "Scaled one mark across 14 sub-brands without a rebuild.",
     description: "A scalable logo and identity system designed to flex across brand, product and digital without losing coherence.",
-    images: ["/images/projects/xbigly.jpg"],
+    images: [
+      "/images/projects/xbigly-01.jpg",
+      "/images/projects/xbigly-02.jpg",
+      "/images/projects/xbigly-03.jpg",
+    ],
     placeholder: "XB",
   },
   {
@@ -171,7 +187,11 @@ export const PROJECTS = [
     discipline: "Product Design" as Discipline,
     outcome: "Launched with 120,000 viewers in week one.",
     description: "Platform design for GLTV, a football content product built from the ground up with a global audience in mind.",
-    images: ["/images/projects/gltv.jpg"],
+    images: [
+      "/images/projects/gltv-01.jpg",
+      "/images/projects/gltv-02.jpg",
+      "/images/projects/gltv-03.jpg",
+    ],
     placeholder: "GL",
   },
 ];
