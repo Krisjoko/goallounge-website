@@ -198,6 +198,131 @@ function FlipImages({
   );
 }
 
+// ─── Full-screen flip (modal) ─────────────────────────────────────────────────
+
+function ModalFlipImages({
+  images,
+  name,
+  placeholder,
+  objectFit = "cover",
+}: {
+  images: string[];
+  name: string;
+  placeholder: string;
+  objectFit?: "cover" | "contain";
+}) {
+  const [imgIdx, setImgIdx] = useState(0);
+  const innerRef = useRef<HTMLDivElement>(null);
+  const busyRef = useRef(false);
+  const idxRef = useRef(0);
+  idxRef.current = imgIdx;
+  const total = images.length;
+
+  const flipTo = useCallback(
+    (target: number) => {
+      if (busyRef.current || !innerRef.current) return;
+      const next = ((target % total) + total) % total;
+      if (next === idxRef.current) return;
+      busyRef.current = true;
+      const el = innerRef.current;
+      el.style.transition = "transform 0.16s ease-in";
+      el.style.transform = "rotateX(-88deg)";
+      setTimeout(() => {
+        setImgIdx(next);
+        idxRef.current = next;
+        el.style.transition = "none";
+        el.style.transform = "rotateX(80deg)";
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            el.style.transition = "transform 0.16s ease-out";
+            el.style.transform = "rotateX(0deg)";
+            setTimeout(() => { busyRef.current = false; }, 170);
+          });
+        });
+      }, 170);
+    },
+    [total]
+  );
+
+  const flipToRef = useRef(flipTo);
+  flipToRef.current = flipTo;
+
+  useEffect(() => {
+    if (total <= 1) return;
+    const id = setInterval(() => {
+      flipToRef.current((idxRef.current + 1) % total);
+    }, 2200);
+    return () => clearInterval(id);
+  }, [total]);
+
+  const src = images[imgIdx];
+
+  return (
+    // perspective tightened to 480px for a more pronounced flip arc
+    <div className="relative flex-1 overflow-hidden" style={{ perspective: "480px" }}>
+      <div
+        ref={innerRef}
+        className="absolute inset-0"
+        style={{ transformOrigin: "center 45%", willChange: "transform" }}
+      >
+        {/* Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#222222] to-[#181818]" />
+
+        {/* Placeholder — sits behind image */}
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <span className="font-hero-serif select-none text-[200px] leading-none tracking-[.06em] text-[#2A2A2A] md:text-[260px]">
+            {placeholder}
+          </span>
+        </div>
+
+        {/* Image */}
+        {src && (
+          <div className={`absolute ${objectFit === "contain" ? "inset-16 md:inset-20" : "inset-0"}`}>
+            <div className="relative h-full w-full">
+              <Image
+                src={src}
+                alt={name}
+                fill
+                className={objectFit === "contain" ? "object-contain" : "object-cover"}
+                onError={() => {}}
+              />
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Image counter — centered at bottom */}
+      {total > 1 && (
+        <div className="absolute bottom-7 left-1/2 z-10 flex -translate-x-1/2 items-center gap-3">
+          <button
+            onClick={() => flipTo(imgIdx - 1)}
+            disabled={imgIdx === 0}
+            aria-label="Previous image"
+            className="flex h-7 w-7 items-center justify-center rounded-full border border-[#4A4740] text-[#706D66] transition-colors hover:border-[#706D66] hover:text-[#E0DDD8] disabled:opacity-20"
+          >
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M6 8L4 5L6 2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+          <span className="font-mono text-[11px] tracking-widest text-[#4A4740]">
+            {String(imgIdx + 1).padStart(2, "0")}&thinsp;/&thinsp;{String(total).padStart(2, "0")}
+          </span>
+          <button
+            onClick={() => flipTo(imgIdx + 1)}
+            disabled={imgIdx >= total - 1}
+            aria-label="Next image"
+            className="flex h-7 w-7 items-center justify-center rounded-full border border-[#4A4740] text-[#706D66] transition-colors hover:border-[#706D66] hover:text-[#E0DDD8] disabled:opacity-20"
+          >
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+              <path d="M4 2L6 5L4 8" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ─── Arrow button ─────────────────────────────────────────────────────────────
 
 function ArrowBtn({
@@ -541,14 +666,13 @@ export default function SelectedWorkSection() {
               </svg>
             </button>
           )}
-          <div className="flex flex-1 items-center justify-center overflow-hidden px-20 pt-16 pb-4">
-            <div className="flex h-full w-full max-w-[1100px] items-center justify-center rounded-xl bg-[#2A2A2A]">
-              <span className="font-hero-serif select-none text-[180px] leading-none text-[#4A4740]">
-                {openProject.placeholder}
-              </span>
-            </div>
-          </div>
-          <div className="flex items-end justify-between gap-8 border-t border-[#4A4740]/30 px-20 py-8">
+          <ModalFlipImages
+            images={openProject.images}
+            name={openProject.name}
+            placeholder={openProject.placeholder}
+            objectFit={openProject.discipline === "Logo Design" ? "contain" : "cover"}
+          />
+          <div className="flex items-end justify-between gap-8 border-t border-[#4A4740]/30 px-10 py-6">
             <div>
               <h3 className="font-hero-serif text-2xl font-normal text-[#E0DDD8] md:text-3xl">
                 {openProject.name}
