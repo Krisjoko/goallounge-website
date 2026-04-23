@@ -90,7 +90,7 @@ function FlipImages({
 
   return (
     <div
-      className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-[#2A2A2A] to-[#1F1F1F]"
+      className={`relative aspect-[16/10] overflow-hidden ${objectFit === "contain" ? "bg-[#0A0A0A]" : "bg-gradient-to-br from-[#2A2A2A] to-[#1F1F1F]"}`}
       style={{ perspective: "900px" }}
     >
       {/* Rotating layer */}
