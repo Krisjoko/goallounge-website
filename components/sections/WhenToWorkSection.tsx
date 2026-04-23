@@ -14,12 +14,12 @@ const ALL_CONNECTIONS: [number, number, number][] = [
 ];
 
 const INITIAL_PERCENT = [
-  { id: 1, left: 0,  top: 4  },
-  { id: 2, left: 30, top: 0  },
-  { id: 3, left: 62, top: 8  },
-  { id: 4, left: 5,  top: 50 },
-  { id: 5, left: 35, top: 52 },
-  { id: 6, left: 62, top: 48 },
+  { id: 1, left: 6,  top: 4  },
+  { id: 2, left: 36, top: 0  },
+  { id: 3, left: 66, top: 8  },
+  { id: 4, left: 8,  top: 50 },
+  { id: 5, left: 38, top: 52 },
+  { id: 6, left: 66, top: 48 },
 ];
 
 const DRIFT_PHASE = [0, 1.3, 2.6, 3.9, 5.1, 0.7];
@@ -136,13 +136,13 @@ export default function WhenToWorkSection() {
     setChecked(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
   };
 
-  const getCenter = (id: number): Pos => {
+  const getBottomRight = (id: number): Pos => {
     const card = cardRefs.current[id];
     const cont = containerRef.current;
     if (!card || !cont) return { x: 0, y: 0 };
     const cr = card.getBoundingClientRect();
     const co = cont.getBoundingClientRect();
-    return { x: cr.left - co.left + cr.width / 2, y: cr.top - co.top + cr.height / 2 };
+    return { x: cr.right - co.left, y: cr.bottom - co.top };
   };
 
   const ctaCenter = (): Pos => {
@@ -176,27 +176,24 @@ export default function WhenToWorkSection() {
           ref={containerRef}
           className={`relative hidden min-h-[660px] md:block ${isDragging ? "select-none" : ""}`}
         >
-          {/* Layer 1 — Bezier connection lines (below cards) */}
+          {/* Layer 1 — ALL lines (connection + flow), rendered before cards so they sit behind */}
           {hasPositions && (
-            <svg className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden>
+            <svg className="pointer-events-none absolute inset-0 h-full w-full" style={{ zIndex: 0 }} aria-hidden>
               {ALL_CONNECTIONS.map(([a, b, bend]) => {
-                const ca = getCenter(a);
-                const cb = getCenter(b);
+                const ca = getBottomRight(a);
+                const cb = getBottomRight(b);
                 const both = checked.includes(a) && checked.includes(b);
                 const color = both ? "#FF4822" : "#706D66";
                 const d = qBez(ca, cb, bend);
                 return (
                   <g key={`${a}-${b}`}>
-                    {/* Wide glow halo — only when active */}
                     <path d={d} stroke={color} strokeWidth={both ? 18 : 0}
                           fill="none" strokeLinecap="round"
                           opacity={both ? 0.12 : 0}
                           className={both ? "wtw-glow-active" : ""} />
-                    {/* Mid glow — only when active */}
                     <path d={d} stroke={color} strokeWidth={both ? 6 : 0}
                           fill="none" strokeLinecap="round"
                           opacity={both ? 0.18 : 0} />
-                    {/* Main line */}
                     <path d={d} stroke={color} strokeWidth={both ? 1.5 : 0.8}
                           fill="none" strokeLinecap="round"
                           opacity={both ? 1 : 0.10}
@@ -205,10 +202,25 @@ export default function WhenToWorkSection() {
                   </g>
                 );
               })}
+              {/* Flow lines from selected cards to CTA — also behind cards */}
+              {checked.length > 0 && checked.map(id => {
+                const from = getBottomRight(id);
+                const to = ctaCenter();
+                if (!to.x && !to.y) return null;
+                const bend = id % 2 === 0 ? 40 : -40;
+                const d = qBez(from, to, bend);
+                return (
+                  <path key={`flow-${id}-${selectionKey}`}
+                        d={d} stroke="#FF4822" strokeWidth={0.8}
+                        fill="none" strokeLinecap="round"
+                        strokeDasharray="3 8" className="wtw-draw-in"
+                        opacity={0.35} />
+                );
+              })}
             </svg>
           )}
 
-          {/* Layer 2 — Cards */}
+          {/* Layer 2 — Cards (above SVG by DOM order) */}
           {WHEN_TO_WORK_NODES.map(node => {
             const pos = positions[node.id];
             const isChecked = checked.includes(node.id);
@@ -256,27 +268,7 @@ export default function WhenToWorkSection() {
             );
           })}
 
-          {/* Layer 3 — Flow lines from selected nodes to CTA button */}
-          {hasPositions && checked.length > 0 && (
-            <svg className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden>
-              {checked.map(id => {
-                const from = getCenter(id);
-                const to = ctaCenter();
-                if (!to.x && !to.y) return null;
-                const bend = id % 2 === 0 ? 40 : -40;
-                const d = qBez(from, to, bend);
-                return (
-                  <path key={`flow-${id}-${selectionKey}`}
-                        d={d} stroke="#FF4822" strokeWidth={0.8}
-                        fill="none" strokeLinecap="round"
-                        strokeDasharray="3 8" className="wtw-draw-in"
-                        opacity={0.35} />
-                );
-              })}
-            </svg>
-          )}
-
-          {/* CTA button — inside canvas, positioned at bottom center */}
+          {/* CTA button — highest z-index, always on top */}
           {checked.length > 0 && (
             <div className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2">
               <a
