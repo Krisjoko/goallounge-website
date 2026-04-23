@@ -1,5 +1,3 @@
-// next/image not used — profile SVGs rendered via <img> with blend-mode
-
 import CircleCta from "@/components/ui/CircleCta";
 
 const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL ?? "#get-in-touch";
@@ -18,6 +16,43 @@ const KRISTY_BULLETS = [
   "Growth Marketing",
 ];
 
+function GenderSymbol({ kind, color }: { kind: "male" | "female"; color: string }) {
+  if (kind === "male") {
+    return (
+      <svg
+        viewBox="0 0 100 120"
+        width="100%"
+        height="100%"
+        fill="none"
+        stroke={color}
+        strokeWidth="5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <circle cx="42" cy="76" r="26" />
+        <line x1="60.4" y1="57.6" x2="86" y2="32" />
+        <polyline points="70,32 86,32 86,48" />
+      </svg>
+    );
+  }
+  return (
+    <svg
+      viewBox="0 0 100 120"
+      width="100%"
+      height="100%"
+      fill="none"
+      stroke={color}
+      strokeWidth="5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="50" cy="42" r="26" />
+      <line x1="50" y1="68" x2="50" y2="112" />
+      <line x1="34" y1="94" x2="66" y2="94" />
+    </svg>
+  );
+}
+
 function PersonCard({
   name,
   role,
@@ -27,7 +62,7 @@ function PersonCard({
   cta,
   ctaHref,
   accentColor,
-  photo,
+  symbol,
 }: {
   name: string;
   role: string;
@@ -37,26 +72,20 @@ function PersonCard({
   cta: string;
   ctaHref: string;
   accentColor: string;
-  photo: string;
+  symbol: "male" | "female";
 }) {
   return (
     <div className="flex flex-1 flex-col rounded-xl bg-[#222222] p-6">
-      {/* Photo — no container, white line art floating on card bg */}
-      <div className="mb-5" style={{ width: "72px", height: "72px" }}>
-        <img
-          src={photo}
-          alt={name}
-          width={72}
-          height={72}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "contain",
-            objectPosition: "center top",
-            filter: "invert(1) grayscale(1) sepia(0.12) brightness(0.87) contrast(1.05)",
-            mixBlendMode: "screen",
-          }}
-        />
+      {/* Mars / Venus brand mark with accent glow */}
+      <div
+        className="mb-5 flex items-center justify-center"
+        style={{
+          width: "56px",
+          height: "56px",
+          filter: `drop-shadow(0 6px 24px ${accentColor}33)`,
+        }}
+      >
+        <GenderSymbol kind={symbol} color={accentColor} />
       </div>
 
       {/* Name + role */}
@@ -128,7 +157,7 @@ export default function HowWeWorkSection() {
             cta="Book a Walkthrough →"
             ctaHref={BOOKING_URL}
             accentColor="#FF4822"
-            photo="/images/claudio-doodle.svg"
+            symbol="male"
           />
           <PersonCard
             name="Kristy"
@@ -138,7 +167,7 @@ export default function HowWeWorkSection() {
             cta="View Portfolio →"
             ctaHref="https://bit.ly/KristyCunningham_Goallounge"
             accentColor="#22A6FF"
-            photo="/images/kristy-doodle.svg"
+            symbol="female"
           />
         </div>
 
