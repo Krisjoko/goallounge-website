@@ -16,12 +16,12 @@ export default function CircleCta({
 
   const circleClass =
     variant === "primary"
-      ? "border-[#FF4822] text-[#FF4822] group-hover:bg-[#FF4822] group-hover:border-[#FF4822] group-hover:text-[#706D66]"
-      : "border-[#4A4740] text-[#706D66] group-hover:bg-[#E0DDD8] group-hover:border-[#E0DDD8] group-hover:text-white";
+      ? "border-[#706D66] text-[#706D66] group-hover:bg-[#FF4822] group-hover:border-[#FF4822] group-hover:text-white"
+      : "border-[#4A4740] text-[#706D66] group-hover:bg-[#E0DDD8] group-hover:border-[#E0DDD8] group-hover:text-[#1A1A1A]";
 
   const labelClass =
     variant === "primary"
-      ? "text-[#E0DDD8] group-hover:text-white"
+      ? "text-[#E0DDD8] group-hover:text-[#FF4822]"
       : "text-[#706D66] group-hover:text-[#E0DDD8]";
 
   return (
