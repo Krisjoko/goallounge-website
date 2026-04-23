@@ -20,12 +20,14 @@ function FlipImages({
   name,
   placeholder,
   active,
+  objectFit = "cover",
   onExpand,
 }: {
   images: string[];
   name: string;
   placeholder: string;
   active: boolean;
+  objectFit?: "cover" | "contain";
   onExpand: () => void;
 }) {
   const [imgIdx, setImgIdx] = useState(0);
@@ -43,19 +45,16 @@ function FlipImages({
       busyRef.current = true;
       const el = innerRef.current;
 
-      // Phase 1: top edge tips away, card rotates out
       el.style.transition = "transform 0.13s ease-in";
       el.style.transform = "rotateX(-86deg)";
 
       setTimeout(() => {
         setImgIdx(next);
         idxRef.current = next;
-        // Instantly position card behind, ready to flip forward
         el.style.transition = "none";
         el.style.transform = "rotateX(74deg)";
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
-            // Phase 2: flip into view
             el.style.transition = "transform 0.13s ease-out";
             el.style.transform = "rotateX(0deg)";
             setTimeout(() => {
@@ -71,16 +70,14 @@ function FlipImages({
   const flipToRef = useRef(flipTo);
   flipToRef.current = flipTo;
 
-  // Auto-cycle on the active card
   useEffect(() => {
     if (!active || total <= 1) return;
     const id = setInterval(() => {
       flipToRef.current((idxRef.current + 1) % total);
-    }, 2800);
+    }, 2200);
     return () => clearInterval(id);
   }, [active, total]);
 
-  // Reset to first image when card leaves the centre
   useEffect(() => {
     if (!active) {
       setImgIdx(0);
@@ -89,6 +86,7 @@ function FlipImages({
   }, [active]);
 
   const src = images[imgIdx];
+  const useDots = total <= 6;
 
   return (
     <div
@@ -102,23 +100,34 @@ function FlipImages({
         style={{ transformOrigin: "center 40%", willChange: "transform" }}
       >
         {src && (
-          <Image
-            src={src}
-            alt={name}
-            fill
-            className="object-cover"
-            onError={() => {}}
-          />
+          objectFit === "contain" ? (
+            <div className="absolute inset-0 flex items-center justify-center p-10">
+              <div className="relative h-full w-full">
+                <Image
+                  src={src}
+                  alt={name}
+                  fill
+                  className="object-contain"
+                  onError={() => {}}
+                />
+              </div>
+            </div>
+          ) : (
+            <Image
+              src={src}
+              alt={name}
+              fill
+              className="object-cover"
+              onError={() => {}}
+            />
+          )
         )}
         <span className="font-hero-serif select-none text-[96px] leading-none tracking-[.06em] text-[#3A3A3A]">
           {placeholder}
         </span>
-        <span className="absolute bottom-3.5 left-3.5 font-mono text-[9px] tracking-[.2em] uppercase text-[#4A4740]">
-          Image
-        </span>
       </div>
 
-      {/* Expand button — sits above the rotating layer */}
+      {/* Expand button */}
       <button
         onClick={onExpand}
         className="absolute right-4 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-full border border-[#4A4740]/50 bg-[#1A1A1A]/80 text-[#E0DDD8] backdrop-blur-sm"
@@ -135,26 +144,54 @@ function FlipImages({
         </svg>
       </button>
 
-      {/* Image position dots */}
+      {/* Image indicator: dots for small sets, counter for large */}
       {total > 1 && (
-        <div className="absolute bottom-3.5 right-4 z-10 flex items-center gap-1">
-          {images.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => flipTo(i)}
-              aria-label={`Image ${i + 1}`}
-              style={{
-                height: 3,
-                width: i === imgIdx ? 14 : 5,
-                borderRadius: 999,
-                background: i === imgIdx ? "#E0DDD8" : "#4A4740",
-                border: "none",
-                padding: 0,
-                transition: "all 0.2s",
-                cursor: i === imgIdx ? "default" : "pointer",
-              }}
-            />
-          ))}
+        <div className="absolute bottom-3.5 right-4 z-10 flex items-center gap-1.5">
+          {useDots ? (
+            images.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => flipTo(i)}
+                aria-label={`Image ${i + 1}`}
+                style={{
+                  height: 3,
+                  width: i === imgIdx ? 14 : 5,
+                  borderRadius: 999,
+                  background: i === imgIdx ? "#E0DDD8" : "#4A4740",
+                  border: "none",
+                  padding: 0,
+                  transition: "all 0.2s",
+                  cursor: i === imgIdx ? "default" : "pointer",
+                }}
+              />
+            ))
+          ) : (
+            <>
+              <button
+                onClick={() => flipTo(imgIdx - 1)}
+                disabled={imgIdx === 0}
+                className="flex h-5 w-5 items-center justify-center rounded-full border border-[#4A4740]/60 bg-[#1A1A1A]/80 text-[#706D66] disabled:opacity-30"
+                aria-label="Previous image"
+              >
+                <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                  <path d="M5 6L3 4L5 2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              <span className="font-mono text-[9px] tracking-widest text-[#706D66]">
+                {String(imgIdx + 1).padStart(2, "0")}&thinsp;/&thinsp;{String(total).padStart(2, "0")}
+              </span>
+              <button
+                onClick={() => flipTo(imgIdx + 1)}
+                disabled={imgIdx >= total - 1}
+                className="flex h-5 w-5 items-center justify-center rounded-full border border-[#4A4740]/60 bg-[#1A1A1A]/80 text-[#706D66] disabled:opacity-30"
+                aria-label="Next image"
+              >
+                <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                  <path d="M3 2L5 4L3 6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            </>
+          )}
         </div>
       )}
     </div>
@@ -375,6 +412,7 @@ export default function SelectedWorkSection() {
                   name={p.name}
                   placeholder={p.placeholder}
                   active={isActive}
+                  objectFit={p.discipline === "Logo Design" ? "contain" : "cover"}
                   onExpand={() => {
                     if (isActive) setOpenId(p.id);
                   }}
