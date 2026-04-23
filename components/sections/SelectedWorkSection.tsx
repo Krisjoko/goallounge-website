@@ -101,7 +101,7 @@ function FlipImages({
       >
         {src && (
           objectFit === "contain" ? (
-            <div className="absolute inset-0">
+            <div className="absolute inset-0 flex items-center justify-center p-10">
               <div className="relative h-full w-full">
                 <Image
                   src={src}
