@@ -61,7 +61,19 @@ export default function CustomCursor() {
         zIndex: 9999,
         willChange: "transform",
         transition: "background 0.12s ease, border-color 0.12s ease, transform 0.12s ease",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
       }}
-    />
+    >
+      <span
+        style={{
+          width: 4,
+          height: 4,
+          borderRadius: "50%",
+          background: "#E0DDD8",
+        }}
+      />
+    </div>
   );
 }
