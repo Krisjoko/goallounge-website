@@ -132,6 +132,7 @@ export const PROJECTS = [
     outcome: "Unified 240 stores and the app under one visual system.",
     description: "A comprehensive brand refresh and design system that unified Dis-Chem's retail presence across digital and physical touchpoints.",
     images: ["/images/projects/dischem.jpg"],
+    placeholder: "DC",
   },
   {
     id: 2,
@@ -141,6 +142,7 @@ export const PROJECTS = [
     outcome: "Reduced merchant onboarding from 14 minutes to 4.",
     description: "End-to-end product design and packaging for Yoco's merchant-facing tools, built for clarity at every touchpoint.",
     images: ["/images/projects/yoco.jpg"],
+    placeholder: "YO",
   },
   {
     id: 3,
@@ -150,6 +152,7 @@ export const PROJECTS = [
     outcome: "Repositioned from service agency to product strategy firm.",
     description: "Brand identity and website for a B2B consultancy that needed to look and sound as sharp as their thinking.",
     images: ["/images/projects/valueprop.jpg"],
+    placeholder: "VP",
   },
   {
     id: 4,
@@ -159,6 +162,7 @@ export const PROJECTS = [
     outcome: "Scaled one mark across 14 sub-brands without a rebuild.",
     description: "A scalable logo and identity system designed to flex across brand, product and digital without losing coherence.",
     images: ["/images/projects/xbigly.jpg"],
+    placeholder: "XB",
   },
   {
     id: 5,
@@ -168,6 +172,7 @@ export const PROJECTS = [
     outcome: "Launched with 120,000 viewers in week one.",
     description: "Platform design for GLTV, a football content product built from the ground up with a global audience in mind.",
     images: ["/images/projects/gltv.jpg"],
+    placeholder: "GL",
   },
 ];
 
