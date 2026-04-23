@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import { flushSync } from "react-dom";
 import Image from "next/image";
 import { PROJECTS, DISCIPLINES } from "@/lib/constants";
 import type { Discipline } from "@/lib/constants";
@@ -45,24 +46,41 @@ function FlipImages({
       busyRef.current = true;
       const el = innerRef.current;
 
+      // Phase 1: rotate to perpendicular (card becomes invisible)
       el.style.transition = "transform 0.13s ease-in";
-      el.style.transform = "rotateX(-86deg)";
+      el.style.transform = "rotateX(-90deg)";
 
-      setTimeout(() => {
-        setImgIdx(next);
-        idxRef.current = next;
+      function onExit(e: TransitionEvent) {
+        if (e.propertyName !== "transform") return;
+        el.removeEventListener("transitionend", onExit);
+
+        // Swap image content while card is invisible — flushSync forces
+        // React to render the new image synchronously before the next paint
+        flushSync(() => {
+          setImgIdx(next);
+          idxRef.current = next;
+        });
+
+        // Snap to perpendicular from the other side (still invisible)
         el.style.transition = "none";
-        el.style.transform = "rotateX(74deg)";
+        el.style.transform = "rotateX(90deg)";
+
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
+            // Phase 2: sweep new image into view
             el.style.transition = "transform 0.13s ease-out";
             el.style.transform = "rotateX(0deg)";
-            setTimeout(() => {
+
+            function onEnter(e: TransitionEvent) {
+              if (e.propertyName !== "transform") return;
+              el.removeEventListener("transitionend", onEnter);
               busyRef.current = false;
-            }, 140);
+            }
+            el.addEventListener("transitionend", onEnter);
           });
         });
-      }, 140);
+      }
+      el.addEventListener("transitionend", onExit);
     },
     [total]
   );
@@ -225,21 +243,37 @@ function ModalFlipImages({
       if (next === idxRef.current) return;
       busyRef.current = true;
       const el = innerRef.current;
+
       el.style.transition = "transform 0.16s ease-in";
-      el.style.transform = "rotateX(-88deg)";
-      setTimeout(() => {
-        setImgIdx(next);
-        idxRef.current = next;
+      el.style.transform = "rotateX(-90deg)";
+
+      function onExit(e: TransitionEvent) {
+        if (e.propertyName !== "transform") return;
+        el.removeEventListener("transitionend", onExit);
+
+        flushSync(() => {
+          setImgIdx(next);
+          idxRef.current = next;
+        });
+
         el.style.transition = "none";
-        el.style.transform = "rotateX(80deg)";
+        el.style.transform = "rotateX(90deg)";
+
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
             el.style.transition = "transform 0.16s ease-out";
             el.style.transform = "rotateX(0deg)";
-            setTimeout(() => { busyRef.current = false; }, 170);
+
+            function onEnter(e: TransitionEvent) {
+              if (e.propertyName !== "transform") return;
+              el.removeEventListener("transitionend", onEnter);
+              busyRef.current = false;
+            }
+            el.addEventListener("transitionend", onEnter);
           });
         });
-      }, 170);
+      }
+      el.addEventListener("transitionend", onExit);
     },
     [total]
   );
