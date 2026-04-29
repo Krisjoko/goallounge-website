@@ -609,8 +609,9 @@ export default function SelectedWorkSection() {
       </div>
 
       {/* Controls */}
-      <div className="mx-auto mt-8 flex max-w-7xl flex-wrap items-center justify-between gap-5 px-6">
-        <div className="flex gap-2">
+      <div className="mx-auto mt-8 grid max-w-7xl grid-cols-3 items-center gap-4 px-6">
+        <div />
+        <div className="flex justify-center gap-2">
           <ArrowBtn dir="prev" onClick={() => go(-1)} disabled={idx === 0} />
           <ArrowBtn
             dir="next"
@@ -618,11 +619,13 @@ export default function SelectedWorkSection() {
             disabled={idx >= filtered.length - 1}
           />
         </div>
-        <CircleCta
-          href={BOOKING_URL}
-          label="Book a Walkthrough"
-          variant="primary"
-        />
+        <div className="flex justify-end">
+          <CircleCta
+            href={BOOKING_URL}
+            label="Book a Walkthrough"
+            variant="primary"
+          />
+        </div>
       </div>
 
       {/* Full-screen modal */}
