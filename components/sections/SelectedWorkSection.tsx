@@ -15,28 +15,27 @@ const HOLD_MS = 4500;
 type Tab = "All" | Discipline;
 const TABS: Tab[] = ["All", ...DISCIPLINES];
 
-// ─── Reel image slider ────────────────────────────────────────────────────────
+type Project = (typeof PROJECTS)[number];
 
-function FlipImages({
-  images,
-  name,
-  placeholder,
+// ─── Project card ─────────────────────────────────────────────────────────────
+
+function ProjectCard({
+  project,
   active,
-  objectFit = "cover",
+  initialLikes,
 }: {
-  images: string[];
-  name: string;
-  placeholder: string;
+  project: Project;
   active: boolean;
-  objectFit?: "cover" | "contain";
+  initialLikes: number;
 }) {
   const [imgIdx, setImgIdx] = useState(0);
   const [prevIdx, setPrevIdx] = useState<number | null>(null);
   const [paused, setPaused] = useState(false);
+  const [likes, setLikes] = useState(initialLikes);
   const busyRef = useRef(false);
   const idxRef = useRef(0);
   idxRef.current = imgIdx;
-  const total = images.length;
+  const total = project.images.length;
 
   const slideTo = useCallback(
     (target: number) => {
@@ -77,109 +76,133 @@ function FlipImages({
     }
   }, [active]);
 
-  const renderImage = (idx: number) => {
-    const src = images[idx];
+  const renderImage = (i: number) => {
+    const src = project.images[i];
     if (!src) return null;
-    return objectFit === "contain" ? (
-      <div className="absolute inset-0 flex items-center justify-center p-10">
-        <div className="relative h-full w-full">
-          <Image src={src} alt={name} fill className="object-contain" onError={() => {}} />
-        </div>
-      </div>
-    ) : (
-      <Image src={src} alt={name} fill className="object-cover" onError={() => {}} />
+    return (
+      <Image
+        src={src}
+        alt={project.name}
+        fill
+        className="object-cover"
+        onError={() => {}}
+      />
     );
   };
 
-  const useDots = total <= 6;
-
   return (
     <div
-      className={`relative aspect-[16/10] overflow-hidden ${objectFit === "contain" ? "bg-[#0A0A0A]" : "bg-gradient-to-br from-[#2A2A2A] to-[#1F1F1F]"}`}
+      className="overflow-hidden rounded-2xl border border-[#4A4740]/40 bg-[#1E1E1E]"
+      style={{ boxShadow: active ? "0 30px 80px rgba(0,0,0,0.5)" : "none" }}
     >
-      {/* Outgoing image — slides off to the left */}
-      {prevIdx !== null && (
-        <div key={`prev-${prevIdx}-${imgIdx}`} className="absolute inset-0 reel-slide-out">
-          {renderImage(prevIdx)}
+      {/* Image area */}
+      <div className="relative aspect-[16/10] overflow-hidden bg-[#0A0A0A]">
+        {prevIdx !== null && (
+          <div
+            key={`prev-${prevIdx}-${imgIdx}`}
+            className="absolute inset-0 reel-slide-out"
+          >
+            {renderImage(prevIdx)}
+          </div>
+        )}
+        <div
+          key={`current-${imgIdx}`}
+          className={`absolute inset-0 ${prevIdx !== null ? "reel-slide-in" : ""}`}
+        >
+          {renderImage(imgIdx)}
         </div>
-      )}
 
-      {/* Incoming / current image — slides in from the right */}
-      <div
-        key={`current-${imgIdx}`}
-        className={`absolute inset-0 ${prevIdx !== null ? "reel-slide-in" : ""}`}
-      >
-        {renderImage(imgIdx)}
+        {/* Pause / play toggle */}
+        <button
+          onClick={() => setPaused((p) => !p)}
+          className="absolute right-4 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-full border border-[#4A4740]/50 bg-[#1A1A1A]/80 text-[#E0DDD8] backdrop-blur-sm transition-colors hover:border-[#706D66]"
+          aria-label={paused ? "Resume" : "Pause"}
+        >
+          {paused ? (
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
+              <path d="M2 1L9 5L2 9V1Z" />
+            </svg>
+          ) : (
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
+              <rect x="2" y="1" width="2" height="8" rx="0.5" />
+              <rect x="6" y="1" width="2" height="8" rx="0.5" />
+            </svg>
+          )}
+        </button>
       </div>
 
-      {/* Pause / play toggle */}
-      <button
-        onClick={() => setPaused((p) => !p)}
-        className="absolute right-4 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-full border border-[#4A4740]/50 bg-[#1A1A1A]/80 text-[#E0DDD8] backdrop-blur-sm transition-colors hover:border-[#706D66]"
-        aria-label={paused ? "Resume" : "Pause"}
-      >
-        {paused ? (
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
-            <path d="M2 1L9 5L2 9V1Z" />
-          </svg>
-        ) : (
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
-            <rect x="2" y="1" width="2" height="8" rx="0.5" />
-            <rect x="6" y="1" width="2" height="8" rx="0.5" />
-          </svg>
-        )}
-      </button>
+      {/* Meta bar */}
+      <div className="flex items-center gap-3 border-t border-[#4A4740]/30 bg-[#181818] px-5 py-3.5">
+        <span className="font-mono text-[10px] tracking-[.22em] uppercase text-[#FF4822]">
+          {project.name}
+        </span>
+        <span className="flex gap-0.5 text-[#4A4740]">
+          <span className="h-[3px] w-[3px] rounded-full bg-current" />
+          <span className="h-[3px] w-[3px] rounded-full bg-current" />
+          <span className="h-[3px] w-[3px] rounded-full bg-current" />
+        </span>
+        <span className="flex-1 font-mono text-[10px] tracking-[.22em] uppercase text-[#706D66]">
+          {project.discipline}
+        </span>
 
-      {/* Image indicator: dots for small sets, counter for large */}
-      {total > 1 && (
-        <div className="absolute bottom-3.5 right-4 z-10 flex items-center gap-1.5">
-          {useDots ? (
-            images.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => slideTo(i)}
-                aria-label={`Image ${i + 1}`}
-                style={{
-                  height: 3,
-                  width: i === imgIdx ? 14 : 5,
-                  borderRadius: 999,
-                  background: i === imgIdx ? "#E0DDD8" : "#4A4740",
-                  border: "none",
-                  padding: 0,
-                  transition: "all 0.2s",
-                  cursor: i === imgIdx ? "default" : "pointer",
-                }}
-              />
-            ))
-          ) : (
-            <>
-              <button
-                onClick={() => slideTo(imgIdx - 1)}
-                disabled={imgIdx === 0}
-                className="flex h-5 w-5 items-center justify-center rounded-full border border-[#4A4740]/60 bg-[#1A1A1A]/80 text-[#706D66] disabled:opacity-30"
-                aria-label="Previous image"
-              >
-                <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                  <path d="M5 6L3 4L5 2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-              <span className="font-mono text-[9px] tracking-widest text-[#706D66]">
-                {String(imgIdx + 1).padStart(2, "0")}&thinsp;/&thinsp;{String(total).padStart(2, "0")}
-              </span>
-              <button
-                onClick={() => slideTo(imgIdx + 1)}
-                disabled={imgIdx >= total - 1}
-                className="flex h-5 w-5 items-center justify-center rounded-full border border-[#4A4740]/60 bg-[#1A1A1A]/80 text-[#706D66] disabled:opacity-30"
-                aria-label="Next image"
-              >
-                <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                  <path d="M3 2L5 4L3 6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-            </>
-          )}
-        </div>
-      )}
+        {/* Image counter — only when more than one image */}
+        {total > 1 && (
+          <span className="flex items-center gap-1.5 font-mono text-[10px] text-[#706D66]">
+            <button
+              onClick={() => slideTo(imgIdx - 1)}
+              aria-label="Previous image"
+              className="flex h-5 w-5 items-center justify-center rounded-full border border-[#4A4740]/60 transition-colors hover:border-[#706D66] hover:text-[#E0DDD8]"
+            >
+              <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                <path
+                  d="M5 6L3 4L5 2"
+                  stroke="currentColor"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+            <span className="tabular-nums">
+              {String(imgIdx + 1).padStart(2, "0")}
+              <span className="opacity-60">/</span>
+              {String(total).padStart(2, "0")}
+            </span>
+            <button
+              onClick={() => slideTo(imgIdx + 1)}
+              aria-label="Next image"
+              className="flex h-5 w-5 items-center justify-center rounded-full border border-[#4A4740]/60 transition-colors hover:border-[#706D66] hover:text-[#E0DDD8]"
+            >
+              <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                <path
+                  d="M3 2L5 4L3 6"
+                  stroke="currentColor"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          </span>
+        )}
+
+        {/* Heart — interactive */}
+        <button
+          onClick={() => setLikes((l) => l + 1)}
+          aria-label="Like project"
+          className="flex items-center gap-1.5 font-mono text-[10px] text-[#706D66] transition-colors hover:text-[#FF4822]"
+        >
+          <svg width="12" height="11" viewBox="0 0 12 11" fill="none">
+            <path
+              d="M6 10C6 10 1 7 1 3.5C1 2 2.2 1 3.5 1C4.5 1 5.5 1.8 6 2.5C6.5 1.8 7.5 1 8.5 1C9.8 1 11 2 11 3.5C11 7 6 10 6 10Z"
+              stroke="currentColor"
+              strokeWidth="1.1"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <span className="tabular-nums">{likes}</span>
+        </button>
+      </div>
     </div>
   );
 }
@@ -336,8 +359,8 @@ export default function SelectedWorkSection() {
           const abs = Math.abs(offset);
           const translateX =
             offset * (CARD_W + GAP) + (drag.on ? drag.dx * 0.8 : 0);
-          const scale = abs === 0 ? 1 : abs === 1 ? 0.86 : 0.72;
-          const opacity = abs === 0 ? 1 : abs === 1 ? 0.55 : 0.18;
+          const scale = abs === 0 ? 1 : abs === 1 ? 0.7 : 0.55;
+          const opacity = abs === 0 ? 1 : abs === 1 ? 0.32 : 0.1;
           const zIndex = 10 - abs;
           const isActive = abs === 0;
 
@@ -359,50 +382,14 @@ export default function SelectedWorkSection() {
                 opacity,
                 zIndex,
                 pointerEvents: abs > 2 ? "none" : "auto",
+                filter: isActive ? "none" : "blur(1px)",
               }}
             >
-              <div
-                className="overflow-hidden rounded-2xl border border-[#4A4740]/40 bg-[#1E1E1E]"
-                style={{
-                  boxShadow: isActive
-                    ? "0 30px 80px rgba(0,0,0,0.5)"
-                    : "none",
-                }}
-              >
-                <FlipImages
-                  images={p.images}
-                  name={p.name}
-                  placeholder={p.placeholder}
-                  active={isActive}
-                  objectFit={p.discipline === "Logo Design" ? "contain" : "cover"}
-                />
-
-                {/* Meta bar */}
-                <div className="flex items-center gap-3 border-t border-[#4A4740]/30 bg-[#181818] px-5 py-3.5">
-                  <span className="font-mono text-[10px] tracking-[.22em] uppercase text-[#FF4822]">
-                    {p.name}
-                  </span>
-                  <span className="flex gap-0.5 text-[#4A4740]">
-                    <span className="h-[3px] w-[3px] rounded-full bg-current" />
-                    <span className="h-[3px] w-[3px] rounded-full bg-current" />
-                    <span className="h-[3px] w-[3px] rounded-full bg-current" />
-                  </span>
-                  <span className="flex-1 font-mono text-[10px] tracking-[.22em] uppercase text-[#706D66]">
-                    {p.discipline}
-                  </span>
-                  <span className="flex items-center gap-1.5 font-mono text-[10px] text-[#706D66]">
-                    <svg width="12" height="11" viewBox="0 0 12 11" fill="none">
-                      <path
-                        d="M6 10C6 10 1 7 1 3.5C1 2 2.2 1 3.5 1C4.5 1 5.5 1.8 6 2.5C6.5 1.8 7.5 1 8.5 1C9.8 1 11 2 11 3.5C11 7 6 10 6 10Z"
-                        stroke="currentColor"
-                        strokeWidth="1.1"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                    {10 + i}
-                  </span>
-                </div>
-              </div>
+              <ProjectCard
+                project={p}
+                active={isActive}
+                initialLikes={10 + i}
+              />
             </div>
           );
         })}
@@ -410,7 +397,13 @@ export default function SelectedWorkSection() {
 
       {/* Controls */}
       <div className="mx-auto mt-8 grid max-w-7xl grid-cols-3 items-center gap-4 px-6">
-        <div />
+        <div className="flex justify-start">
+          <CircleCta
+            href={BOOKING_URL}
+            label="Book a Walkthrough"
+            variant="primary"
+          />
+        </div>
         <div className="flex justify-center gap-2">
           <ArrowBtn dir="prev" onClick={() => go(-1)} disabled={idx === 0} />
           <ArrowBtn
@@ -419,13 +412,7 @@ export default function SelectedWorkSection() {
             disabled={idx >= filtered.length - 1}
           />
         </div>
-        <div className="flex justify-end">
-          <CircleCta
-            href={BOOKING_URL}
-            label="Book a Walkthrough"
-            variant="primary"
-          />
-        </div>
+        <div />
       </div>
 
     </section>
