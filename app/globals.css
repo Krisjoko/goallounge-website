@@ -210,3 +210,21 @@ a, button {
 .wtw-draw-in {
   animation: wtwDrawIn 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
+
+/* Project carousel image-reel slide (Brand Work, Logo Work, etc.) */
+@keyframes reelSlideOut {
+  from { transform: translateX(0);     }
+  to   { transform: translateX(-100%); }
+}
+@keyframes reelSlideIn {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0);    }
+}
+.reel-slide-out {
+  animation: reelSlideOut 900ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: transform;
+}
+.reel-slide-in {
+  animation: reelSlideIn 900ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: transform;
+}

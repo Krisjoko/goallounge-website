@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { flushSync } from "react-dom";
 import Image from "next/image";
 import { PROJECTS, DISCIPLINES } from "@/lib/constants";
 import type { Discipline } from "@/lib/constants";
@@ -10,11 +9,13 @@ import CircleCta from "@/components/ui/CircleCta";
 const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL ?? "#get-in-touch";
 const CARD_W = 680;
 const GAP = 24;
+const SLIDE_MS = 900;
+const HOLD_MS = 4500;
 
 type Tab = "All" | Discipline;
 const TABS: Tab[] = ["All", ...DISCIPLINES];
 
-// ─── Rolodex image flipper ────────────────────────────────────────────────────
+// ─── Reel image slider ────────────────────────────────────────────────────────
 
 function FlipImages({
   images,
@@ -30,119 +31,92 @@ function FlipImages({
   objectFit?: "cover" | "contain";
 }) {
   const [imgIdx, setImgIdx] = useState(0);
+  const [prevIdx, setPrevIdx] = useState<number | null>(null);
   const [paused, setPaused] = useState(false);
-  const innerRef = useRef<HTMLDivElement>(null);
   const busyRef = useRef(false);
   const idxRef = useRef(0);
   idxRef.current = imgIdx;
   const total = images.length;
 
-  const flipTo = useCallback(
+  const slideTo = useCallback(
     (target: number) => {
-      if (busyRef.current || !innerRef.current) return;
+      if (busyRef.current) return;
       const next = ((target % total) + total) % total;
       if (next === idxRef.current) return;
       busyRef.current = true;
-      const el = innerRef.current;
 
-      // Phase 1: rotate to perpendicular (card becomes invisible)
-      el.style.transition = "transform 0.13s ease-in";
-      el.style.transform = "rotateX(-90deg)";
+      setPrevIdx(idxRef.current);
+      setImgIdx(next);
+      idxRef.current = next;
 
-      function onExit(e: TransitionEvent) {
-        if (e.propertyName !== "transform") return;
-        el.removeEventListener("transitionend", onExit);
-
-        // Swap image content while card is invisible — flushSync forces
-        // React to render the new image synchronously before the next paint
-        flushSync(() => {
-          setImgIdx(next);
-          idxRef.current = next;
-        });
-
-        // Snap to perpendicular from the other side (still invisible)
-        el.style.transition = "none";
-        el.style.transform = "rotateX(90deg)";
-
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            // Phase 2: sweep new image into view
-            el.style.transition = "transform 0.13s ease-out";
-            el.style.transform = "rotateX(0deg)";
-
-            function onEnter(e: TransitionEvent) {
-              if (e.propertyName !== "transform") return;
-              el.removeEventListener("transitionend", onEnter);
-              busyRef.current = false;
-            }
-            el.addEventListener("transitionend", onEnter);
-          });
-        });
-      }
-      el.addEventListener("transitionend", onExit);
+      setTimeout(() => {
+        setPrevIdx(null);
+        busyRef.current = false;
+      }, SLIDE_MS);
     },
     [total]
   );
 
-  const flipToRef = useRef(flipTo);
-  flipToRef.current = flipTo;
+  const slideToRef = useRef(slideTo);
+  slideToRef.current = slideTo;
 
   useEffect(() => {
     if (!active || paused || total <= 1) return;
     const id = setInterval(() => {
-      flipToRef.current((idxRef.current + 1) % total);
-    }, 2200);
+      slideToRef.current((idxRef.current + 1) % total);
+    }, HOLD_MS);
     return () => clearInterval(id);
   }, [active, paused, total]);
 
   useEffect(() => {
     if (!active) {
       setImgIdx(0);
+      setPrevIdx(null);
       idxRef.current = 0;
       setPaused(false);
     }
   }, [active]);
 
-  const src = images[imgIdx];
+  const renderImage = (idx: number) => {
+    const src = images[idx];
+    if (!src) return null;
+    return objectFit === "contain" ? (
+      <div className="absolute inset-0 flex items-center justify-center p-10">
+        <div className="relative h-full w-full">
+          <Image src={src} alt={name} fill className="object-contain" onError={() => {}} />
+        </div>
+      </div>
+    ) : (
+      <Image src={src} alt={name} fill className="object-cover" onError={() => {}} />
+    );
+  };
+
   const useDots = total <= 6;
 
   return (
     <div
       className={`relative aspect-[16/10] overflow-hidden ${objectFit === "contain" ? "bg-[#0A0A0A]" : "bg-gradient-to-br from-[#2A2A2A] to-[#1F1F1F]"}`}
-      style={{ perspective: "900px" }}
     >
-      {/* Rotating layer */}
-      <div
-        ref={innerRef}
-        className="absolute inset-0 flex items-center justify-center"
-        style={{ transformOrigin: "center 40%", willChange: "transform" }}
-      >
-        {src && (
-          objectFit === "contain" ? (
-            <div className="absolute inset-0 flex items-center justify-center p-10">
-              <div className="relative h-full w-full">
-                <Image
-                  src={src}
-                  alt={name}
-                  fill
-                  className="object-contain"
-                  onError={() => {}}
-                />
-              </div>
-            </div>
-          ) : (
-            <Image
-              src={src}
-              alt={name}
-              fill
-              className="object-cover"
-              onError={() => {}}
-            />
-          )
-        )}
+      {/* Placeholder behind imagery */}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <span className="font-hero-serif select-none text-[96px] leading-none tracking-[.06em] text-[#3A3A3A]">
           {placeholder}
         </span>
+      </div>
+
+      {/* Outgoing image — slides off to the left */}
+      {prevIdx !== null && (
+        <div key={`prev-${prevIdx}-${imgIdx}`} className="absolute inset-0 reel-slide-out">
+          {renderImage(prevIdx)}
+        </div>
+      )}
+
+      {/* Incoming / current image — slides in from the right */}
+      <div
+        key={`current-${imgIdx}`}
+        className={`absolute inset-0 ${prevIdx !== null ? "reel-slide-in" : ""}`}
+      >
+        {renderImage(imgIdx)}
       </div>
 
       {/* Pause / play toggle */}
@@ -170,7 +144,7 @@ function FlipImages({
             images.map((_, i) => (
               <button
                 key={i}
-                onClick={() => flipTo(i)}
+                onClick={() => slideTo(i)}
                 aria-label={`Image ${i + 1}`}
                 style={{
                   height: 3,
@@ -187,7 +161,7 @@ function FlipImages({
           ) : (
             <>
               <button
-                onClick={() => flipTo(imgIdx - 1)}
+                onClick={() => slideTo(imgIdx - 1)}
                 disabled={imgIdx === 0}
                 className="flex h-5 w-5 items-center justify-center rounded-full border border-[#4A4740]/60 bg-[#1A1A1A]/80 text-[#706D66] disabled:opacity-30"
                 aria-label="Previous image"
@@ -200,7 +174,7 @@ function FlipImages({
                 {String(imgIdx + 1).padStart(2, "0")}&thinsp;/&thinsp;{String(total).padStart(2, "0")}
               </span>
               <button
-                onClick={() => flipTo(imgIdx + 1)}
+                onClick={() => slideTo(imgIdx + 1)}
                 disabled={imgIdx >= total - 1}
                 className="flex h-5 w-5 items-center justify-center rounded-full border border-[#4A4740]/60 bg-[#1A1A1A]/80 text-[#706D66] disabled:opacity-30"
                 aria-label="Next image"
