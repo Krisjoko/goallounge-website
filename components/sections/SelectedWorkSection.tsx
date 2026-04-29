@@ -97,13 +97,6 @@ function FlipImages({
     <div
       className={`relative aspect-[16/10] overflow-hidden ${objectFit === "contain" ? "bg-[#0A0A0A]" : "bg-gradient-to-br from-[#2A2A2A] to-[#1F1F1F]"}`}
     >
-      {/* Placeholder behind imagery */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <span className="font-hero-serif select-none text-[96px] leading-none tracking-[.06em] text-[#3A3A3A]">
-          {placeholder}
-        </span>
-      </div>
-
       {/* Outgoing image — slides off to the left */}
       {prevIdx !== null && (
         <div key={`prev-${prevIdx}-${imgIdx}`} className="absolute inset-0 reel-slide-out">
