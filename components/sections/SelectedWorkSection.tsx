@@ -618,30 +618,6 @@ export default function SelectedWorkSection() {
             disabled={idx >= filtered.length - 1}
           />
         </div>
-        <div className="flex items-center gap-4">
-          <div className="flex gap-1.5">
-            {filtered.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setIdx(i)}
-                aria-label={`Go to project ${i + 1}`}
-                style={{
-                  height: 4,
-                  width: i === idx ? 28 : 12,
-                  borderRadius: 999,
-                  background: i === idx ? "#FF4822" : "#4A4740",
-                  border: "none",
-                  padding: 0,
-                  transition: "all 0.25s",
-                }}
-              />
-            ))}
-          </div>
-          <span className="font-mono text-[10px] tracking-widest text-[#4A4740]">
-            {String(idx + 1).padStart(2, "0")} /{" "}
-            {String(filtered.length).padStart(2, "0")}
-          </span>
-        </div>
         <CircleCta
           href={BOOKING_URL}
           label="Book a Walkthrough"
