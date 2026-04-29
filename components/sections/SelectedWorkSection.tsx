@@ -22,16 +22,15 @@ function FlipImages({
   placeholder,
   active,
   objectFit = "cover",
-  onExpand,
 }: {
   images: string[];
   name: string;
   placeholder: string;
   active: boolean;
   objectFit?: "cover" | "contain";
-  onExpand: () => void;
 }) {
   const [imgIdx, setImgIdx] = useState(0);
+  const [paused, setPaused] = useState(false);
   const innerRef = useRef<HTMLDivElement>(null);
   const busyRef = useRef(false);
   const idxRef = useRef(0);
@@ -89,17 +88,18 @@ function FlipImages({
   flipToRef.current = flipTo;
 
   useEffect(() => {
-    if (!active || total <= 1) return;
+    if (!active || paused || total <= 1) return;
     const id = setInterval(() => {
       flipToRef.current((idxRef.current + 1) % total);
     }, 2200);
     return () => clearInterval(id);
-  }, [active, total]);
+  }, [active, paused, total]);
 
   useEffect(() => {
     if (!active) {
       setImgIdx(0);
       idxRef.current = 0;
+      setPaused(false);
     }
   }, [active]);
 
@@ -145,21 +145,22 @@ function FlipImages({
         </span>
       </div>
 
-      {/* Expand button */}
+      {/* Pause / play toggle */}
       <button
-        onClick={onExpand}
-        className="absolute right-4 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-full border border-[#4A4740]/50 bg-[#1A1A1A]/80 text-[#E0DDD8] backdrop-blur-sm"
-        aria-label="Expand"
+        onClick={() => setPaused((p) => !p)}
+        className="absolute right-4 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-full border border-[#4A4740]/50 bg-[#1A1A1A]/80 text-[#E0DDD8] backdrop-blur-sm transition-colors hover:border-[#706D66]"
+        aria-label={paused ? "Resume" : "Pause"}
       >
-        <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-          <path
-            d="M3 8L8 3M8 3H4M8 3V7"
-            stroke="currentColor"
-            strokeWidth="1.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        {paused ? (
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
+            <path d="M2 1L9 5L2 9V1Z" />
+          </svg>
+        ) : (
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
+            <rect x="2" y="1" width="2" height="8" rx="0.5" />
+            <rect x="6" y="1" width="2" height="8" rx="0.5" />
+          </svg>
+        )}
       </button>
 
       {/* Image indicator: dots for small sets, counter for large */}
@@ -210,147 +211,6 @@ function FlipImages({
               </button>
             </>
           )}
-        </div>
-      )}
-    </div>
-  );
-}
-
-// ─── Full-screen flip (modal) ─────────────────────────────────────────────────
-
-function ModalFlipImages({
-  images,
-  name,
-  placeholder,
-  objectFit = "cover",
-}: {
-  images: string[];
-  name: string;
-  placeholder: string;
-  objectFit?: "cover" | "contain";
-}) {
-  const [imgIdx, setImgIdx] = useState(0);
-  const innerRef = useRef<HTMLDivElement>(null);
-  const busyRef = useRef(false);
-  const idxRef = useRef(0);
-  idxRef.current = imgIdx;
-  const total = images.length;
-
-  const flipTo = useCallback(
-    (target: number) => {
-      if (busyRef.current || !innerRef.current) return;
-      const next = ((target % total) + total) % total;
-      if (next === idxRef.current) return;
-      busyRef.current = true;
-      const el = innerRef.current;
-
-      el.style.transition = "transform 0.16s ease-in";
-      el.style.transform = "rotateX(-90deg)";
-
-      function onExit(e: TransitionEvent) {
-        if (e.propertyName !== "transform") return;
-        el.removeEventListener("transitionend", onExit);
-
-        flushSync(() => {
-          setImgIdx(next);
-          idxRef.current = next;
-        });
-
-        el.style.transition = "none";
-        el.style.transform = "rotateX(90deg)";
-
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            el.style.transition = "transform 0.16s ease-out";
-            el.style.transform = "rotateX(0deg)";
-
-            function onEnter(e: TransitionEvent) {
-              if (e.propertyName !== "transform") return;
-              el.removeEventListener("transitionend", onEnter);
-              busyRef.current = false;
-            }
-            el.addEventListener("transitionend", onEnter);
-          });
-        });
-      }
-      el.addEventListener("transitionend", onExit);
-    },
-    [total]
-  );
-
-  const flipToRef = useRef(flipTo);
-  flipToRef.current = flipTo;
-
-  useEffect(() => {
-    if (total <= 1) return;
-    const id = setInterval(() => {
-      flipToRef.current((idxRef.current + 1) % total);
-    }, 2200);
-    return () => clearInterval(id);
-  }, [total]);
-
-  const src = images[imgIdx];
-
-  return (
-    // perspective tightened to 480px for a more pronounced flip arc
-    <div className="relative flex-1 overflow-hidden" style={{ perspective: "480px" }}>
-      <div
-        ref={innerRef}
-        className="absolute inset-0"
-        style={{ transformOrigin: "center 45%", willChange: "transform" }}
-      >
-        {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#222222] to-[#181818]" />
-
-        {/* Placeholder — sits behind image */}
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <span className="font-hero-serif select-none text-[200px] leading-none tracking-[.06em] text-[#2A2A2A] md:text-[260px]">
-            {placeholder}
-          </span>
-        </div>
-
-        {/* Image */}
-        {src && (
-          <div className={`absolute ${objectFit === "contain" ? "inset-16 md:inset-20" : "inset-0"}`}>
-            <div className="relative h-full w-full">
-              <Image
-                src={src}
-                alt={name}
-                fill
-                className={objectFit === "contain" ? "object-contain" : "object-cover"}
-                onError={() => {}}
-              />
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Image counter — centered at bottom */}
-      {total > 1 && (
-        <div className="absolute bottom-7 left-1/2 z-10 flex -translate-x-1/2 items-center gap-3">
-          <button
-            onClick={() => flipTo(imgIdx - 1)}
-            disabled={imgIdx === 0}
-            aria-label="Previous image"
-            className="flex h-7 w-7 items-center justify-center rounded-full border border-[#4A4740] text-[#706D66] transition-colors hover:border-[#706D66] hover:text-[#E0DDD8] disabled:opacity-20"
-          >
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-              <path d="M6 8L4 5L6 2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
-          <span className="font-mono text-[11px] tracking-widest text-[#4A4740]">
-            {String(imgIdx + 1).padStart(2, "0")}&thinsp;/&thinsp;{String(total).padStart(2, "0")}
-          </span>
-          <button
-            onClick={() => flipTo(imgIdx + 1)}
-            disabled={imgIdx >= total - 1}
-            aria-label="Next image"
-            className="flex h-7 w-7 items-center justify-center rounded-full border border-[#4A4740] text-[#706D66] transition-colors hover:border-[#706D66] hover:text-[#E0DDD8] disabled:opacity-20"
-          >
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-              <path d="M4 2L6 5L4 8" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
         </div>
       )}
     </div>
@@ -409,7 +269,6 @@ function ArrowBtn({
 export default function SelectedWorkSection() {
   const [activeTab, setActiveTab] = useState<Tab>("All");
   const [idx, setIdx] = useState(0);
-  const [openId, setOpenId] = useState<number | null>(null);
   const [drag, setDrag] = useState({ on: false, sx: 0, dx: 0 });
 
   const filtered =
@@ -420,29 +279,6 @@ export default function SelectedWorkSection() {
   useEffect(() => {
     setIdx(0);
   }, [activeTab]);
-
-  const openProject =
-    openId != null ? filtered.find((p) => p.id === openId) ?? null : null;
-  const openIdx = openProject
-    ? filtered.findIndex((p) => p.id === openId)
-    : -1;
-
-  useEffect(() => {
-    if (!openProject) return;
-    document.body.style.overflow = "hidden";
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpenId(null);
-      if (e.key === "ArrowLeft" && openIdx > 0)
-        setOpenId(filtered[openIdx - 1].id);
-      if (e.key === "ArrowRight" && openIdx < filtered.length - 1)
-        setOpenId(filtered[openIdx + 1].id);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [openProject, openIdx, filtered]);
 
   const go = useCallback(
     (d: number) =>
@@ -572,9 +408,6 @@ export default function SelectedWorkSection() {
                   placeholder={p.placeholder}
                   active={isActive}
                   objectFit={p.discipline === "Logo Design" ? "contain" : "cover"}
-                  onExpand={() => {
-                    if (isActive) setOpenId(p.id);
-                  }}
                 />
 
                 {/* Meta bar */}
@@ -628,83 +461,6 @@ export default function SelectedWorkSection() {
         </div>
       </div>
 
-      {/* Full-screen modal */}
-      {openProject && (
-        <div className="fixed inset-0 z-[100] flex flex-col bg-[#111111] backdrop-blur-sm">
-          <button
-            onClick={() => setOpenId(null)}
-            aria-label="Close"
-            className="absolute right-6 top-6 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-[#4A4740] text-[#706D66] transition-colors hover:border-[#706D66] hover:text-[#E0DDD8]"
-          >
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path
-                d="M1 1L11 11M11 1L1 11"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
-          {openIdx > 0 && (
-            <button
-              onClick={() => setOpenId(filtered[openIdx - 1].id)}
-              aria-label="Previous project"
-              className="absolute left-6 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#4A4740] text-[#706D66] transition-colors hover:border-[#706D66] hover:text-[#E0DDD8]"
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path
-                  d="M10 12L6 8L10 4"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          )}
-          {openIdx < filtered.length - 1 && (
-            <button
-              onClick={() => setOpenId(filtered[openIdx + 1].id)}
-              aria-label="Next project"
-              className="absolute right-6 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#4A4740] text-[#706D66] transition-colors hover:border-[#706D66] hover:text-[#E0DDD8]"
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path
-                  d="M6 4L10 8L6 12"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          )}
-          <ModalFlipImages
-            images={openProject.images}
-            name={openProject.name}
-            placeholder={openProject.placeholder}
-            objectFit={openProject.discipline === "Logo Design" ? "contain" : "cover"}
-          />
-          <div className="flex items-end justify-between gap-8 border-t border-[#4A4740]/30 px-10 py-6">
-            <div>
-              <h3 className="font-hero-serif text-2xl font-normal text-[#E0DDD8] md:text-3xl">
-                {openProject.name}
-              </h3>
-              <p className="mt-1 font-sans text-sm text-[#706D66]">
-                {openProject.category}
-              </p>
-            </div>
-            <div className="max-w-sm text-right">
-              <p className="mb-3 font-sans text-sm leading-relaxed text-[#706D66]">
-                {openProject.description}
-              </p>
-              <span className="inline-block rounded-full border border-[#4A4740] px-3 py-1 font-mono text-[10px] tracking-widest uppercase text-[#706D66]">
-                {openProject.discipline}
-              </span>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 }
