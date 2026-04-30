@@ -2,9 +2,24 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import CircleCta from "@/components/ui/CircleCta";
 
 const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL ?? "#get-in-touch";
+
+const HeroLogoMark = dynamic(() => import("@/components/HeroLogoMark"), {
+  ssr: false,
+  loading: () => (
+    <Image
+      src="/images/LogoMarkWhite.svg"
+      width={120}
+      height={120}
+      alt="Goallounge"
+      className="h-[120px] w-[120px] object-contain"
+      unoptimized
+    />
+  ),
+});
 
 const TRUST_BRAND_GROUPS = [
   ["Liverpool FC", "Discovery", "Vitality", "TikTok"],
@@ -15,11 +30,14 @@ const TRUST_BRAND_GROUPS = [
 const TICKER_INTERVAL_MS = 4500;
 
 export default function HeroSection() {
-  const [mounted, setMounted] = useState(false);
   const [groupIdx, setGroupIdx] = useState(0);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    if (typeof window === "undefined") return;
+    setPrefersReducedMotion(
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    );
   }, []);
 
   useEffect(() => {
@@ -40,20 +58,21 @@ export default function HeroSection() {
       {/* Centered content */}
       <div className="flex flex-1 items-center justify-center">
         <div className="flex w-full max-w-3xl flex-col items-center text-center">
-          {/* Logo mark — bolt-in entrance, idle float */}
-          <div className="relative mb-6 flex h-[200px] w-[200px] items-center justify-center">
-            <div className={mounted ? "hero-mark-bolt relative z-10" : "relative z-10 opacity-0"}>
-              <div className={mounted ? "hero-mark-idle" : ""}>
-                <Image
-                  src="/images/LogoMarkWhite.svg"
-                  width={120}
-                  height={120}
-                  alt="Goallounge"
-                  className="h-[120px] w-[120px] object-contain"
-                  unoptimized
-                />
-              </div>
-            </div>
+          {/* Logo mark — 3D Three.js render */}
+          <div className="relative mb-6 h-[200px] w-[200px]">
+            <HeroLogoMark
+              svgUrl="/images/LogoMarkWhite.svg"
+              materialStyle="Metallic"
+              color="#E0DDD8"
+              metalness={1.0}
+              roughness={0.2}
+              extrudeDepth={15}
+              bevelSize={2}
+              autoRotate={!prefersReducedMotion}
+              logoScale={1}
+              backgroundColor="rgba(0,0,0,0)"
+              className="h-full w-full"
+            />
           </div>
 
           {/* Label */}
