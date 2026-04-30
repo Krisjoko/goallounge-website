@@ -235,3 +235,15 @@ a, button {
     animation-duration: 1ms;
   }
 }
+
+/* Hero trust-line fade ticker */
+@keyframes hero-trust-fade {
+  0%, 100% { opacity: 0; }
+  18%, 82% { opacity: 1; }
+}
+.hero-trust-fade {
+  animation: hero-trust-fade 4500ms ease-in-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-trust-fade { animation: none; opacity: 1; }
+}

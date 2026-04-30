@@ -6,11 +6,30 @@ import CircleCta from "@/components/ui/CircleCta";
 
 const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL ?? "#get-in-touch";
 
+const TRUST_BRAND_GROUPS = [
+  ["Liverpool FC", "Discovery", "Vitality", "TikTok"],
+  ["Yoco", "Absa", "Nedbank", "Dischem"],
+  ["Superside", "Liberty", "Standard Bank", "Supersport"],
+  ["ESL FACEIT Group", "Superbalist", "Shell", "Funding Frontier"],
+];
+const TICKER_INTERVAL_MS = 4500;
+
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
+  const [groupIdx, setGroupIdx] = useState(0);
 
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+    const id = setInterval(() => {
+      setGroupIdx((i) => (i + 1) % TRUST_BRAND_GROUPS.length);
+    }, TICKER_INTERVAL_MS);
+    return () => clearInterval(id);
   }, []);
 
   return (
@@ -55,9 +74,19 @@ export default function HeroSection() {
             <CircleCta href="#selected-work" label="See the Work" variant="secondary" />
           </div>
 
-          {/* Trust line */}
-          <p className="font-mono text-[10px] tracking-widest text-[#706D66] uppercase">
-            Trusted by teams at Liverpool FC · Discovery · TikTok · Yoco · Absa
+          {/* Trust line — slow fade ticker cycling through all brands */}
+          <p className="font-mono text-[10px] tracking-widest text-[#8A857C] uppercase">
+            <span>Trusted by teams at </span>
+            <span
+              key={groupIdx}
+              className="hero-trust-fade inline-block"
+              aria-hidden="true"
+            >
+              {TRUST_BRAND_GROUPS[groupIdx].join(" · ")}
+            </span>
+            <span className="sr-only">
+              {TRUST_BRAND_GROUPS.flat().join(", ")}.
+            </span>
           </p>
         </div>
       </div>
