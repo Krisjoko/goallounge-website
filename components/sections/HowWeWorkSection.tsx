@@ -16,15 +16,15 @@ const KRISTY_BULLETS = [
   "Growth Marketing",
 ];
 
-function DesignIcon({ color }: { color: string }) {
+function DesignIcon() {
   return (
     <svg
       viewBox="0 0 40 40"
       width="100%"
       height="100%"
       fill="none"
-      stroke={color}
-      strokeWidth="2"
+      stroke="#8A857C"
+      strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
@@ -37,15 +37,15 @@ function DesignIcon({ color }: { color: string }) {
   );
 }
 
-function StrategyIcon({ color }: { color: string }) {
+function StrategyIcon() {
   return (
     <svg
       viewBox="0 0 40 40"
       width="100%"
       height="100%"
       fill="none"
-      stroke={color}
-      strokeWidth="2"
+      stroke="#8A857C"
+      strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
@@ -81,20 +81,12 @@ function PersonCard({
 }) {
   return (
     <div className="flex flex-1 flex-col rounded-xl bg-[#222222] p-6">
-      {/* Craft icon with accent glow */}
+      {/* Craft icon */}
       <div
         className="mb-5 flex items-center justify-center"
-        style={{
-          width: "56px",
-          height: "56px",
-          filter: `drop-shadow(0 6px 24px ${accentColor}33)`,
-        }}
+        style={{ width: "56px", height: "56px" }}
       >
-        {icon === "design" ? (
-          <DesignIcon color={accentColor} />
-        ) : (
-          <StrategyIcon color={accentColor} />
-        )}
+        {icon === "design" ? <DesignIcon /> : <StrategyIcon />}
       </div>
 
       {/* Name + role */}
