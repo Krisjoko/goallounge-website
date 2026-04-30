@@ -31,14 +31,6 @@ const TICKER_INTERVAL_MS = 4500;
 
 export default function HeroSection() {
   const [groupIdx, setGroupIdx] = useState(0);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    setPrefersReducedMotion(
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    );
-  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -68,7 +60,7 @@ export default function HeroSection() {
               roughness={0.2}
               extrudeDepth={15}
               bevelSize={2}
-              autoRotate={!prefersReducedMotion}
+              autoRotate={false}
               logoScale={1}
               backgroundColor="rgba(0,0,0,0)"
               className="h-full w-full"
