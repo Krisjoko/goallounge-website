@@ -157,8 +157,8 @@ function ProjectCard({
 
       {/* Meta bar */}
       <div className="flex items-center gap-3 border-t border-[#4A4740]/30 bg-[#181818] px-5 py-3.5">
-        <span className="font-mono text-[10px] tracking-[.22em] uppercase text-[#FF4822]">
-          {project.name}
+        <span className="truncate font-mono text-[10px] tracking-[.22em] uppercase text-[#FF4822]">
+          {(project as { imageLabels?: string[] }).imageLabels?.[imgIdx] ?? project.name}
         </span>
         <span aria-hidden="true" className="flex gap-0.5 text-[#4A4740]">
           <span className="h-[3px] w-[3px] rounded-full bg-current" />
