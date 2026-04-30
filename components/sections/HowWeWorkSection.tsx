@@ -16,39 +16,44 @@ const KRISTY_BULLETS = [
   "Growth Marketing",
 ];
 
-function GenderSymbol({ kind, color }: { kind: "male" | "female"; color: string }) {
-  if (kind === "male") {
-    return (
-      <svg
-        viewBox="0 0 100 120"
-        width="100%"
-        height="100%"
-        fill="none"
-        stroke={color}
-        strokeWidth="5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <circle cx="42" cy="76" r="26" />
-        <line x1="60.4" y1="57.6" x2="86" y2="32" />
-        <polyline points="70,32 86,32 86,48" />
-      </svg>
-    );
-  }
+function DesignIcon({ color }: { color: string }) {
   return (
     <svg
-      viewBox="0 0 100 120"
+      viewBox="0 0 40 40"
       width="100%"
       height="100%"
       fill="none"
       stroke={color}
-      strokeWidth="5"
+      strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      aria-hidden="true"
     >
-      <circle cx="50" cy="42" r="26" />
-      <line x1="50" y1="68" x2="50" y2="112" />
-      <line x1="34" y1="94" x2="66" y2="94" />
+      {/* Pen nib / design tool */}
+      <path d="M26 6L34 14L16 36L6 36L6 26Z" />
+      <path d="M22 10L30 18" />
+      <line x1="6" y1="26" x2="16" y2="36" />
+    </svg>
+  );
+}
+
+function StrategyIcon({ color }: { color: string }) {
+  return (
+    <svg
+      viewBox="0 0 40 40"
+      width="100%"
+      height="100%"
+      fill="none"
+      stroke={color}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {/* Rising bar chart — growth / strategy signal */}
+      <rect x="5"  y="26" width="7" height="9"  rx="1" />
+      <rect x="17" y="18" width="7" height="17" rx="1" />
+      <rect x="29" y="9"  width="7" height="26" rx="1" />
     </svg>
   );
 }
@@ -62,7 +67,7 @@ function PersonCard({
   cta,
   ctaHref,
   accentColor,
-  symbol,
+  icon,
 }: {
   name: string;
   role: string;
@@ -72,11 +77,11 @@ function PersonCard({
   cta: string;
   ctaHref: string;
   accentColor: string;
-  symbol: "male" | "female";
+  icon: "design" | "strategy";
 }) {
   return (
     <div className="flex flex-1 flex-col rounded-xl bg-[#222222] p-6">
-      {/* Mars / Venus brand mark with accent glow */}
+      {/* Craft icon with accent glow */}
       <div
         className="mb-5 flex items-center justify-center"
         style={{
@@ -85,7 +90,11 @@ function PersonCard({
           filter: `drop-shadow(0 6px 24px ${accentColor}33)`,
         }}
       >
-        <GenderSymbol kind={symbol} color={accentColor} />
+        {icon === "design" ? (
+          <DesignIcon color={accentColor} />
+        ) : (
+          <StrategyIcon color={accentColor} />
+        )}
       </div>
 
       {/* Name + role */}
@@ -157,7 +166,7 @@ export default function HowWeWorkSection() {
             cta="Book a Walkthrough →"
             ctaHref={BOOKING_URL}
             accentColor="#FF4822"
-            symbol="male"
+            icon="design"
           />
           <PersonCard
             name="Kristy"
@@ -167,21 +176,23 @@ export default function HowWeWorkSection() {
             cta="View Portfolio →"
             ctaHref="https://bit.ly/KristyCunningham_Goallounge"
             accentColor="#22A6FF"
-            symbol="female"
+            icon="strategy"
           />
         </div>
 
-        {/* Origin story strip (replaces StorySection) */}
+        {/* Origin story */}
         <div className="mt-16 border-t border-[#4A4740]/30 pt-10">
           <div className="mx-auto max-w-3xl text-center">
             <div className="section-label mb-4 justify-center">How We Got Here</div>
             <p className="font-sans text-base leading-relaxed text-[#E0DDD8] md:text-lg">
-              We met building GLTV, a football platform with a global
-              audience. Claudio was running product design. Kristy was running
-              go-to-market. We kept arriving at the same problem from different
-              sides: strategy and design were being built in separate rooms, by
-              separate people, at separate times. Goallounge is what we built
-              to fix that.
+              Between us, we bring two decades across design and strategy —
+              two disciplines that almost never talk to each other. We are
+              married, and together we built GLTV: a football platform with a
+              global audience, where running design and go-to-market as one
+              conversation wasn&apos;t a methodology, it was just how we
+              worked. When we saw how much money and time companies were losing
+              by keeping those two disciplines apart, Goallounge became the
+              obvious next move.
             </p>
           </div>
         </div>

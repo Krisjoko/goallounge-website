@@ -69,7 +69,7 @@ export default function Nav() {
                 <a
                   href={item.href}
                   aria-current={isActive ? "page" : undefined}
-                  className={`rounded font-sans text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4822] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1A1A1A] ${
+                  className={`rounded font-mono text-[10px] tracking-widest uppercase transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4822] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1A1A1A] ${
                     isActive
                       ? "text-[#FF4822]"
                       : "text-[#8A857C] hover:text-[#FF4822]"
