@@ -2,7 +2,7 @@ import { PROCESS_STEPS } from "@/lib/constants";
 
 export default function ProcessSection() {
   return (
-    <section id="process" className="px-6 py-20 md:py-28 scroll-mt-14">
+    <section id="process" className="px-6 py-16 md:py-20 scroll-mt-14">
       <div className="mx-auto max-w-7xl">
         <div className="section-label mb-4">How a Project Runs</div>
         <h2 className="font-hero-serif mb-3 text-4xl font-normal text-[#E0DDD8] md:text-5xl">

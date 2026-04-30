@@ -49,7 +49,7 @@ export default function SoundFamiliarSection() {
   const next = () => setIndex((i) => Math.min(maxIndex, i + 1));
 
   return (
-    <section id="sound-familiar" className="px-6 py-20 md:py-28 scroll-mt-14">
+    <section id="sound-familiar" className="px-6 py-16 md:py-20 scroll-mt-14">
       <div className="mx-auto max-w-7xl">
         {/* Header row */}
         <div className="mb-10 flex items-start justify-between gap-4">

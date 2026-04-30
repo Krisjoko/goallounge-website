@@ -15,7 +15,7 @@ export default function TestimonialsSection() {
   const accentColor = current.person === "claudio" ? "#FF4822" : "#22A6FF";
 
   return (
-    <section id="client-stories" className="px-6 py-20 md:py-28 scroll-mt-14">
+    <section id="client-stories" className="px-6 py-16 md:py-20 scroll-mt-14">
       <div className="mx-auto max-w-7xl">
         <div className="section-label mb-4">Client Stories</div>
         <h2 className="font-hero-serif mb-10 text-4xl font-normal text-[#E0DDD8] md:text-5xl">

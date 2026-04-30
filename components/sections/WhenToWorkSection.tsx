@@ -161,7 +161,7 @@ export default function WhenToWorkSection() {
   );
 
   return (
-    <section id="when-to-work" className="px-6 py-20 md:py-28 scroll-mt-14">
+    <section id="when-to-work" className="px-6 py-16 md:py-20 scroll-mt-14">
       <div className="mx-auto max-w-7xl">
         <div className="section-label mb-4">When To Work With Us</div>
         <h2 className="font-hero-serif mb-3 text-4xl font-normal text-[#E0DDD8] md:text-5xl">
