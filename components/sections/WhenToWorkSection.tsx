@@ -49,6 +49,7 @@ export default function WhenToWorkSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRefs     = useRef<Record<number, HTMLDivElement | null>>({});
   const ctaRef       = useRef<HTMLAnchorElement>(null);
+  const ctaCircleRef = useRef<HTMLSpanElement>(null);
   const basePos      = useRef<Record<number, Pos>>({});
   const animFrame    = useRef<number>(0);
   const dragging     = useRef<{
@@ -145,13 +146,18 @@ export default function WhenToWorkSection() {
     return { x: cr.right - co.left, y: cr.bottom - co.top };
   };
 
-  const ctaCenter = (): Pos => {
-    const btn = ctaRef.current;
+  // Center of the small leading circle in the CTA (the orange ring),
+  // not the centroid of the whole CTA — keeps lines clear of the text.
+  const ctaCircleCenter = (): Pos => {
+    const el = ctaCircleRef.current;
     const cont = containerRef.current;
-    if (!btn || !cont) return { x: 0, y: 0 };
-    const br = btn.getBoundingClientRect();
+    if (!el || !cont) return { x: 0, y: 0 };
+    const br = el.getBoundingClientRect();
     const co = cont.getBoundingClientRect();
-    return { x: br.left - co.left + br.width / 2, y: br.top - co.top + br.height / 2 };
+    return {
+      x: br.left - co.left + br.width / 2,
+      y: br.top  - co.top  + br.height / 2,
+    };
   };
 
   const hasPositions = Object.keys(positions).length === WHEN_TO_WORK_NODES.length;
@@ -202,21 +208,42 @@ export default function WhenToWorkSection() {
                   </g>
                 );
               })}
-              {/* Flow lines from selected cards to CTA — also behind cards */}
-              {checked.length > 0 && checked.map(id => {
-                const from = getBottomRight(id);
-                const to = ctaCenter();
-                if (!to.x && !to.y) return null;
-                const bend = id % 2 === 0 ? 40 : -40;
-                const d = qBez(from, to, bend);
+              {/* Flow lines from selected cards — converge at a junction
+                  point above the CTA circle, then a single stem drops into
+                  the circle. Keeps lines clear of the CTA text label. */}
+              {checked.length > 0 && (() => {
+                const circle = ctaCircleCenter();
+                if (!circle.x && !circle.y) return null;
+                const junction = { x: circle.x, y: circle.y - 32 };
+                const circleTop = { x: circle.x, y: circle.y - 16 };
                 return (
-                  <path key={`flow-${id}-${selectionKey}`}
-                        d={d} stroke="#FF4822" strokeWidth={0.8}
-                        fill="none" strokeLinecap="round"
-                        strokeDasharray="3 8" className="wtw-draw-in"
-                        opacity={0.35} />
+                  <>
+                    {checked.map(id => {
+                      const from = getBottomRight(id);
+                      const bend = id % 2 === 0 ? 25 : -25;
+                      const d = qBez(from, junction, bend);
+                      return (
+                        <path key={`flow-${id}-${selectionKey}`}
+                              d={d} stroke="#FF4822" strokeWidth={0.8}
+                              fill="none" strokeLinecap="round"
+                              strokeDasharray="3 8" className="wtw-draw-in"
+                              opacity={0.4} />
+                      );
+                    })}
+                    {/* Single solid stem: junction -> top of circle */}
+                    <path
+                      key={`stem-${selectionKey}`}
+                      d={`M ${junction.x.toFixed(1)} ${junction.y.toFixed(1)} L ${circleTop.x.toFixed(1)} ${circleTop.y.toFixed(1)}`}
+                      stroke="#FF4822"
+                      strokeWidth={1.2}
+                      fill="none"
+                      strokeLinecap="round"
+                      opacity={0.85}
+                      className="wtw-draw-in"
+                    />
+                  </>
                 );
-              })}
+              })()}
             </svg>
           )}
 
@@ -276,7 +303,7 @@ export default function WhenToWorkSection() {
                 href={mailtoUrl}
                 className="group flex items-center gap-3"
               >
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#FF4822] text-[#FF4822] transition-colors group-hover:bg-[#FF4822] group-hover:border-[#FF4822] group-hover:text-[#706D66]" aria-hidden>
+                <span ref={ctaCircleRef} className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#FF4822] text-[#FF4822] transition-colors group-hover:bg-[#FF4822] group-hover:border-[#FF4822] group-hover:text-[#706D66]" aria-hidden>
                   <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                     <path d="M2 5H8M8 5L5 2M8 5L5 8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
