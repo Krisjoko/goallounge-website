@@ -107,12 +107,21 @@ export default function SoundFamiliarSection() {
         </div>
 
         {/* Bottom statement */}
-        <div className="mt-16 border-t border-[#4A4740]/30 pt-12 text-center">
-          <p className="font-hero-serif mx-auto max-w-3xl text-xl font-normal leading-snug text-[#E0DDD8] md:text-2xl">
+        <div className="mt-12 text-center">
+          <span
+            aria-hidden="true"
+            className="mx-auto mb-4 block h-1.5 w-1.5 rounded-full bg-[#FF4822]"
+          />
+          <p className="font-hero-serif mx-auto max-w-xl text-2xl font-normal leading-tight text-[#E0DDD8] md:text-3xl">
             It costs more. It lands later.
-            <br className="hidden md:block" />
-            {" "}We built Goallounge to stop both.
           </p>
+          <a
+            href="#how-we-work"
+            className={`mt-3 inline-flex items-center gap-2 rounded font-sans text-sm text-[#8A857C] transition-colors hover:text-[#E0DDD8] md:text-base ${focusRing}`}
+          >
+            <span>We built Goallounge to stop both.</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
         </div>
       </div>
     </section>
