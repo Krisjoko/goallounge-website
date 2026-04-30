@@ -109,8 +109,9 @@ export default function SoundFamiliarSection() {
         {/* Bottom statement */}
         <div className="mt-16 border-t border-[#4A4740]/30 pt-12 text-center">
           <p className="font-hero-serif mx-auto max-w-3xl text-xl font-normal leading-snug text-[#E0DDD8] md:text-2xl">
-            When strategy and design do not speak the same language,
-            everything costs more and lands later.
+            It costs more. It lands later.
+            <br className="hidden md:block" />
+            {" "}We built Goallounge to stop both.
           </p>
         </div>
       </div>
