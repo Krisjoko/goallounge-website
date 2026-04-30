@@ -74,20 +74,24 @@ export default function HeroSection() {
             <CircleCta href="#selected-work" label="See the Work" variant="secondary" />
           </div>
 
-          {/* Trust line — slow fade ticker cycling through all brands */}
-          <p className="font-mono text-[10px] tracking-widest text-[#8A857C] uppercase">
-            <span>Trusted by teams at </span>
-            <span
-              key={groupIdx}
-              className="hero-trust-fade inline-block"
-              aria-hidden="true"
-            >
-              {TRUST_BRAND_GROUPS[groupIdx].join(" · ")}
-            </span>
-            <span className="sr-only">
-              {TRUST_BRAND_GROUPS.flat().join(", ")}.
-            </span>
-          </p>
+          {/* Trust block — fixed orange label + slow-fade brand ticker on its own line */}
+          <div className="flex flex-col items-center gap-2 text-center">
+            <p className="font-mono text-[10px] tracking-widest uppercase text-[#FF4822]">
+              Trusted by teams at:
+            </p>
+            <p className="font-mono text-[10px] tracking-widest uppercase text-[#8A857C]">
+              <span
+                key={groupIdx}
+                className="hero-trust-fade inline-block"
+                aria-hidden="true"
+              >
+                {TRUST_BRAND_GROUPS[groupIdx].join(" · ")}
+              </span>
+              <span className="sr-only">
+                {TRUST_BRAND_GROUPS.flat().join(", ")}.
+              </span>
+            </p>
+          </div>
         </div>
       </div>
     </section>
