@@ -59,7 +59,7 @@ export default function HeroSection() {
       <div className="flex flex-1 items-center justify-center">
         <div className="flex w-full max-w-3xl flex-col items-center text-center">
           {/* Logo mark — 3D Three.js render */}
-          <div className="relative mb-6 flex h-[280px] w-[280px] items-center justify-center md:h-[400px] md:w-[400px]">
+          <div className="relative mb-6 flex h-[250px] w-[250px] items-center justify-center md:h-[300px] md:w-[300px]">
             <HeroLogoMark
               svgUrl="/images/LogoMarkWhite.svg"
               materialStyle="Metallic"
