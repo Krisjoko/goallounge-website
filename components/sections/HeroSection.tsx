@@ -12,10 +12,10 @@ const HeroLogoMark = dynamic(() => import("@/components/HeroLogoMark"), {
   loading: () => (
     <Image
       src="/images/LogoMarkWhite.svg"
-      width={120}
-      height={120}
+      width={240}
+      height={240}
       alt="Goallounge"
-      className="h-[120px] w-[120px] object-contain"
+      className="h-[180px] w-[180px] object-contain md:h-[240px] md:w-[240px]"
       unoptimized
     />
   ),
@@ -59,7 +59,7 @@ export default function HeroSection() {
       <div className="flex flex-1 items-center justify-center">
         <div className="flex w-full max-w-3xl flex-col items-center text-center">
           {/* Logo mark — 3D Three.js render */}
-          <div className="relative mb-6 h-[200px] w-[200px]">
+          <div className="relative mb-6 flex h-[280px] w-[280px] items-center justify-center md:h-[400px] md:w-[400px]">
             <HeroLogoMark
               svgUrl="/images/LogoMarkWhite.svg"
               materialStyle="Metallic"
