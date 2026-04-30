@@ -2,11 +2,13 @@ import type { AnchorHTMLAttributes } from "react";
 
 interface Props extends AnchorHTMLAttributes<HTMLAnchorElement> {
   label: string;
+  sublabel?: string;
   variant?: "primary" | "secondary";
 }
 
 export default function CircleCta({
   label,
+  sublabel,
   variant = "primary",
   className = "",
   href = "#",
@@ -30,7 +32,7 @@ export default function CircleCta({
       target={isExt ? "_blank" : undefined}
       rel={isExt ? "noopener noreferrer" : undefined}
       {...props}
-      className={`group flex items-center gap-3 ${className}`}
+      className={`group flex items-center gap-3 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF4822] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1A1A1A] ${className}`}
     >
       <span
         className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-colors ${circleClass}`}
@@ -46,10 +48,17 @@ export default function CircleCta({
           />
         </svg>
       </span>
-      <span
-        className={`font-mono text-[10px] tracking-widest uppercase transition-colors ${labelClass}`}
-      >
-        {label}
+      <span className="flex flex-col leading-tight">
+        <span
+          className={`font-mono text-[10px] tracking-widest uppercase transition-colors ${labelClass}`}
+        >
+          {label}
+        </span>
+        {sublabel && (
+          <span className="mt-0.5 font-mono text-[9px] tracking-wider text-[#8A857C]">
+            {sublabel}
+          </span>
+        )}
       </span>
     </a>
   );
