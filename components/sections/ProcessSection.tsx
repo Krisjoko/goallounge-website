@@ -32,7 +32,7 @@ export default function ProcessSection() {
               onClick={() => setActive((i) => Math.max(0, i - 1))}
               disabled={active === 0}
               aria-label="Previous step"
-              className={`mt-[14px] flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-colors ${focusRing} ${
+              className={`-mt-[3px] flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-colors ${focusRing} ${
                 active === 0
                   ? "border-[#2A2A2A] text-[#2A2A2A]"
                   : "border-[#4A4740] text-[#8A857C] hover:border-[#706D66] hover:text-[#E0DDD8]"
@@ -122,7 +122,7 @@ export default function ProcessSection() {
               onClick={() => setActive((i) => Math.min(total - 1, i + 1))}
               disabled={active === total - 1}
               aria-label="Next step"
-              className={`mt-[14px] flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-colors ${focusRing} ${
+              className={`-mt-[3px] flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-colors ${focusRing} ${
                 active === total - 1
                   ? "border-[#2A2A2A] text-[#2A2A2A]"
                   : "border-[#4A4740] text-[#8A857C] hover:border-[#706D66] hover:text-[#E0DDD8]"
