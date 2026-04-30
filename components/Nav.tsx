@@ -49,7 +49,8 @@ export default function Nav() {
           : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex h-14 max-w-7xl items-center gap-8 px-6">
+      <nav className="mx-auto grid h-14 max-w-7xl grid-cols-[auto_1fr_auto] items-center px-6">
+        {/* Logo — left */}
         <a href="#" className="group flex shrink-0 items-center">
           <Image
             src="/images/FullLogoLeft.svg"
@@ -61,7 +62,8 @@ export default function Nav() {
           />
         </a>
 
-        <ul className="hidden items-center gap-6 md:flex">
+        {/* Nav items — centred in the flexible middle column */}
+        <ul className="hidden items-center justify-center gap-6 md:flex">
           {NAV_ITEMS.map((item) => {
             const isActive = activeHash === item.href;
             return (
@@ -82,9 +84,8 @@ export default function Nav() {
           })}
         </ul>
 
-        <div className="ml-auto">
-          <CircleCta href="#get-in-touch" label="Get In Touch" variant="primary" />
-        </div>
+        {/* CTA — right */}
+        <CircleCta href="#get-in-touch" label="Get In Touch" variant="primary" />
       </nav>
     </header>
   );
