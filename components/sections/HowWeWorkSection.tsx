@@ -24,12 +24,11 @@ function DesignIcon() {
       height="100%"
       fill="none"
       stroke="#8A857C"
-      strokeWidth="1.5"
+      strokeWidth="0.8"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
     >
-      {/* Pen nib / design tool */}
       <path d="M26 6L34 14L16 36L6 36L6 26Z" />
       <path d="M22 10L30 18" />
       <line x1="6" y1="26" x2="16" y2="36" />
@@ -45,12 +44,11 @@ function StrategyIcon() {
       height="100%"
       fill="none"
       stroke="#8A857C"
-      strokeWidth="1.5"
+      strokeWidth="0.8"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
     >
-      {/* Rising bar chart — growth / strategy signal */}
       <rect x="5"  y="26" width="7" height="9"  rx="1" />
       <rect x="17" y="18" width="7" height="17" rx="1" />
       <rect x="29" y="9"  width="7" height="26" rx="1" />
