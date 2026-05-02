@@ -5,7 +5,7 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import CircleCta from "@/components/ui/CircleCta";
 
-const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL ?? "#get-in-touch";
+const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL ?? "https://calendar.app.google/B1w7htWiKWX8UD2J6";
 
 const HeroLogoMark = dynamic(() => import("@/components/HeroLogoMark"), {
   ssr: false,

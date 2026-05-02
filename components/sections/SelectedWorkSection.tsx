@@ -6,7 +6,7 @@ import { PROJECTS, DISCIPLINES } from "@/lib/constants";
 import type { Discipline } from "@/lib/constants";
 import CircleCta from "@/components/ui/CircleCta";
 
-const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL ?? "#get-in-touch";
+const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL ?? "https://calendar.app.google/B1w7htWiKWX8UD2J6";
 const GAP = 24;
 const SLIDE_MS = 700;
 const HOLD_MS = 4500;

@@ -258,7 +258,9 @@ function PartnershipsForm() {
 }
 
 function BookCallPanel() {
-  const bookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL;
+  const bookingUrl =
+    process.env.NEXT_PUBLIC_BOOKING_URL ??
+    "https://calendar.app.google/B1w7htWiKWX8UD2J6";
 
   return (
     <div className="flex flex-col gap-4">
@@ -266,16 +268,7 @@ function BookCallPanel() {
       <p className="font-sans text-sm text-[#706D66]">
         30 minutes. No pitch. Just a conversation.
       </p>
-      {bookingUrl ? (
-        <CircleCta href={bookingUrl} label="Book a Time" variant="primary" className="self-start" />
-      ) : (
-        <p className="font-sans text-xs text-[#4A4740]">
-          Booking link coming soon — email us at{" "}
-          <a href="mailto:general@goallounge.tv" className="text-[#706D66] underline">
-            general@goallounge.tv
-          </a>
-        </p>
-      )}
+      <CircleCta href={bookingUrl} label="Book a Time" variant="primary" className="self-start" />
     </div>
   );
 }
