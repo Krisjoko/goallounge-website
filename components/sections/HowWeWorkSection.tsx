@@ -16,46 +16,6 @@ const KRISTY_BULLETS = [
   "Growth Marketing",
 ];
 
-function DesignIcon() {
-  return (
-    <svg
-      viewBox="0 0 40 40"
-      width="100%"
-      height="100%"
-      fill="none"
-      stroke="#8A857C"
-      strokeWidth="0.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M26 6L34 14L16 36L6 36L6 26Z" />
-      <path d="M22 10L30 18" />
-      <line x1="6" y1="26" x2="16" y2="36" />
-    </svg>
-  );
-}
-
-function StrategyIcon() {
-  return (
-    <svg
-      viewBox="0 0 40 40"
-      width="100%"
-      height="100%"
-      fill="none"
-      stroke="#8A857C"
-      strokeWidth="0.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <rect x="5"  y="26" width="7" height="9"  rx="1" />
-      <rect x="17" y="18" width="7" height="17" rx="1" />
-      <rect x="29" y="9"  width="7" height="26" rx="1" />
-    </svg>
-  );
-}
-
 function PersonCard({
   name,
   role,
@@ -65,7 +25,6 @@ function PersonCard({
   cta,
   ctaHref,
   accentColor,
-  icon,
 }: {
   name: string;
   role: string;
@@ -75,26 +34,12 @@ function PersonCard({
   cta: string;
   ctaHref: string;
   accentColor: string;
-  icon: "design" | "strategy";
 }) {
   return (
     <div className="flex flex-1 flex-col rounded-xl bg-[#222222] p-6">
-      {/* Craft icon */}
-      <div
-        className="mb-5 flex items-center justify-center"
-        style={{ width: "56px", height: "56px" }}
-      >
-        {icon === "design" ? <DesignIcon /> : <StrategyIcon />}
-      </div>
-
       {/* Name + role */}
-      <p
-        className="mb-0.5 font-mono text-[10px] tracking-widest uppercase"
-        style={{ color: accentColor }}
-      >
-        {name}
-      </p>
-      <p className="mb-4 font-sans text-xs text-[#706D66]">{role}</p>
+      <h3 className="mb-1 font-hero-serif text-lg text-[#E0DDD8]">{name}</h3>
+      <p className="mb-5 font-hero-serif text-lg text-[#FF4822]">{role}</p>
 
       {/* Bio */}
       <p className="mb-5 font-sans text-sm leading-relaxed text-[#E0DDD8]">
@@ -156,7 +101,6 @@ export default function HowWeWorkSection() {
             cta="Book a Walkthrough →"
             ctaHref={BOOKING_URL}
             accentColor="#FF4822"
-            icon="design"
           />
           <PersonCard
             name="Kristy"
@@ -166,7 +110,6 @@ export default function HowWeWorkSection() {
             cta="View Portfolio →"
             ctaHref="https://bit.ly/KristyCunningham_Goallounge"
             accentColor="#22A6FF"
-            icon="strategy"
           />
         </div>
 
