@@ -265,6 +265,28 @@ function BookCallPanel() {
   return (
     <div className="flex flex-col gap-4">
       <CircleCta href={bookingUrl} label="Book a Time" variant="primary" className="self-start" />
+
+      <ul className="mt-6 space-y-5 border-t border-[#4A4740]/30 pt-6">
+        {[
+          {
+            label: "Intro call",
+            body: "In a 30-minute conversation, we'll learn what you are building, where you are stuck, and whether the fit is right.",
+          },
+          {
+            label: "Discovery",
+            body: "We go deeper into the work. Your goals, your audience, the decisions already made, and the ones still open.",
+          },
+          {
+            label: "Kickoff",
+            body: "We meet your team and start the work. Strategy and design begin together on day one.",
+          },
+        ].map(({ label, body }) => (
+          <li key={label}>
+            <p className="mb-1 font-mono text-[10px] tracking-widest uppercase text-[#FF4822]">{label}</p>
+            <p className="font-sans text-xs leading-normal text-[#706D66]">{body}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
