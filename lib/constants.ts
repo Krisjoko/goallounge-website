@@ -32,25 +32,25 @@ export const CLIENT_LOGOS = [
 export const PROBLEM_CARDS = [
   {
     number: "01",
-    title: "Siloed teams mean your product and positioning never align.",
+    title: "Siloed teams keep product and positioning misaligned.",
     quote:
       "We shipped the campaign before the positioning was finalised. The sales team found out when they read our own press release.",
   },
   {
     number: "02",
-    title: "Your brief has twelve sign-offs and still does not say anything.",
+    title: "Twelve sign-offs, and the brief still says nothing.",
     quote:
       "Every stakeholder approved it. Nobody challenged it. We are eight weeks in and the work is a well-designed version of the original problem.",
   },
   {
     number: "03",
-    title: "Handoffs kill momentum.",
+    title: "Every handoff drains momentum and clarity.",
     quote:
       "The strategy was signed off on a Friday. By Monday, the designer had a different brief. By Wednesday, the developer had a third version.",
   },
   {
     number: "04",
-    title: "Poor scoping means you are spending the budget before the real problem is defined.",
+    title: "Poor scoping burns the budget before the problem is defined.",
     quote:
       "We said we needed a rebrand. Sixteen weeks and three agencies later, we are still not sure that was the right brief.",
   },
