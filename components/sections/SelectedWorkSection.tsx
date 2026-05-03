@@ -408,11 +408,6 @@ export default function SelectedWorkSection() {
         )}
       </div>
 
-      {/* Helper: project count + drag affordance */}
-      <p className="mx-auto mb-5 max-w-7xl px-6 text-center font-mono text-[10px] tracking-widest text-[#6F6B62]">
-        {filtered.length} {filtered.length === 1 ? "project" : "projects"} · drag to browse
-      </p>
-
       {/* Carousel track */}
       <div
         className={`relative h-[300px] w-full select-none sm:h-[380px] lg:h-[460px] ${
