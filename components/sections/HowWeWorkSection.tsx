@@ -85,9 +85,9 @@ export default function HowWeWorkSection() {
           One engagement.
         </h2>
         <p className="mb-12 max-w-2xl font-sans text-sm leading-normal text-[#706D66]">
-          Every project is led by the two of us. One shapes the strategy. One
-          builds the work. You get both in the room from the first brief to
-          the final handover.
+          Every project is led by two of us: one crafts the strategy, the
+          other executes the work. You have both involved from the initial
+          brief through to the final handover.
         </p>
 
         {/* Person cards */}
