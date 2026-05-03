@@ -227,11 +227,11 @@ a, button {
   to   { transform: translateX(0);    }
 }
 .reel-slide-out {
-  animation: reelSlideOut 700ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: reelSlideOut 500ms cubic-bezier(0.32, 0.72, 0, 1) forwards;
   will-change: transform;
 }
 .reel-slide-in {
-  animation: reelSlideIn 700ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: reelSlideIn 500ms cubic-bezier(0.32, 0.72, 0, 1) forwards;
   will-change: transform;
 }
 
