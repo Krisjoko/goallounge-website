@@ -395,7 +395,7 @@ export default function SelectedWorkSection() {
       </div>
 
       {/* Index markers */}
-      <div className="mx-auto mb-2 flex max-w-7xl justify-center gap-60 px-6 font-mono text-[10px] tracking-widest text-[#6F6B62]">
+      <div className="mx-auto mb-6 flex max-w-7xl justify-center gap-60 px-6 font-mono text-[10px] tracking-widest text-[#6F6B62] md:mb-8">
         {filtered[idx - 1] && (
           <span>{String(idx).padStart(2, "0")}</span>
         )}
