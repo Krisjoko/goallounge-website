@@ -383,8 +383,8 @@ export const PROJECTS = [
     imageLabels: [
       "Mbappé · Real Madrid",
       "Mbappé · Liverpool FC",
-      "Alex Oxlade-Chamberlain · Arsenal",
-      "Nathaniel Clyne · Liverpool FC 16/17",
+      "Funding Frontier — Trader Bull",
+      "Funding Frontier — Bull with Card",
       "Funding Frontier — Mobile Bull",
       "Football Illustration",
       "Football Illustration",
