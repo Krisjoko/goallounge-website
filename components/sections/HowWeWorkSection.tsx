@@ -118,14 +118,13 @@ export default function HowWeWorkSection() {
           <div className="mx-auto max-w-3xl text-center">
             <div className="section-label mb-4 justify-center">How We Got Here</div>
             <p className="font-sans text-base leading-normal text-[#E0DDD8] md:text-lg">
-              Between us, we bring two decades across design and strategy,
-              two disciplines that almost never talk to each other. We are
-              married, and together we built GLTV: a football platform with a
-              global audience, where running design and go-to-market as one
-              conversation was not a methodology, it was just how we
-              worked. When we saw how much money and time companies were losing
-              by keeping those two disciplines apart, Goallounge became the
-              obvious next move.
+              Between us, we bring two decades across design and strategy —
+              two disciplines that almost never talk to each other. Together
+              we built GLTV, a football platform with a global audience, where
+              running design and go-to-market as one conversation was not a
+              methodology, it was just how we worked. When we saw how much
+              money and time companies were losing by keeping those two
+              disciplines apart, Goallounge became the obvious next move.
             </p>
           </div>
         </div>
