@@ -67,7 +67,7 @@ export default function TestimonialsSection() {
                   {current.name}
                 </p>
                 <p className="font-sans text-xs text-[#706D66]">{current.role}</p>
-                <p className="font-mono text-[9px] tracking-wide text-[#4A4740] uppercase">
+                <p className="font-mono text-[10px] tracking-wide text-[#706D66] uppercase">
                   {current.company}
                 </p>
               </div>

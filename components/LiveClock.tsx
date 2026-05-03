@@ -22,7 +22,7 @@ export default function LiveClock() {
 
   const now = new Date();
   const ldn = formatTime(now, "Europe/London");
-  const gmt = formatTime(now, "Etc/GMT");
+  const jhb = formatTime(now, "Africa/Johannesburg");
 
   return (
     <div className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2">
@@ -42,7 +42,7 @@ export default function LiveClock() {
             <line x1="4.5" y1="2" x2="4.5" y2="4.5" stroke="#FF4822" strokeWidth="1" strokeLinecap="round" />
             <line x1="4.5" y1="4.5" x2="6.5" y2="4.5" stroke="#FF4822" strokeWidth="1" strokeLinecap="round" />
           </svg>
-          {gmt} <span className="opacity-50">GMT</span>
+          {jhb} <span className="opacity-50">JHB</span>
         </span>
       </div>
     </div>

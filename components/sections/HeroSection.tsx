@@ -47,11 +47,11 @@ export default function HeroSection() {
       id="home"
       className="flex min-h-screen flex-col overflow-hidden px-6 pt-14 pb-14"
     >
-      {/* Centered content */}
-      <div className="flex flex-1 items-center justify-center">
+      {/* Top-aligned content block */}
+      <div className="flex flex-1 flex-col items-center pt-12 md:pt-16">
         <div className="flex w-full max-w-3xl flex-col items-center text-center">
-          {/* Logo mark — 3D Three.js render */}
-          <div className="relative mb-6 flex h-[180px] w-[180px] items-center justify-center md:h-[220px] md:w-[220px]">
+          {/* Logo mark */}
+          <div className="relative mb-3 flex h-[180px] w-[180px] items-center justify-center md:h-[220px] md:w-[220px]">
             <HeroLogoMark
               svgUrl="/images/LogoMarkWhite.svg"
               materialStyle="Metallic"
@@ -67,16 +67,11 @@ export default function HeroSection() {
             />
           </div>
 
-          {/* Label */}
-          <p className="mb-5 font-mono text-[10px] tracking-[0.25em] text-[#706D66] uppercase">
-            <span className="text-[#FF4822]">●</span> Strategic Creative Studio
-          </p>
-
           {/* Headline */}
           <h1 className="font-hero-serif mb-10 leading-[0.88] text-[#E0DDD8]" style={{ fontSize: 'clamp(52px, 10vw, 98px)' }}>
             <span className="whitespace-nowrap">Positioning and design,</span>
             <br />
-            built as <span className="text-[#FF4822]">one.</span>
+            built as <span className="text-[#FF4822]">one</span>
           </h1>
 
           {/* CTAs */}

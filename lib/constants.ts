@@ -38,42 +38,18 @@ export const PROBLEM_CARDS = [
   },
   {
     number: "02",
-    title: "Design keeps changing direction.",
-    quote:
-      "We are three months in and version fourteen is heading back toward version three. Nobody can explain why we did not stay there.",
-  },
-  {
-    number: "03",
-    title: "Senior advisors advise. Nobody builds.",
-    quote:
-      "We have a strategy deck, a brand audit, and two sets of workshop notes. What we do not have is anything we can show a customer.",
-  },
-  {
-    number: "04",
     title: "Your brief has twelve sign-offs and still does not say anything.",
     quote:
       "Every stakeholder approved it. Nobody challenged it. We are eight weeks in and the work is a well-designed version of the original problem.",
   },
   {
-    number: "05",
-    title: "Decision fatigue stalls everything.",
-    quote:
-      "We spent four weeks getting approval on a typeface. The same group still needs to sign off on the tagline.",
-  },
-  {
-    number: "06",
-    title: "You built the product. Nobody planned how to sell it.",
-    quote:
-      "We launched. Then we looked at each other. Nobody had planned what came next.",
-  },
-  {
-    number: "07",
+    number: "03",
     title: "Handoffs kill momentum.",
     quote:
       "The strategy was signed off on a Friday. By Monday, the designer had a different brief. By Wednesday, the developer had a third version.",
   },
   {
-    number: "08",
+    number: "04",
     title: "Poor scoping means you are spending the budget before the real problem is defined.",
     quote:
       "We said we needed a rebrand. Sixteen weeks and three agencies later, we are still not sure that was the right brief.",
@@ -119,7 +95,6 @@ export const DISCIPLINES = [
   "UI/UX Design",
   "Illustrations",
   "Growth Marketing & Strategy",
-  "Graphic Facilitation",
 ] as const;
 
 export type Discipline = (typeof DISCIPLINES)[number];
@@ -484,8 +459,8 @@ export const PROJECTS = [
   {
     id: 6,
     name: "Facilitation",
-    category: "Graphic Facilitation",
-    discipline: "Graphic Facilitation" as Discipline,
+    category: "Growth Marketing & Strategy",
+    discipline: "Growth Marketing & Strategy" as Discipline,
     outcome: "Visual frameworks that move meetings to decisions.",
     description: "Live visual facilitation and illustrated outputs for strategy sessions, workshops and leadership offsites.",
     images: [

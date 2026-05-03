@@ -2,7 +2,6 @@ import Nav from "@/components/Nav";
 import CustomCursor from "@/components/CustomCursor";
 import LiveClock from "@/components/LiveClock";
 import HeroSection from "@/components/sections/HeroSection";
-import TrustStripSection from "@/components/sections/TrustStripSection";
 import SoundFamiliarSection from "@/components/sections/SoundFamiliarSection";
 import HowWeWorkSection from "@/components/sections/HowWeWorkSection";
 import WhenToWorkSection from "@/components/sections/WhenToWorkSection";
@@ -18,7 +17,6 @@ export default function Home() {
       <Nav />
       <main>
         <HeroSection />
-        <TrustStripSection />
         <SoundFamiliarSection />
         <HowWeWorkSection />
         <WhenToWorkSection />
