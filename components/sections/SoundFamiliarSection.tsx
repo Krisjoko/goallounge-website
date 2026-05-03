@@ -4,7 +4,7 @@ type Card = (typeof PROBLEM_CARDS)[number];
 
 function ProblemCardItem({ card }: { card: Card }) {
   return (
-    <div className="flex flex-col justify-between rounded-xl bg-[#222222] p-6">
+    <div className="flex flex-col justify-between rounded-xl bg-[#222222] p-6 md:p-10">
       <h3 className="mb-6 font-sans text-base font-medium leading-snug text-[#E0DDD8]">
         {card.title}
       </h3>
@@ -12,7 +12,7 @@ function ProblemCardItem({ card }: { card: Card }) {
         <p className="mb-2 font-mono text-[9px] tracking-[0.15em] uppercase text-[#706D66]">
           Sounds Like
         </p>
-        <p className="font-sans text-sm italic leading-relaxed text-[#8A857C]">
+        <p className="font-sans text-sm italic leading-normal text-[#8A857C]">
           &ldquo;{card.quote}&rdquo;
         </p>
       </div>
@@ -22,10 +22,10 @@ function ProblemCardItem({ card }: { card: Card }) {
 
 export default function SoundFamiliarSection() {
   return (
-    <section id="sound-familiar" className="px-6 py-16 md:py-20 scroll-mt-14">
+    <section id="sound-familiar" className="px-6 py-24 md:py-[120px] lg:py-40 scroll-mt-14">
       <div className="mx-auto max-w-7xl">
-        <div className="section-label mb-4">Sound Familiar?</div>
-        <h2 className="font-hero-serif mb-10 text-4xl font-normal leading-[1.1] text-[#E0DDD8] md:text-5xl">
+        <div className="section-label mb-6 md:mb-8">Sound Familiar?</div>
+        <h2 className="font-hero-serif mb-10 text-4xl font-normal leading-[0.95] tracking-[-0.02em] text-balance text-[#E0DDD8] md:text-5xl">
           These are the patterns
           <br />
           we keep seeing.

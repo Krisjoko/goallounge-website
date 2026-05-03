@@ -36,13 +36,13 @@ function PersonCard({
   accentColor: string;
 }) {
   return (
-    <div className="flex flex-1 flex-col rounded-xl bg-[#222222] p-6">
+    <div className="flex flex-1 flex-col rounded-xl bg-[#222222] p-6 md:p-10">
       {/* Name + role */}
       <h3 className="mb-1 font-hero-serif text-lg text-[#E0DDD8]">{name}</h3>
       <p className="mb-5 font-hero-serif text-lg text-[#FF4822]">{role}</p>
 
       {/* Bio */}
-      <p className="mb-5 font-sans text-sm leading-relaxed text-[#E0DDD8]">
+      <p className="mb-5 font-sans text-sm leading-normal text-[#E0DDD8]">
         {bio}
       </p>
 
@@ -58,7 +58,7 @@ function PersonCard({
 
       {/* Footnote */}
       {footnote && (
-        <p className="mb-5 font-sans text-xs italic leading-relaxed text-[#E0DDD8]">
+        <p className="mb-5 font-sans text-xs italic leading-normal text-[#E0DDD8]">
           {footnote}
         </p>
       )}
@@ -76,15 +76,15 @@ function PersonCard({
 
 export default function HowWeWorkSection() {
   return (
-    <section id="how-we-work" className="px-6 py-16 md:py-20 scroll-mt-14">
+    <section id="how-we-work" className="px-6 py-24 md:py-[120px] lg:py-40 scroll-mt-14">
       <div className="mx-auto max-w-7xl">
-        <div className="section-label mb-4">How We Work</div>
-        <h2 className="font-hero-serif mb-3 text-4xl font-normal text-[#E0DDD8] md:text-5xl">
+        <div className="section-label mb-6 md:mb-8">How We Work</div>
+        <h2 className="font-hero-serif mb-3 text-4xl font-normal leading-[0.95] tracking-[-0.02em] text-balance text-[#E0DDD8] md:text-5xl">
           Two senior practitioners.
           <br />
           One engagement.
         </h2>
-        <p className="mb-12 max-w-2xl font-sans text-sm leading-relaxed text-[#706D66]">
+        <p className="mb-12 max-w-2xl font-sans text-sm leading-normal text-[#706D66]">
           Every project is led by the two of us. One shapes the strategy. One
           builds the work. You get both in the room from the first brief to
           the final handover.
@@ -117,7 +117,7 @@ export default function HowWeWorkSection() {
         <div className="mt-16 border-t border-[#4A4740]/30 pt-10">
           <div className="mx-auto max-w-3xl text-center">
             <div className="section-label mb-4 justify-center">How We Got Here</div>
-            <p className="font-sans text-base leading-relaxed text-[#E0DDD8] md:text-lg">
+            <p className="font-sans text-base leading-normal text-[#E0DDD8] md:text-lg">
               Between us, we bring two decades across design and strategy,
               two disciplines that almost never talk to each other. We are
               married, and together we built GLTV: a football platform with a

@@ -11,13 +11,13 @@ export default function ProcessSection() {
   const total = PROCESS_STEPS.length;
 
   return (
-    <section id="process" className="overflow-hidden px-6 py-16 md:py-20 scroll-mt-14">
+    <section id="process" className="overflow-hidden px-6 py-24 md:py-[120px] lg:py-40 scroll-mt-14">
       <div className="mx-auto max-w-7xl">
-        <div className="section-label mb-4">How a Project Runs</div>
-        <h2 className="font-hero-serif mb-3 text-4xl font-normal text-[#E0DDD8] md:text-5xl">
+        <div className="section-label mb-6 md:mb-8">How a Project Runs</div>
+        <h2 className="font-hero-serif mb-3 text-4xl font-normal leading-[0.95] tracking-[-0.02em] text-balance text-[#E0DDD8] md:text-5xl">
           A shape you can plan around.
         </h2>
-        <p className="mb-16 max-w-2xl font-sans text-sm leading-relaxed text-[#706D66]">
+        <p className="mb-16 max-w-2xl font-sans text-sm leading-normal text-[#706D66]">
           Eight weeks on average. Strategy and design in parallel from day one.
           No discovery phase that goes nowhere, no handover that loses the
           thread.
@@ -103,7 +103,7 @@ export default function ProcessSection() {
 
                       {/* Body — always in the DOM to avoid layout shift; opacity fades */}
                       <p
-                        className={`font-sans text-xs leading-relaxed transition-all duration-300 ${
+                        className={`font-sans text-xs leading-normal transition-all duration-300 ${
                           isActive
                             ? "text-[#8A857C] opacity-100"
                             : "text-[#4A4740] opacity-40"
@@ -165,7 +165,7 @@ export default function ProcessSection() {
                 <h3 className="mb-2 font-hero-serif text-lg font-normal leading-snug text-[#E0DDD8]">
                   {s.title}
                 </h3>
-                <p className="font-sans text-xs leading-relaxed text-[#706D66]">
+                <p className="font-sans text-xs leading-normal text-[#706D66]">
                   {s.body}
                 </p>
               </div>

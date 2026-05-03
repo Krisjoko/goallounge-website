@@ -48,10 +48,10 @@ export default function HeroSection() {
       className="flex min-h-screen flex-col overflow-hidden px-6 pt-14 pb-14"
     >
       {/* Top-aligned content block */}
-      <div className="flex flex-1 flex-col items-center pt-12 md:pt-16">
+      <div className="flex flex-1 flex-col items-center pt-6 md:pt-16">
         <div className="flex w-full max-w-3xl flex-col items-center text-center">
           {/* Logo mark */}
-          <div className="relative mb-3 flex h-[180px] w-[180px] items-center justify-center md:h-[220px] md:w-[220px]">
+          <div className="relative mb-8 flex h-[180px] w-[180px] items-center justify-center md:h-[220px] md:w-[220px]">
             <HeroLogoMark
               svgUrl="/images/LogoMarkWhite.svg"
               materialStyle="Metallic"
@@ -68,7 +68,7 @@ export default function HeroSection() {
           </div>
 
           {/* Headline */}
-          <h1 className="font-hero-serif mb-10 leading-[0.88] text-[#E0DDD8]" style={{ fontSize: 'clamp(52px, 10vw, 98px)' }}>
+          <h1 className="font-hero-serif mb-12 leading-[0.95] tracking-[-0.02em] text-balance text-[#E0DDD8]" style={{ fontSize: 'clamp(52px, 10vw, 98px)' }}>
             <span className="whitespace-nowrap">Positioning and design,</span>
             <br />
             built as <span className="text-[#FF4822]">one</span>

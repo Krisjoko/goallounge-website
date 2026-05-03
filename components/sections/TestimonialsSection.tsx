@@ -15,10 +15,10 @@ export default function TestimonialsSection() {
   const accentColor = current.person === "claudio" ? "#FF4822" : "#22A6FF";
 
   return (
-    <section id="client-stories" className="px-6 py-16 md:py-20 scroll-mt-14">
+    <section id="client-stories" className="px-6 py-24 md:py-[120px] lg:py-40 scroll-mt-14">
       <div className="mx-auto max-w-7xl">
-        <div className="section-label mb-4">Client Stories</div>
-        <h2 className="font-hero-serif mb-10 text-4xl font-normal text-[#E0DDD8] md:text-5xl">
+        <div className="section-label mb-6 md:mb-8">Client Stories</div>
+        <h2 className="font-hero-serif mb-10 text-4xl font-normal leading-[0.95] tracking-[-0.02em] text-balance text-[#E0DDD8] md:text-5xl">
           What people say
         </h2>
 
@@ -35,14 +35,14 @@ export default function TestimonialsSection() {
           </button>
 
           {/* Card */}
-          <div className="flex min-h-[380px] flex-1 flex-col overflow-hidden rounded-xl border border-[#4A4740]/40 bg-[#222222] p-8 md:min-h-[360px] md:p-10">
+          <div className="flex min-h-[380px] flex-1 flex-col overflow-hidden rounded-xl border border-[#4A4740]/40 bg-[#222222] p-8 md:min-h-[360px] md:p-14">
             {/* Quote mark */}
             <svg
               width="36"
               height="28"
               viewBox="0 0 36 28"
               fill="none"
-              className="mb-6 shrink-0"
+              className="mb-8 shrink-0"
               aria-hidden
             >
               <path
@@ -52,7 +52,7 @@ export default function TestimonialsSection() {
             </svg>
 
             {/* Quote */}
-            <p className="mb-8 flex-1 font-sans text-base leading-relaxed text-[#E0DDD8] md:text-lg">
+            <p className="mb-12 flex-1 font-sans text-base leading-[1.6] text-[#E0DDD8] md:text-lg">
               &ldquo;{current.quote}&rdquo;
             </p>
 

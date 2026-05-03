@@ -167,10 +167,10 @@ export default function WhenToWorkSection() {
   );
 
   return (
-    <section id="when-to-work" className="px-6 py-16 md:py-20 scroll-mt-14">
+    <section id="when-to-work" className="px-6 py-24 md:py-[120px] lg:py-40 scroll-mt-14">
       <div className="mx-auto max-w-7xl">
-        <div className="section-label mb-4">When To Work With Us</div>
-        <h2 className="font-hero-serif mb-3 text-4xl font-normal text-[#E0DDD8] md:text-5xl">
+        <div className="section-label mb-6 md:mb-8">When To Work With Us</div>
+        <h2 className="font-hero-serif mb-3 text-4xl font-normal leading-[0.95] tracking-[-0.02em] text-balance text-[#E0DDD8] md:text-5xl">
           You will know it is time when&hellip;
         </h2>
         <p className="mb-14 font-sans text-sm text-[#706D66]">
@@ -288,7 +288,7 @@ export default function WhenToWorkSection() {
                 <p className="mb-2 font-sans text-sm font-medium leading-snug text-[#E0DDD8]">
                   {node.title}
                 </p>
-                <p className="font-sans text-xs leading-relaxed text-[#706D66]">
+                <p className="font-sans text-xs leading-normal text-[#706D66]">
                   {node.body}
                 </p>
               </div>
@@ -341,7 +341,7 @@ export default function WhenToWorkSection() {
                   <span className="font-mono text-[9px] text-[#4A4740]">0{node.id}</span>
                 </div>
                 <p className="mb-2 font-sans text-sm font-medium leading-snug text-[#E0DDD8]">{node.title}</p>
-                <p className="font-sans text-xs leading-relaxed text-[#706D66]">{node.body}</p>
+                <p className="font-sans text-xs leading-normal text-[#706D66]">{node.body}</p>
               </button>
             );
           })}

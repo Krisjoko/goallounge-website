@@ -25,7 +25,7 @@ export default function Home() {
         <TestimonialsSection />
         <ContactSection />
       </main>
-      <footer className="border-t border-[#4A4740]/30 px-6 py-8">
+      <footer className="border-t border-[#4A4740]/30 px-6 pt-20 pb-8 md:pt-[120px]">
         <div className="mx-auto flex max-w-7xl flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-mono text-[10px] tracking-widest text-[#4A4740] uppercase">
             Goallounge, Strategic Creative Studio

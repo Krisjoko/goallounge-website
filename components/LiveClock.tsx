@@ -26,7 +26,7 @@ export default function LiveClock() {
 
   return (
     <div className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2">
-      <div className="flex items-center gap-3 rounded-full border border-[#4A4740] bg-[#222222]/90 px-4 py-1.5 backdrop-blur-sm">
+      <div className="flex items-center gap-3 rounded-full border border-[#4A4740] bg-[#222222]/90 px-5 py-3 backdrop-blur-sm">
         <span className="flex items-center gap-1.5 font-mono text-[10px] text-[#706D66]">
           <svg width="9" height="9" viewBox="0 0 9 9" fill="none" aria-hidden>
             <circle cx="4.5" cy="4.5" r="3.5" stroke="#706D66" strokeWidth="1" />

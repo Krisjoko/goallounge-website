@@ -273,19 +273,19 @@ export default function ContactSection() {
   const [activeTab, setActiveTab] = useState<Tab>("book");
 
   return (
-    <section id="get-in-touch" className="px-6 py-16 md:py-20 scroll-mt-14">
+    <section id="get-in-touch" className="px-6 py-24 md:py-[120px] lg:py-40 scroll-mt-14">
       <div className="mx-auto max-w-7xl">
-        <div className="section-label mb-4">Get In Touch</div>
-        <h2 className="font-hero-serif mb-3 text-4xl font-normal text-[#E0DDD8] md:text-5xl">
+        <div className="section-label mb-6 md:mb-8">Get In Touch</div>
+        <h2 className="font-hero-serif mb-6 text-4xl font-normal leading-[0.95] tracking-[-0.02em] text-balance text-[#E0DDD8] md:text-5xl">
           30 minutes. No pitch.
           <br />
           Just a conversation.
         </h2>
-        <p className="mb-12 max-w-2xl font-sans text-sm leading-relaxed text-[#706D66]">
+        <p className="mb-12 max-w-2xl font-sans text-sm leading-normal text-[#706D66] md:mb-16">
           Tell us what you are building, or book a call directly.
         </p>
 
-        <div className="flex flex-col gap-6 md:flex-row md:gap-8">
+        <div className="flex flex-col gap-14 md:flex-row md:gap-20">
           {/* Left sidebar — tabs */}
           <div className="flex flex-col gap-1 md:w-56 md:shrink-0">
             {TABS.map((tab) => {
@@ -332,7 +332,7 @@ export default function ContactSection() {
           </div>
 
           {/* Right panel */}
-          <div className="flex min-h-[520px] flex-1 flex-col rounded-xl bg-[#222222] p-6 md:p-8">
+          <div className="flex min-h-[520px] flex-1 flex-col rounded-xl bg-[#222222] p-6 md:p-10">
             {activeTab === "build" && <BuildForm />}
             {activeTab === "email" && <EmailForm />}
             {activeTab === "partnerships" && <PartnershipsForm />}

@@ -342,15 +342,15 @@ export default function SelectedWorkSection() {
   return (
     <section
       id="selected-work"
-      className="overflow-hidden py-16 md:py-20 scroll-mt-14"
+      className="overflow-hidden py-24 md:py-[120px] lg:py-40 scroll-mt-14"
     >
       <div className="mx-auto max-w-7xl px-6">
         <div className="mb-6">
-          <div className="section-label mb-4">Selected Work</div>
-          <h2 className="font-hero-serif mb-3 text-4xl font-normal text-[#E0DDD8] md:text-5xl">
+          <div className="section-label mb-6 md:mb-8">Selected Work</div>
+          <h2 className="font-hero-serif mb-3 text-4xl font-normal leading-[0.95] tracking-[-0.02em] text-balance text-[#E0DDD8] md:text-5xl">
             Work we are proud to walk you through.
           </h2>
-          <p className="max-w-2xl font-sans text-sm leading-relaxed text-[#8A857C]">
+          <p className="max-w-2xl font-sans text-sm leading-normal text-[#8A857C]">
             Each project is listed with the business outcome that mattered, not
             the deliverable.
           </p>
