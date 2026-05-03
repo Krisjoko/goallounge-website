@@ -100,10 +100,13 @@ function ProjectCard({
         alt={project.name}
         fill
         className="object-cover"
+        loading="eager"
         onError={() => {}}
       />
     );
   };
+
+  const nextSrc = total > 1 ? project.images[(imgIdx + 1) % total] : null;
 
   return (
     <div
@@ -126,6 +129,23 @@ function ProjectCard({
         >
           {renderImage(imgIdx)}
         </div>
+
+        {/* Preload next image during HOLD so it's cached before the slide. */}
+        {active && nextSrc && (
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{ opacity: 0 }}
+            aria-hidden="true"
+          >
+            <Image
+              src={nextSrc}
+              alt=""
+              fill
+              className="object-cover"
+              loading="eager"
+            />
+          </div>
+        )}
 
         {/* Pause / play toggle */}
         <button
