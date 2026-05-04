@@ -50,7 +50,7 @@ function PersonCard({
       <ul className="mb-6 space-y-1.5">
         {bullets.map((b) => (
           <li key={b} className="flex items-start gap-2 font-sans text-xs text-[#706D66]">
-            <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-[#4A4740]" />
+            <span className="mt-2 h-0.5 w-2 shrink-0 bg-[#4A4740] gl-spur" />
             {b}
           </li>
         ))}

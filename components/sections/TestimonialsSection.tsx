@@ -59,7 +59,7 @@ export default function TestimonialsSection() {
             {/* Attribution */}
             <div className="flex shrink-0 items-start gap-2">
               <span
-                className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full"
+                className="mt-2 h-1 w-3 shrink-0 gl-spur"
                 style={{ backgroundColor: accentColor }}
               />
               <div>
@@ -94,7 +94,7 @@ export default function TestimonialsSection() {
                 key={t.id}
                 onClick={() => setActiveIndex(i)}
                 aria-label={`Go to testimonial ${i + 1}`}
-                className="h-1.5 rounded-full transition-all duration-200"
+                className="h-1.5 gl-spur transition-all duration-200"
                 style={{
                   width: i === activeIndex ? "24px" : "6px",
                   backgroundColor:
