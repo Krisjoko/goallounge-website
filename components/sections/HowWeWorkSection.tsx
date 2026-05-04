@@ -105,7 +105,7 @@ export default function HowWeWorkSection() {
           <PersonCard
             name="Kristy"
             role="Positioning, GTM & Project Leadership"
-            bio="Kristy builds the positioning and narrative that give the work somewhere to stand. Clear, commercial and ready for market."
+            bio="Kristy builds the positioning and narrative that gives the work a foothold. Clear, commercial and ready for market."
             bullets={KRISTY_BULLETS}
             cta="View Portfolio →"
             ctaHref="https://bit.ly/KristyCunningham_Goallounge"
