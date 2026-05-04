@@ -1,9 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { supabase } from "@/lib/supabase";
 import { FUNDING_STAGES } from "@/lib/constants";
 import CircleCta from "@/components/ui/CircleCta";
+
+const CONTACT_EMAIL = "general@goallounge.tv";
+
+function buildMailtoUrl(subject: string, body: string): string {
+  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
 
 type Tab = "build" | "email" | "partnerships" | "book";
 
@@ -34,38 +39,36 @@ function BuildForm() {
   const [description, setDescription] = useState("");
   const [stage, setStage] = useState("");
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
-    "idle"
-  );
+  const [status, setStatus] = useState<"idle" | "sent">("idle");
 
-  const submit = async (e: React.FormEvent) => {
+  const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("sending");
-    try {
-      const { error } = await supabase.from("contact_submissions").insert({
-        tab: "build",
-        message: description,
-        funding_stage: stage,
-        email,
-      });
-      if (error) throw error;
-      setStatus("sent");
-    } catch {
-      setStatus("error");
-    }
+    const body = [
+      "What we're building:",
+      description,
+      "",
+      `Stage: ${stage || "Not specified"}`,
+      `Reply to: ${email}`,
+    ].join("\n");
+    window.location.href = buildMailtoUrl("New project enquiry", body);
+    setStatus("sent");
   };
 
   if (status === "sent") {
     return (
       <div className="flex h-full flex-col items-center justify-center py-16 text-center">
         <div className="mb-3 font-mono text-[10px] tracking-widest text-[#FF4822] uppercase">
-          Received
+          Email opened
         </div>
         <p className="font-hero-serif text-lg text-[#E0DDD8]">
-          We&rsquo;ll be in touch.
+          Send it from your email app to finish.
         </p>
         <p className="mt-2 font-sans text-sm text-[#706D66]">
-          Usually within one business day.
+          If nothing opened,{" "}
+          <a href={`mailto:${CONTACT_EMAIL}`} className="text-[#E0DDD8] underline">
+            email us directly
+          </a>
+          .
         </p>
       </div>
     );
@@ -131,8 +134,7 @@ function BuildForm() {
 
       <button
         type="submit"
-        disabled={status === "sending"}
-        className="group flex items-center gap-3 self-start disabled:opacity-50"
+        className="group flex items-center gap-3 self-start"
       >
         <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#FF4822] text-[#FF4822] transition-colors group-hover:bg-[#FF4822] group-hover:border-[#FF4822] group-hover:text-[#706D66]" aria-hidden>
           <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -140,18 +142,9 @@ function BuildForm() {
           </svg>
         </span>
         <span className="font-mono text-[10px] tracking-widest uppercase text-[#E0DDD8] transition-colors group-hover:text-white">
-          {status === "sending" ? "Sending…" : "Send"}
+          Send
         </span>
       </button>
-
-      {status === "error" && (
-        <p className="font-sans text-xs text-red-400">
-          Something went wrong. Try emailing us directly at{" "}
-          <a href="mailto:general@goallounge.tv" className="underline">
-            general@goallounge.tv
-          </a>
-        </p>
-      )}
     </form>
   );
 }
@@ -178,35 +171,36 @@ function PartnershipsForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [note, setNote] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
-    "idle"
-  );
+  const [status, setStatus] = useState<"idle" | "sent">("idle");
 
-  const submit = async (e: React.FormEvent) => {
+  const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("sending");
-    try {
-      const { error } = await supabase.from("contact_submissions").insert({
-        tab: "partnerships",
-        name,
-        email,
-        message: note,
-      });
-      if (error) throw error;
-      setStatus("sent");
-    } catch {
-      setStatus("error");
-    }
+    const body = [
+      `From: ${name} <${email}>`,
+      "",
+      note,
+    ].join("\n");
+    window.location.href = buildMailtoUrl(
+      `Partnership intro: ${name || "name pending"}`,
+      body
+    );
+    setStatus("sent");
   };
 
   if (status === "sent") {
     return (
       <div className="flex flex-col gap-2 py-8">
         <p className="font-mono text-[10px] tracking-widest text-[#FF4822] uppercase">
-          Thank you
+          Email opened
         </p>
-        <p className="font-hero-serif text-lg text-[#E0DDD8]">Introduction received.</p>
-        <p className="font-sans text-sm text-[#706D66]">We&rsquo;ll be in touch with you and them shortly.</p>
+        <p className="font-hero-serif text-lg text-[#E0DDD8]">Send it from your email app to finish.</p>
+        <p className="font-sans text-sm text-[#706D66]">
+          If nothing opened,{" "}
+          <a href={`mailto:${CONTACT_EMAIL}`} className="text-[#E0DDD8] underline">
+            email us directly
+          </a>
+          .
+        </p>
       </div>
     );
   }
@@ -241,8 +235,7 @@ function PartnershipsForm() {
       />
       <button
         type="submit"
-        disabled={status === "sending"}
-        className="group flex items-center gap-3 self-start disabled:opacity-50"
+        className="group flex items-center gap-3 self-start"
       >
         <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#FF4822] text-[#FF4822] transition-colors group-hover:bg-[#FF4822] group-hover:border-[#FF4822] group-hover:text-[#706D66]" aria-hidden>
           <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -250,18 +243,9 @@ function PartnershipsForm() {
           </svg>
         </span>
         <span className="font-mono text-[10px] tracking-widest uppercase text-[#E0DDD8] transition-colors group-hover:text-white">
-          {status === "sending" ? "Sending…" : "Send"}
+          Send
         </span>
       </button>
-
-      {status === "error" && (
-        <p className="font-sans text-xs text-red-400">
-          Something went wrong. Try emailing us directly at{" "}
-          <a href="mailto:general@goallounge.tv" className="underline">
-            general@goallounge.tv
-          </a>
-        </p>
-      )}
     </form>
   );
 }
