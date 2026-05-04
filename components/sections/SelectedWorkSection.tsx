@@ -186,7 +186,7 @@ function ProjectCard({
           <span className="h-[3px] w-[3px] rounded-full bg-current" />
         </span>
         <span className="flex-1 font-mono text-[10px] tracking-[.22em] uppercase text-[#8A857C]">
-          {project.discipline}
+          {(project as { tagline?: string }).tagline ?? project.discipline}
         </span>
 
         {/* Image counter — only when more than one image */}

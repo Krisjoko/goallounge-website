@@ -495,6 +495,7 @@ export const PROJECTS = [
     discipline: "Graphic Facilitation" as Discipline,
     outcome: "Visual frameworks that move meetings to decisions.",
     description: "Live visual facilitation and illustrated outputs for strategy sessions, workshops and leadership offsites.",
+    tagline: "Claudio designing whilst you speak or ideate",
     images: [
       "/images/projects/GRAPHIC%20FACILLIATTAION_1.png",
       "/images/projects/GRAPHIC%20FACILLIATTAION_2.png",
