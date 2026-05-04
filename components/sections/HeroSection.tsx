@@ -71,7 +71,7 @@ export default function HeroSection() {
           <h1 className="font-hero-serif mb-12 leading-[0.95] tracking-[-0.02em] text-balance text-[#E0DDD8]" style={{ fontSize: 'clamp(52px, 10vw, 98px)' }}>
             <span className="whitespace-nowrap">Positioning and design,</span>
             <br />
-            built as <span className="text-[#FF4822]">one</span>
+            built as <span className="bg-gradient-to-b from-[#E4E4E4] via-[#FC5000] to-[#050505] bg-clip-text text-transparent">one</span>
           </h1>
 
           {/* CTAs */}
