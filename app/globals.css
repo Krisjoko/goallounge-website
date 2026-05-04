@@ -125,28 +125,6 @@ a, button {
   clip-path: polygon(0% 100%, 75% 100%, 100% 0%, 25% 0%);
 }
 
-/* Folder-tab card shape — adds a small folder-style tab at the top-left
-   of any card. The tab inherits the card's background-color via `inherit`
-   so it reads as a continuation of the card. Pair with `rounded-tl-none`
-   on the card to avoid a hairline gap at the seam. */
-.gl-folder {
-  position: relative;
-}
-
-.gl-folder::before {
-  content: "";
-  position: absolute;
-  bottom: calc(100% - 1px);
-  left: 0;
-  width: 38%;
-  max-width: 140px;
-  height: 22px;
-  background-color: inherit;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 100%, 0 100%);
-}
-
 .section-label {
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.75rem;

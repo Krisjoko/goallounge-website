@@ -4,7 +4,7 @@ type Card = (typeof PROBLEM_CARDS)[number];
 
 function ProblemCardItem({ card }: { card: Card }) {
   return (
-    <div className="flex flex-col justify-between rounded-xl rounded-tl-none bg-[#222222] p-6 md:p-10 gl-folder">
+    <div className="flex flex-col justify-between rounded-xl bg-[#222222] p-6 md:p-10">
       <h3 className="mb-6 font-sans text-base font-medium leading-snug text-[#E0DDD8]">
         {card.title}
       </h3>

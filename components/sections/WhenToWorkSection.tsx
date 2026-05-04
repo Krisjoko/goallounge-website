@@ -264,7 +264,7 @@ export default function WhenToWorkSection() {
                   width: CARD_W,
                   opacity: pos ? 1 : 0,
                 }}
-                className={`rounded-xl rounded-tl-none border p-5 text-left transition-colors duration-300 gl-folder ${
+                className={`rounded-xl border p-5 text-left transition-colors duration-300 ${
                   isDragging && dragging.current?.id === node.id ? "cursor-grabbing" : "cursor-grab"
                 } ${
                   isChecked
@@ -322,7 +322,7 @@ export default function WhenToWorkSection() {
             const isChecked = checked.includes(node.id);
             return (
               <button key={node.id} onClick={() => toggle(node.id)}
-                className={`rounded-xl rounded-tl-none border p-5 text-left transition-all duration-200 gl-folder ${
+                className={`rounded-xl border p-5 text-left transition-all duration-200 ${
                   isChecked
                     ? "border-[#FF4822]/60 bg-[#222222]"
                     : "border-[#4A4740]/50 bg-[#1E1E1E] hover:border-[#4A4740] hover:bg-[#222222]"
