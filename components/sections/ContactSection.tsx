@@ -26,7 +26,7 @@ const TABS: { id: Tab; label: string; sub: string }[] = [
   {
     id: "partnerships",
     label: "Partnerships",
-    sub: "Know someone who could use what we do?",
+    sub: "Know a team that we could be useful to and work with?",
   },
 ];
 
@@ -253,6 +253,15 @@ function PartnershipsForm() {
           {status === "sending" ? "Sending…" : "Send"}
         </span>
       </button>
+
+      {status === "error" && (
+        <p className="font-sans text-xs text-red-400">
+          Something went wrong. Try emailing us directly at{" "}
+          <a href="mailto:general@goallounge.tv" className="underline">
+            general@goallounge.tv
+          </a>
+        </p>
+      )}
     </form>
   );
 }
