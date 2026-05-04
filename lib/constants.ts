@@ -95,6 +95,7 @@ export const DISCIPLINES = [
   "UI/UX Design",
   "Illustrations",
   "Growth Marketing & Strategy",
+  "Graphic Facilitation",
 ] as const;
 
 export type Discipline = (typeof DISCIPLINES)[number];
@@ -490,8 +491,8 @@ export const PROJECTS = [
   {
     id: 6,
     name: "Facilitation",
-    category: "Growth Marketing & Strategy",
-    discipline: "Growth Marketing & Strategy" as Discipline,
+    category: "Graphic Facilitation",
+    discipline: "Graphic Facilitation" as Discipline,
     outcome: "Visual frameworks that move meetings to decisions.",
     description: "Live visual facilitation and illustrated outputs for strategy sessions, workshops and leadership offsites.",
     images: [
