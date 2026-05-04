@@ -52,7 +52,7 @@ export const PROBLEM_CARDS = [
     number: "04",
     title: "Poor scoping burns the budget before the problem is defined.",
     quote:
-      "We said we needed a rebrand. Sixteen weeks and three agencies later, we are still not sure that was the right brief.",
+      "We briefed a rebrand. Months in, we are still not sure that was the right brief.",
   },
 ];
 
