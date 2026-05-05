@@ -30,8 +30,8 @@ const TABS: { id: Tab; label: string; sub: string }[] = [
   },
   {
     id: "partnerships",
-    label: "Partnerships",
-    sub: "Know a team that we could be useful to and work with?",
+    label: "Refer & Earn",
+    sub: "Know a founder or team we should be working with? Send them our way and earn when they sign.",
   },
 ];
 
@@ -207,9 +207,9 @@ function PartnershipsForm() {
 
   return (
     <form onSubmit={submit} className="flex flex-col gap-5">
-      <h3 className="font-hero-serif text-lg text-[#E0DDD8]">Make an introduction.</h3>
+      <h3 className="font-hero-serif text-lg text-[#E0DDD8]">Refer a client.</h3>
       <p className="font-sans text-sm text-[#706D66]">
-        Tell us about them. If it is a good fit, we will reach out on your behalf.
+        Good work travels through people who trust each other. If your introduction becomes a client, you earn a referral fee. Tell us who you have in mind.
       </p>
       <input
         value={name}
