@@ -367,13 +367,9 @@ export default function SelectedWorkSection() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-6">
           <div className="section-label mb-6 md:mb-8">Selected Work</div>
-          <h2 className="font-hero-serif mb-3 text-4xl font-normal leading-[0.95] tracking-[-0.02em] text-balance text-[#E0DDD8] md:text-5xl">
+          <h2 className="font-hero-serif text-4xl font-normal leading-[0.95] tracking-[-0.02em] text-balance text-[#E0DDD8] md:text-5xl">
             Work we are proud to walk you through.
           </h2>
-          <p className="max-w-2xl font-sans text-sm leading-normal text-[#8A857C]">
-            Each project is listed with the business outcome that mattered, not
-            the deliverable.
-          </p>
         </div>
 
         {/* Filter tabs */}
