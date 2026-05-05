@@ -76,7 +76,7 @@ function PersonCard({
 
 export default function HowWeWorkSection() {
   return (
-    <section id="how-we-work" className="px-6 pt-6 pb-16 md:pt-8 md:pb-20 lg:pt-10 lg:pb-24 scroll-mt-14">
+    <section id="how-we-work" className="px-6 pt-6 pb-16 md:pt-8 md:pb-20 lg:pt-10 lg:pb-24">
       <div className="mx-auto max-w-7xl">
         <div className="section-label mb-6 md:mb-8">How We Work</div>
         <h2 className="font-hero-serif mb-3 text-4xl font-normal leading-[0.95] tracking-[-0.02em] text-balance text-[#E0DDD8] md:text-5xl">

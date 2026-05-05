@@ -49,7 +49,7 @@ export default function Nav() {
           : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto grid h-14 max-w-7xl grid-cols-[auto_1fr_auto] items-center">
+      <nav className="mx-auto grid h-16 max-w-7xl grid-cols-[auto_1fr_auto] items-center">
         {/* Logo — left */}
         <a href="#" className="group flex shrink-0 items-center">
           <Image
