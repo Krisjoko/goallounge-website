@@ -362,9 +362,9 @@ export default function SelectedWorkSection() {
   return (
     <section
       id="selected-work"
-      className="overflow-hidden py-16 md:py-20 lg:py-24 scroll-mt-14"
+      className="overflow-hidden px-6 pt-6 pb-16 md:pt-8 md:pb-20 lg:pt-10 lg:pb-24 scroll-mt-14"
     >
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl">
         <div className="mb-6">
           <div className="section-label mb-6 md:mb-8">Selected Work</div>
           <h2 className="font-hero-serif mb-3 text-4xl font-normal leading-[0.95] tracking-[-0.02em] text-balance text-[#E0DDD8] md:text-5xl">
