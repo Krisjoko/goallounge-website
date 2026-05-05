@@ -288,7 +288,7 @@ export default function ContactSection() {
   const [activeTab, setActiveTab] = useState<Tab>("book");
 
   return (
-    <section id="get-in-touch" className="px-6 py-24 md:py-[120px] lg:py-40 scroll-mt-14">
+    <section id="get-in-touch" className="px-6 py-16 md:py-20 lg:py-24 scroll-mt-14">
       <div className="mx-auto max-w-7xl">
         <div className="section-label mb-6 md:mb-8">Get In Touch</div>
         <h2 className="font-hero-serif mb-6 text-4xl font-normal leading-[0.95] tracking-[-0.02em] text-balance text-[#E0DDD8] md:text-5xl">

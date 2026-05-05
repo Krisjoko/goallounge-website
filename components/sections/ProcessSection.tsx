@@ -11,7 +11,7 @@ export default function ProcessSection() {
   const total = PROCESS_STEPS.length;
 
   return (
-    <section id="process" className="overflow-hidden px-6 py-24 md:py-[120px] lg:py-40 scroll-mt-14">
+    <section id="process" className="overflow-hidden px-6 py-16 md:py-20 lg:py-24 scroll-mt-14">
       <div className="mx-auto max-w-7xl">
         <div className="section-label mb-6 md:mb-8">How a Project Runs</div>
         <h2 className="font-hero-serif mb-3 text-4xl font-normal leading-[0.95] tracking-[-0.02em] text-balance text-[#E0DDD8] md:text-5xl">

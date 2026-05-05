@@ -362,7 +362,7 @@ export default function SelectedWorkSection() {
   return (
     <section
       id="selected-work"
-      className="overflow-hidden py-24 md:py-[120px] lg:py-40 scroll-mt-14"
+      className="overflow-hidden py-16 md:py-20 lg:py-24 scroll-mt-14"
     >
       <div className="mx-auto max-w-7xl px-6">
         <div className="mb-6">
