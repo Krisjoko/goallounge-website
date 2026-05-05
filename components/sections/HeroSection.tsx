@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import dynamic from "next/dynamic";
 import CircleCta from "@/components/ui/CircleCta";
 
@@ -9,16 +8,6 @@ const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL ?? "https://calendar.app
 
 const HeroLogoMark = dynamic(() => import("@/components/HeroLogoMark"), {
   ssr: false,
-  loading: () => (
-    <Image
-      src="/images/LogoMarkWhite.svg"
-      width={220}
-      height={220}
-      alt="Goallounge"
-      className="h-[180px] w-[180px] object-contain md:h-[220px] md:w-[220px]"
-      unoptimized
-    />
-  ),
 });
 
 const TRUST_BRAND_GROUPS = [
