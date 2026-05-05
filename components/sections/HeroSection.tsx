@@ -34,10 +34,10 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="flex flex-col overflow-hidden px-6 pt-14 pb-14 md:min-h-screen"
+      className="flex min-h-screen flex-col overflow-hidden px-6 pt-14 pb-14"
     >
-      {/* Top-aligned content block */}
-      <div className="flex flex-1 flex-col items-center pt-6 md:pt-16">
+      {/* Vertically-centered content block */}
+      <div className="flex flex-1 flex-col items-center justify-center">
         <div className="flex w-full max-w-3xl flex-col items-center text-center">
           {/* Logo mark */}
           <div className="relative mb-8 flex h-[180px] w-[180px] items-center justify-center md:h-[220px] md:w-[220px]">
