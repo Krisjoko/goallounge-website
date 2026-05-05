@@ -392,7 +392,7 @@ export const PROJECTS = [
       "“SIX OF THE BEST” football illustration book",
       "“SIX OF THE BEST” football illustration book",
       "Survivor S40",
-      "Breadcrumbs DarkNudge",
+      "Breadcrumbs Dark Nudge",
       "Breadcrumbs Dutiful Nudge",
       "Breadcrumbs Dreadful Nudge",
       "Breadcrumbs Deliberate Nudge",
