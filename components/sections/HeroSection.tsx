@@ -12,10 +12,10 @@ const HeroLogoMark = dynamic(() => import("@/components/HeroLogoMark"), {
   loading: () => (
     <Image
       src="/images/LogoMarkWhite.svg"
-      width={240}
-      height={240}
+      width={220}
+      height={220}
       alt="Goallounge"
-      className="h-[180px] w-[180px] object-contain md:h-[240px] md:w-[240px]"
+      className="h-[180px] w-[180px] object-contain md:h-[220px] md:w-[220px]"
       unoptimized
     />
   ),
