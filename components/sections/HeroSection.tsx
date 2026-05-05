@@ -34,7 +34,7 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="flex min-h-screen flex-col overflow-hidden px-6 pt-14 pb-14"
+      className="flex flex-col overflow-hidden px-6 pt-14 pb-14 md:min-h-screen"
     >
       {/* Top-aligned content block */}
       <div className="flex flex-1 flex-col items-center pt-6 md:pt-16">

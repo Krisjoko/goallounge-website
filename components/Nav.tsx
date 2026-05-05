@@ -85,7 +85,7 @@ export default function Nav() {
         </ul>
 
         {/* CTA — right */}
-        <CircleCta href="#get-in-touch" label="Get In Touch" variant="primary" />
+        <CircleCta href="#get-in-touch" label="Get In Touch" variant="primary" className="col-start-3" />
       </nav>
     </header>
   );
