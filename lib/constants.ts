@@ -340,9 +340,9 @@ export const PROJECTS = [
     images: [
       "/images/Rectangle%202333.png",
       "/images/Rectangle%202333-1.png",
-      "/images/ILLUSTRATIONS_3.png",
       "/images/ILLUSTRATIONS_3-2.png",
       "/images/ILLUSTRATIONS_3-1.png",
+      "/images/ILLUSTRATIONS_3.png",
       "/images/ILLUSTRATIONS_2.png",
       "/images/ILLUSTRATIONS_1.png",
       "/images/ILLUSTRATIONS_4.png",
@@ -382,9 +382,9 @@ export const PROJECTS = [
     imageLabels: [
       "Mbappé · Real Madrid",
       "Mbappé · Liverpool FC",
-      "Funding Frontier — Trader Bull",
       "Alex Oxlade Chamberlain — Arsenal FC 16/17",
       "Nathaniel Clyne — Liverpool FC 16/17",
+      "Funding Frontier — “Bully” with Phone",
       "Funding Frontier — “Bully” with Card",
       "Funding Frontier — “Bully” with Laptop",
       "Newcastle United",
