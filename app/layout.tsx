@@ -51,7 +51,7 @@ const ORGANIZATION_JSONLD = {
   "@type": "Organization",
   name: "Goallounge",
   url: SITE_URL,
-  logo: `${SITE_URL}/images/LogoMarkWhite.svg`,
+  logo: `${SITE_URL}/icon.svg`,
   description: "Strategic creative studio for ambitious founders.",
   sameAs: ["https://www.linkedin.com/company/35517734"],
 };
