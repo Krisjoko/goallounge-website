@@ -320,7 +320,8 @@ export default function SelectedWorkSection() {
       const w = window.innerWidth;
       if (w < 640) return Math.min(w - 48, 360);
       if (w < 1024) return 540;
-      return 680;
+      if (w < 1536) return 680;
+      return 760;
     };
     const onResize = () => setCardW(computeWidth());
     onResize();
@@ -367,7 +368,7 @@ export default function SelectedWorkSection() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-6">
           <div className="section-label mb-6 md:mb-8">Selected Work</div>
-          <h2 className="font-hero-serif text-4xl font-normal leading-[0.95] tracking-[-0.02em] text-balance text-[#E0DDD8] md:text-5xl">
+          <h2 className="font-hero-serif text-4xl font-normal leading-[0.95] tracking-[-0.02em] text-balance text-[#E0DDD8] md:text-5xl lg:text-6xl">
             Work we are proud to walk you through.
           </h2>
         </div>

@@ -57,8 +57,8 @@ export default function HeroSection() {
           </div>
 
           {/* Headline */}
-          <h1 className="font-hero-serif mb-12 leading-[0.95] tracking-[-0.02em] text-balance text-[#E0DDD8]" style={{ fontSize: 'clamp(52px, 10vw, 98px)' }}>
-            <span className="whitespace-nowrap">Positioning and design,</span>
+          <h1 className="font-hero-serif mb-12 leading-[0.95] tracking-[-0.02em] text-balance text-[#E0DDD8]" style={{ fontSize: 'clamp(40px, 10vw, 98px)' }}>
+            Positioning and design,
             <br />
             built as <span className="text-[#FF4822]">one</span>
           </h1>
