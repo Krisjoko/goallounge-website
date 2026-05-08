@@ -20,22 +20,40 @@ const bebasNeue = Bebas_Neue({
   weight: "400",
 });
 
+const SITE_URL = "https://goallounge.com";
+const SITE_TITLE = "Goallounge — Positioning and Design, Built as One";
+const SITE_DESCRIPTION =
+  "Strategic creative studio for ambitious founders. Brand, design, and digital product work that positions and converts.";
+
 export const metadata: Metadata = {
-  title: "Goallounge — Positioning and Design, Built as One",
-  description:
-    "Strategic creative studio for ambitious founders. Brand, design, and digital product work that positions and converts.",
+  metadataBase: new URL(SITE_URL),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Goallounge — Positioning and Design, Built as One",
-    description:
-      "Strategic creative studio for ambitious founders. Brand, design, and digital product work that positions and converts.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     siteName: "Goallounge",
     type: "website",
+    url: SITE_URL,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Goallounge — Positioning and Design, Built as One",
+    title: SITE_TITLE,
     description: "Strategic creative studio for ambitious founders.",
   },
+};
+
+const ORGANIZATION_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Goallounge",
+  url: SITE_URL,
+  logo: `${SITE_URL}/images/LogoMarkWhite.svg`,
+  description: "Strategic creative studio for ambitious founders.",
+  sameAs: ["https://www.linkedin.com/company/35517734"],
 };
 
 export default function RootLayout({
@@ -50,6 +68,12 @@ export default function RootLayout({
       className={`${ibmPlexSans.variable} ${ibmPlexMono.variable} ${bebasNeue.variable}`}
     >
       <body className="min-h-screen text-foreground antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(ORGANIZATION_JSONLD),
+          }}
+        />
         {children}
       </body>
     </html>
