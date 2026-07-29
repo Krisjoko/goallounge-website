@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import CircleCta from "@/components/ui/CircleCta";
+import posthog from "posthog-js";
 
 const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL ?? "https://calendar.app.google/B1w7htWiKWX8UD2J6";
 
@@ -65,8 +66,18 @@ export default function HeroSection() {
 
           {/* CTAs */}
           <div className="mb-6 flex items-center gap-6">
-            <CircleCta href={BOOKING_URL} label="Book a 30-Minute Call" variant="primary" />
-            <CircleCta href="#selected-work" label="See the Work" variant="secondary" />
+            <CircleCta
+              href={BOOKING_URL}
+              label="Book a 30-Minute Call"
+              variant="primary"
+              onClick={() => posthog.capture("hero_cta_clicked", { destination: "booking" })}
+            />
+            <CircleCta
+              href="#selected-work"
+              label="See the Work"
+              variant="secondary"
+              onClick={() => posthog.capture("hero_see_work_clicked")}
+            />
           </div>
 
           {/* Trust block — fixed orange label + slow-fade brand ticker on its own line */}

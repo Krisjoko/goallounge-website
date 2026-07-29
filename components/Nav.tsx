@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { NAV_ITEMS } from "@/lib/constants";
 import CircleCta from "@/components/ui/CircleCta";
+import posthog from "posthog-js";
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -85,7 +86,13 @@ export default function Nav() {
         </ul>
 
         {/* CTA — right */}
-        <CircleCta href="#get-in-touch" label="Get In Touch" variant="primary" className="col-start-3" />
+        <CircleCta
+          href="#get-in-touch"
+          label="Get In Touch"
+          variant="primary"
+          className="col-start-3"
+          onClick={() => posthog.capture("nav_get_in_touch_clicked")}
+        />
       </nav>
     </header>
   );
