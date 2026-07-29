@@ -5,6 +5,7 @@ import Image from "next/image";
 import { PROJECTS, DISCIPLINES } from "@/lib/constants";
 import type { Discipline } from "@/lib/constants";
 import CircleCta from "@/components/ui/CircleCta";
+import posthog from "posthog-js";
 
 const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL ?? "https://calendar.app.google/B1w7htWiKWX8UD2J6";
 const GAP = 24;
@@ -85,6 +86,9 @@ function ProjectCard({
   }, [active]);
 
   const toggleLike = () => {
+    if (!liked) {
+      posthog.capture("project_liked", { project_name: project.name });
+    }
     setLiked((prev) => {
       setLikes((n) => n + (prev ? -1 : 1));
       return !prev;
@@ -378,7 +382,10 @@ export default function SelectedWorkSection() {
           {TABS.map((tab) => (
             <button
               key={tab}
-              onClick={() => setActiveTab(tab)}
+              onClick={() => {
+                setActiveTab(tab);
+                posthog.capture("work_filter_changed", { filter: tab });
+              }}
               className={`rounded-full px-4 py-2 font-mono text-[10px] tracking-widest uppercase transition-colors ${focusRing} ${
                 activeTab === tab
                   ? "bg-[#FF4822] text-white"
@@ -467,6 +474,7 @@ export default function SelectedWorkSection() {
             label="Book a Walkthrough"
             sublabel="30 min · we share the screen"
             variant="primary"
+            onClick={() => posthog.capture("work_walkthrough_cta_clicked")}
           />
         </div>
         <div className="flex justify-center gap-2">

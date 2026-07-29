@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { FUNDING_STAGES } from "@/lib/constants";
 import CircleCta from "@/components/ui/CircleCta";
+import posthog from "posthog-js";
 
 const CONTACT_EMAIL = "general@goallounge.tv";
 
@@ -50,6 +51,7 @@ function BuildForm() {
       `Stage: ${stage || "Not specified"}`,
       `Reply to: ${email}`,
     ].join("\n");
+    posthog.capture("build_inquiry_submitted", { funding_stage: stage || null });
     window.location.href = buildMailtoUrl("New project enquiry", body);
     setStatus("sent");
   };
@@ -180,6 +182,7 @@ function PartnershipsForm() {
       "",
       note,
     ].join("\n");
+    posthog.capture("partnership_referral_submitted");
     window.location.href = buildMailtoUrl(
       `Partnership intro: ${name || "name pending"}`,
       body
@@ -257,7 +260,13 @@ function BookCallPanel() {
 
   return (
     <div className="flex flex-col gap-4">
-      <CircleCta href={bookingUrl} label="Book a Time" variant="primary" className="self-start" />
+      <CircleCta
+        href={bookingUrl}
+        label="Book a Time"
+        variant="primary"
+        className="self-start"
+        onClick={() => posthog.capture("book_call_clicked")}
+      />
 
       <ul className="mt-6 space-y-5 border-t border-[#4A4740]/30 pt-6">
         {[
@@ -308,7 +317,10 @@ export default function ContactSection() {
               return (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
+                  onClick={() => {
+                    setActiveTab(tab.id);
+                    posthog.capture("contact_tab_selected", { tab: tab.id });
+                  }}
                   className={`flex items-start gap-3 rounded-lg p-4 text-left transition-colors ${
                     isActive ? "bg-[#222222]" : "hover:bg-[#1E1E1E]"
                   }`}
